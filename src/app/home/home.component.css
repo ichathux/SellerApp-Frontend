@@ -12,6 +12,9 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
+
+
 :root {
   scroll-behavior: smooth;
 }
@@ -559,7 +562,7 @@ section {
 .hero-animated {
   width: 100%;
   min-height: 50vh;
-  background: url("assets/img/hero-bg.png") center center;
+  background: url("/assets/img/hero-bg.png") center center;
   background-size: cover;
   position: relative;
   padding: 120px 0 60px;
@@ -681,7 +684,7 @@ section {
   width: 100%;
   padding: 0;
   background: var(--color-black);
-  background: url("assets/img/hero-bg.png") center center;
+  background: url("/assets/img/hero-bg.png") center center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -874,7 +877,7 @@ section {
 .hero-fullscreen {
   width: 100%;
   min-height: 100vh;
-  background: url("assets/img/hero-fullscreen-bg.jpg") center center;
+  background: url("/assets/img/hero-fullscreen-bg.jpg") center center;
   background-size: cover;
   position: relative;
   padding: 120px 0 60px;
@@ -975,7 +978,7 @@ section {
 .hero-static {
   width: 100%;
   min-height: 50vh;
-  background: url("assets/img/hero-bg.png") center center;
+  background: url("/assets/img/hero-bg.png") center center;
   background-size: cover;
   position: relative;
   padding: 120px 0 60px;
@@ -1116,7 +1119,7 @@ section {
   inset: -60px 0 0 -60px;
   z-index: -1;
   content: "";
-  background: url("assets/img/about-bg.png") top left;
+  background: url("/assets/img/about-bg.png") top left;
   background-repeat: no-repeat;
 }
 
@@ -1308,12 +1311,12 @@ section {
 
 .onfocus .video-play {
   min-height: 400px;
-  background: linear-gradient(rgba(var(--color-black-rgb), 0.4), rgba(var(--color-black-rgb), 0.7)), url("assets/img/onfocus-video-bg.jpg") center center;
+  background: linear-gradient(rgba(var(--color-black-rgb), 0.4), rgba(var(--color-black-rgb), 0.7)), url("/assets/img/onfocus-video-bg.jpg") center center;
   background-size: cover;
 }
 
 .onfocus .content {
-  background: linear-gradient(rgba(var(--color-secondary-rgb), 0.5), rgba(var(--color-secondary-rgb), 0.8)), url("assets/img/onfocus-content-bg.jpg") center center;
+  background: linear-gradient(rgba(var(--color-secondary-rgb), 0.5), rgba(var(--color-secondary-rgb), 0.8)), url("/assets/img/onfocus-content-bg.jpg") center center;
   background-size: cover;
   color: rgba(var(--color-white-rgb), 0.8);
   padding: 40px;
@@ -1634,7 +1637,7 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("assets/img/testimonials-bg.jpg") no-repeat;
+  background: url("/assets/img/testimonials-bg.jpg") no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -1759,7 +1762,7 @@ section {
 }
 
 .pricing .pricing-header {
-  background: linear-gradient(rgba(var(--color-secondary-rgb), 0.9), rgba(var(--color-secondary-rgb), 0.9)), url("assets/img/pricing-bg.jpg") center center;
+  background: linear-gradient(rgba(var(--color-secondary-rgb), 0.9), rgba(var(--color-secondary-rgb), 0.9)), url("/assets/img/pricing-bg.jpg") center center;
   background-size: cover;
   text-align: center;
   padding: 40px;
@@ -1847,7 +1850,7 @@ section {
 }
 
 .pricing .featured .pricing-header {
-  background: linear-gradient(rgba(var(--color-primary-rgb), 0.9), rgba(var(--color-primary-rgb), 0.9)), url("assets/img/pricing-bg.jpg") center center;
+  background: linear-gradient(rgba(var(--color-primary-rgb), 0.9), rgba(var(--color-primary-rgb), 0.9)), url("/assets/img/pricing-bg.jpg") center center;
 }
 
 .pricing .featured .buy-btn {
