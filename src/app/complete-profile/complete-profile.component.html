@@ -1,1 +1,80 @@
-<p>complete-profile works!</p>
+<div class="main-panel">
+    <app-dashboard-navbar></app-dashboard-navbar>
+    <app-dashboard-sidebar></app-dashboard-sidebar>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Complete Profile</h4>
+                            <p class="card-category">Enter your details below</p>
+                        </div>
+                        <div class="card-body ">
+                            <form class="was-validated" [formGroup]="completeProfileForm"
+                                (ngSubmit)="completeProfile()">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Business Name</label>
+                                        <input [formControlName]="'businessName'" type="text" class="form-control"
+                                            id="inputEmail4" placeholder="Business (Pvt.) Ltd.">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Owner Name</label>
+                                        <input [formControlName]="'ownerName'" type="text" class="form-control"
+                                            id="inputPassword4" placeholder="John Wick">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Address</label>
+                                    <input [formControlName]="'address'" type="text" class="form-control"
+                                        id="inputAddress" placeholder="1234 Main St">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Contact Number</label>
+                                        <input [formControlName]="'contactNo'" type="text" class="form-control"
+                                            id="inputEmail4" placeholder="+1(111)222333">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Business Type</label>
+                                        <select [formControlName]="'businessType'" id="inputState" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <div class="custom-file">
+                                            <!-- <input [formControlName]="'logo'" type="file" class="custom-file-input"
+                                                id="validatedCustomFile" required> -->
+                                            <label class="custom-file-label" for="validatedCustomFile">Choose
+                                                file...</label>
+                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Location</label>
+                                        <select [formControlName]="'location'" id="inputState" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <br>
+
+
+                            </form>
+                            <input type="button" (click)="getDetails()" class="btn btn-primary" value="get details" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
