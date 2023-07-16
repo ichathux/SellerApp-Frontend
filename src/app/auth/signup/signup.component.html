@@ -1,60 +1,35 @@
-<!-- Section: Design Block -->
-<section class="background-radial-gradient overflow-hidden">
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-        <div class="row gx-lg-5 align-items-center mb-5">
-            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                    The best offer <br />
-                    <span style="color: hsl(218, 81%, 75%)">for your business</span>
-                </h1>
-                <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Temporibus, expedita iusto veniam atque, magni tempora mollitia
-                    dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-                    ab ipsum nisi dolorem modi. Quos?
-                </p>
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                    class="img-fluid" alt="Phone image">
             </div>
-
-            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-                <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-                <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
-
-                <div class="card bg-glass">
-                    <div class="card-body px-4 py-5 px-md-5">
-                        <form [formGroup]="signupForm" (ngSubmit)="signup()">
-
-                            <!-- Email input -->
-                            <div class="form-outline mb-4">
-                                <input [formControlName]="'email'" type="email" id="form3Example3"
-                                    class="form-control" />
-                                <span *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">
-                                    Please provid a valid email.
-                                </span>
-                                <label class="form-label" for="form3Example3">Email address</label>
-
-                            </div>
-
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                                <input [formControlName]="'password'" type="password" id="form3Example4"
-                                    class="form-control" />
-                                <span *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')?.touched">
-                                    Please provid a valid password.
-                                </span>
-                                <label class="form-label" for="form3Example4">Password</label>
-                            </div>
-
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-4">
-                                Sign up
-                            </button>
-
-
-                        </form>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input [formControlName]="'email'" type="email" id="form1Example13"
+                            class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example13">Email address</label>
                     </div>
-                </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form1Example23" class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example23">Password</label>
+                    </div>
+
+                    <div class="d-flex justify-content-around align-items-center mb-4">
+
+                        <a href="sign-in">Already Member? Login </a>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-md-12 lg-12">Sign in</button>
+
+                </form>
             </div>
         </div>
     </div>
 </section>
-<!-- Section: Design Block -->

@@ -27,10 +27,15 @@ export class TokenInterceptor implements HttpInterceptor{
         
         if (jwtToken) {
             return next.handle(this.addToken(req, jwtToken)).pipe(catchError(error => {
-                if (error instanceof HttpErrorResponse
-                    && error.status === 403) {
+                // if( error.name = 'HttpErrorResponse'){
+                //     console.log('http error occured')
+                //     this.authService.logout();
+                // }
+                if (error.status === 403) {
+                        console.log('error occured ',error);
                     return this.handleAuthErrors(req, next);
                 } else {
+                    console.log('error occured not ',error);
                     return throwError(error);
                 }
             }));
@@ -75,7 +80,7 @@ export class TokenInterceptor implements HttpInterceptor{
             .set('Access-Control-Allow-Origin','*')
             .set('Access-Control-Allow-Methods','POST, PUT, PATCH, GET, DELETE, OPTIONS')
             .set('Access-Control-Allow-Headers','Origin, X-Requested-With, XMLHttpRequest, Content-Type, Accept, Access-Control-Allow-Origin')
-            .set('Content-Type','application/json')
+            // .set('Content-Type','application/json')
             .set('Access-Control-Allow-Credentials', 'true')
             .set('X-Requested-With', 'XMLHttpRequest')
         });

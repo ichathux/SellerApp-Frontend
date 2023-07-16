@@ -11,8 +11,7 @@ import { UserDetailsResponsePayload } from '../auth/signin/sellerDetails.respons
 })
 export class ProfileService {
 
-  constructor(private http : HttpClient,
-    private authService : AuthService) { }
+  constructor(private http : HttpClient) { }
 
   complete_profile(completeProfilePayload : CompleteProfilePayload) : Observable<any>{
     console.log('in complete profile service');

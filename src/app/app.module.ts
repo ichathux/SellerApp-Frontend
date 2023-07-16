@@ -23,6 +23,7 @@ import { ProfilePageComponent } from './dashboard/profile-page/profile-page.comp
 import { CatalogPageComponent } from './dashboard/catalog-page/catalog-page.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,7 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
     FontAwesomeModule,
     ToastrModule.forRoot(),
     NgxWebstorageModule.forRoot(),
-    CanvasJSAngularChartsModule
+    CanvasJSAngularChartsModule,
     
   ],
   providers: [{

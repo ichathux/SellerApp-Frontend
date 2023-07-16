@@ -81,10 +81,21 @@
                                     <div class="card">
 
                                         <div class="card-content">
-                                            <div class="mb-3">
-                                                <label for="formFileSm" class="form-label">Small file input
-                                                    example</label>
-                                                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                            <div class="container d-flex justify-content-center">
+                                                <div class="mt-5 row justify-content-center">
+
+                                                    <div class="col-10 mb-3">
+                                                        <label class="px-3">Select File: </label>
+                                                        <input type="file" (change)="selectFile($event)"
+                                                            accept=".xlsx" />
+                                                    </div>
+
+                                                    <div class="col-2">
+                                                        <button class="btn btn-success btn-sm" (click)="uploadFile()">
+                                                            Upload
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -106,20 +117,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="table-success">
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                        <tr [ngClass]="{'table-primary': file.status === 'READY_TO_DOWNLOAD',
+                                                        'table-info': file.status === 'PENDING',
+                                                        'table-danger':file.status === 'ERROR'}"
+                                            *ngFor="let file of files">
+                                            <td>{{file.fileName}}</td>
+                                            <td>{{file.status}}</td>
+                                            <td><button class="btn"><fa-icon [icon]="faDownload"></fa-icon></button>
+                                            </td>
                                         </tr>
-                                        <tr class="table-danger">
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr class="table-info">
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+
                                     </tbody>
                                     <tfoot>
                                         <nav aria-label="Page navigation">
@@ -129,9 +136,9 @@
                                                         <span aria-hidden="true">&laquo;</span>
                                                     </a>
                                                 </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item" *ngFor="let p of pages; let i = index"><a
+                                                        class="page-link" (click)="setPage(i,$event)">{{i+1}}</a></li>
+
                                                 <li class="page-item">
                                                     <a class="page-link" href="#" aria-label="Next">
                                                         <span aria-hidden="true">&raquo;</span>
