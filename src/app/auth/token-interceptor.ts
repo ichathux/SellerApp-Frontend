@@ -18,7 +18,9 @@ export class TokenInterceptor implements HttpInterceptor{
     intercept(req: HttpRequest<any>, 
         next: HttpHandler): 
         Observable<HttpEvent<any>> {
+
             console.log('intercept');
+            
             const jwtToken = this.authService.getJwtToken();
         if (req.url.indexOf('refresh') !== -1 || req.url.indexOf('sign-in') !== -1) {
             console.log('!==-1');
@@ -27,10 +29,6 @@ export class TokenInterceptor implements HttpInterceptor{
         
         if (jwtToken) {
             return next.handle(this.addToken(req, jwtToken)).pipe(catchError(error => {
-                // if( error.name = 'HttpErrorResponse'){
-                //     console.log('http error occured')
-                //     this.authService.logout();
-                // }
                 if (error.status === 403) {
                         console.log('error occured ',error);
                     return this.handleAuthErrors(req, next);
@@ -74,13 +72,13 @@ export class TokenInterceptor implements HttpInterceptor{
     }
 
     addToken(req : HttpRequest<any>, jwtToken : any){
-        // console.log('addToken');
+        console.log('addToken , '+jwtToken);
         return req.clone({
             headers: req.headers.set('Authorization','Bearer ' + jwtToken)
-            .set('Access-Control-Allow-Origin','*')
+            .set('Access-Control-Allow-Origin','http://localhost:4200')
             .set('Access-Control-Allow-Methods','POST, PUT, PATCH, GET, DELETE, OPTIONS')
             .set('Access-Control-Allow-Headers','Origin, X-Requested-With, XMLHttpRequest, Content-Type, Accept, Access-Control-Allow-Origin')
-            // .set('Content-Type','application/json')
+            .set('Content-Type','application/json')
             .set('Access-Control-Allow-Credentials', 'true')
             .set('X-Requested-With', 'XMLHttpRequest')
         });

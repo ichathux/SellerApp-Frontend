@@ -22,7 +22,17 @@ import { ListingPageComponent } from './dashboard/listing-page/listing-page.comp
 import { ProfilePageComponent } from './dashboard/profile-page/profile-page.component';
 import { CatalogPageComponent } from './dashboard/catalog-page/catalog-page.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
-
+import { TagInputModule } from 'ngx-chips';
+import { TestPageComponent } from './test-page/test-page.component';
+import { TestRegisterComponent } from './test-register/test-register.component';
+import { MainComponent } from './dashboard/main/main.component';
+import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatRadioModule} from '@angular/material/radio'
+// import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,6 +49,10 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
     ListingPageComponent,
     ProfilePageComponent,
     CatalogPageComponent,
+    TestPageComponent,
+    TestRegisterComponent,
+    MainComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,13 +64,16 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
     ToastrModule.forRoot(),
     NgxWebstorageModule.forRoot(),
     CanvasJSAngularChartsModule,
-    
+    TagInputModule,
+    FormsModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatRadioModule
+
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi : true
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

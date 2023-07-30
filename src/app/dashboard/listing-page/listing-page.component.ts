@@ -72,4 +72,6 @@ export class ListingPageComponent implements OnInit{
     this.getUploadedFiles();
   }
 
+  
+
 }

@@ -10,16 +10,21 @@ import { AuthGuard } from './auth/auth.guard';
 import { ListingPageComponent } from './dashboard/listing-page/listing-page.component';
 import { CatalogPageComponent } from './dashboard/catalog-page/catalog-page.component';
 import { ProfilePageComponent } from './dashboard/profile-page/profile-page.component';
+import { TestPageComponent } from './test-page/test-page.component';
+import { TestRegisterComponent } from './test-register/test-register.component';
+import { MainComponent } from './dashboard/main/main.component';
 
 const routes: Routes = [
   { path: '', component:HomeComponent},
   { path: 'sign-up', component: SignupComponent },
   { path: 'sign-in', component: SigninComponent},
   { path: 'complete-profile', component: CompleteProfileComponent, canActivate: [AuthGuard]},
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: 'dashboard', component: MainComponent, canActivate: [AuthGuard]},
   { path: 'listing-page', component: ListingPageComponent, canActivate: [AuthGuard]},
   { path: 'catalog-page', component: CatalogPageComponent, canActivate: [AuthGuard]},
-  { path: 'profile-page', component: ProfilePageComponent, canActivate: [AuthGuard]}
+  { path: 'profile-page', component: ProfilePageComponent, canActivate: [AuthGuard]},
+  { path: 'test-page', component: TestPageComponent},
+  { path: 'test-register', component: TestRegisterComponent}
   
 ];
 

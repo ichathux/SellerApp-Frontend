@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "../../../.."
+	},
+	{
+		"path": "../../../../../../redditClone/angular-reddit-clone-master"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "seller-app-frontend"
+  }
+}

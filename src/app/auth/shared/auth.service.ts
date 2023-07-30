@@ -12,8 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  
-
+  baseUrl: string = "http://localhost:8080/seller-app/api";
   refreshToken() {
 
     const refreshTokenPayload = {
@@ -21,7 +20,7 @@ export class AuthService {
       username: this.getUserName()
     }
 
-    return this.httpClient.post<SigninResponse>('http://localhost:8080/api/auth/refresh/token',
+    return this.httpClient.post<SigninResponse>(this.baseUrl+'/auth/refresh/token',
       refreshTokenPayload)
        .pipe(tap((response) => {
 
@@ -49,13 +48,14 @@ export class AuthService {
    }
 
    signup(signupRequestPayload : SignupRequestPayload): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/seller-app/api/auth/signup', signupRequestPayload, 
+    return this.httpClient.post(this.baseUrl+'/auth/signup', signupRequestPayload, 
     {responseType: 'text'});
    }
 
    signIn(signinRequestPayload : SigninRequestPayload): Observable<boolean>{
-    console.log('in auth service');
-    return this.httpClient.post<SigninResponse>('http://localhost:8080/seller-app/api/auth/signIn',
+    console.log('in auth service signin sending request');
+    
+    return this.httpClient.post<SigninResponse>(this.baseUrl+'/auth/signIn',
     signinRequestPayload).pipe(map(data => {
       this.localStorage.store('authenticationToken', data.authenticationToken);
       this.localStorage.store('username', data.username);
@@ -92,7 +92,7 @@ export class AuthService {
       username: this.getUserName()
     }
 
-    this.httpClient.post('http://localhost:8080/seller-app/api/auth/logout', refreshTokenPayload,
+    this.httpClient.post(this.baseUrl+'/auth/logout', refreshTokenPayload,
       { responseType: 'text' })
       .subscribe(data => {
         console.log(data);
