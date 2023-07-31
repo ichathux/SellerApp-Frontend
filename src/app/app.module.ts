@@ -9,15 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { CompleteProfileComponent } from './complete-profile/complete-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'node_modules/ngx-toastr';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { DashboardSidebarComponent } from './dashboard-sidebar/dashboard-sidebar.component';
-import { DashboardNavbarComponent } from './dashboard-navbar/dashboard-navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TokenInterceptor } from './auth/token-interceptor';
 import { ListingPageComponent } from './dashboard/listing-page/listing-page.component';
 import { ProfilePageComponent } from './dashboard/profile-page/profile-page.component';
 import { CatalogPageComponent } from './dashboard/catalog-page/catalog-page.component';
@@ -27,12 +24,15 @@ import { TestPageComponent } from './test-page/test-page.component';
 import { TestRegisterComponent } from './test-register/test-register.component';
 import { MainComponent } from './dashboard/main/main.component';
 import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonModule} from '@angular/material/button';
+import { MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatRadioModule} from '@angular/material/radio'
-// import { FormsModule } from '@angular/forms';
+import { MatRadioModule} from '@angular/material/radio';
+import { NavbarComponent } from './dashboard/navbar/navbar.component';
+import { TrackingPageComponent } from './dashboard/tracking-page/tracking-page.component';
+import { SettingPageComponent } from './dashboard/setting-page/setting-page.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -44,8 +44,6 @@ import {MatRadioModule} from '@angular/material/radio'
     FooterComponent,
     CompleteProfileComponent,
     DashboardComponent,
-    DashboardSidebarComponent,
-    DashboardNavbarComponent,
     ListingPageComponent,
     ProfilePageComponent,
     CatalogPageComponent,
@@ -53,6 +51,9 @@ import {MatRadioModule} from '@angular/material/radio'
     TestRegisterComponent,
     MainComponent,
     SidebarComponent,
+    NavbarComponent,
+    TrackingPageComponent,
+    SettingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,8 +71,8 @@ import {MatRadioModule} from '@angular/material/radio'
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
-    MatRadioModule
-
+    MatRadioModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

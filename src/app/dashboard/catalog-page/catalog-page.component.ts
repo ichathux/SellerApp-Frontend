@@ -12,12 +12,12 @@ export class CatalogPageComponent implements OnInit{
   productName !: string;
 
   constructor(){
-    productName : ''
+    // productName : ''
   }
 
   ngOnInit(): void {
-    productName : new FormControl('', Validators.required)
-    productName : this.catalogForm.get('productName')?.value;
+    // productName : new FormControl('', Validators.required)
+    // productName : this.catalogForm.get('productName')?.value;
   }
 
 
