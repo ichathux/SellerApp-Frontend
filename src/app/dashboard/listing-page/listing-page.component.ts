@@ -29,7 +29,7 @@ export class ListingPageComponent implements OnInit{
 
   ngOnInit(): void {
     
-    this.getUploadedFiles();
+    // this.getUploadedFiles();
   }
 
   selectFile(event: any) {
@@ -37,40 +37,40 @@ export class ListingPageComponent implements OnInit{
     console.log('file ',this.file)
   }
 
-  uploadFile() {
+  // uploadFile() {
 
-    console.log('uploading file ',this.file)
-    this.uploadService.bulkUpload(this.file).subscribe({
+  //   console.log('uploading file ',this.file)
+  //   this.uploadService.bulkUpload(this.file).subscribe({
 
-      next: (data) => {
-        this.fileDetails = data;
-        this.fileUris.push(this.fileDetails.fileUri);
-        // alert("File Uploaded Successfully")
-        this.toastr.success('File Uploaded Successfully');
-        this.getUploadedFiles();
-      },
-      error: (e) => {
-        // console.log(e);
-        this.toastr.success('error Ocurred');
-      }
-    });
-  }
+  //     next: (data) => {
+  //       this.fileDetails = data;
+  //       this.fileUris.push(this.fileDetails.fileUri);
+  //       // alert("File Uploaded Successfully")
+  //       this.toastr.success('File Uploaded Successfully');
+  //       this.getUploadedFiles();
+  //     },
+  //     error: (e) => {
+  //       // console.log(e);
+  //       this.toastr.success('error Ocurred');
+  //     }
+  //   });
+  // }
 
-  getUploadedFiles(){
-    this.uploadService.getFiles(this.page, this.size).subscribe((data) => {
-      console.log(data);
-      this.files = data['content'];
-      this.pages = new Array(data['totalPages']);
-      console.log(this.files);
-    },(error) => {
-      console.log(error.error.message);
-    });
-  }
+  // getUploadedFiles(){
+  //   this.uploadService.getFiles(this.page, this.size).subscribe((data) => {
+  //     console.log(data);
+  //     this.files = data['content'];
+  //     this.pages = new Array(data['totalPages']);
+  //     console.log(this.files);
+  //   },(error) => {
+  //     console.log(error.error.message);
+  //   });
+  // }
 
-  setPage(i : number, event : any){
-    this.page = i;
-    this.getUploadedFiles();
-  }
+  // setPage(i : number, event : any){
+  //   this.page = i;
+  //   this.getUploadedFiles();
+  // }
 
   
 

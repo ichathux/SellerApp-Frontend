@@ -23,16 +23,23 @@ import { TagInputModule } from 'ngx-chips';
 import { TestPageComponent } from './test-page/test-page.component';
 import { TestRegisterComponent } from './test-register/test-register.component';
 import { MainComponent } from './dashboard/main/main.component';
-import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
 import { MatButtonModule} from '@angular/material/button';
 import { MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRadioModule} from '@angular/material/radio';
-import { NavbarComponent } from './dashboard/navbar/navbar.component';
 import { TrackingPageComponent } from './dashboard/tracking-page/tracking-page.component';
 import { SettingPageComponent } from './dashboard/setting-page/setting-page.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
+import { MakeExcelFilePageComponent } from './dashboard/make-excel-file-page/make-excel-file-page.component';
+import { SingleInputPageComponent } from './dashboard/listing/single-input-page/single-input-page.component';
+import { BulkInputPageComponent } from './dashboard/listing/bulk-input-page/bulk-input-page.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatIconModule} from '@angular/material/icon';
+import { DatePipe } from '@angular/common';
+import { ListingHistoryPageComponent } from './dashboard/listing/listing-history-page/listing-history-page.component';
+
 
 @NgModule({
   declarations: [
@@ -51,9 +58,12 @@ import { MatTabsModule } from '@angular/material/tabs';
     TestRegisterComponent,
     MainComponent,
     SidebarComponent,
-    NavbarComponent,
     TrackingPageComponent,
     SettingPageComponent,
+    MakeExcelFilePageComponent,
+    SingleInputPageComponent,
+    BulkInputPageComponent,
+    ListingHistoryPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,9 +82,11 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSelectModule,
     MatButtonModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

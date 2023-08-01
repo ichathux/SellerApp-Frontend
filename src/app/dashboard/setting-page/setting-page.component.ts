@@ -6,15 +6,6 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   templateUrl: './setting-page.component.html',
   styleUrls: ['./setting-page.component.css']
 })
-export class SettingPageComponent implements OnInit{
-
-
-  constructor(private sideBar : SidebarComponent){}
-ngOnInit(): void {
-
-  // this.sideBar.isLinkActive('setting-page');
-}
-  
-  
-
+export class SettingPageComponent {
+  constructor(){}  
 }

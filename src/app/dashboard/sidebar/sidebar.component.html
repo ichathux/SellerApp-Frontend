@@ -33,6 +33,16 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" (click)="setCompomentToShow('make-excel-file')"
+                    [ngClass]="{'active': activeStatus === 'make-excel-file'}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <fa-icon [icon]="faFileExcel"></fa-icon>
+                    </div>
+                    <span class="nav-link-text ms-1">Make Bulk File</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" (click)="setCompomentToShow('catalog-page')"
                     [ngClass]="{'active': activeStatus === 'catalog-page'}">
                     <div

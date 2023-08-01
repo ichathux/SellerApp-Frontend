@@ -5,7 +5,7 @@
 
     <mat-sidenav-content class="container-sidenav">
         <!-- Navbar-->
-        <div class="position-relative" style="margin-left: 10px; margin-top: 10px;">
+        <div class="position-relative" style="margin-left: 10px; margin-top: 10px; margin-bottom: 10px;">
             <div class="position-absolute top-0 start-0">
                 <button (click)="sidenav.toggle()" type="button" class="btn btn-outline-secondary">
                     <fa-icon [icon]="faBars"></fa-icon>
@@ -19,5 +19,6 @@
         <app-profile-page *ngIf="componentToShow == 'profile-page'"></app-profile-page>
         <app-tracking-page *ngIf="componentToShow == 'tracking-page'"></app-tracking-page>
         <app-setting-page *ngIf="componentToShow == 'settings-page'"></app-setting-page>
+        <app-make-excel-file-page *ngIf="componentToShow == 'make-excel-file'"></app-make-excel-file-page>
     </mat-sidenav-content>
 </mat-sidenav-container>

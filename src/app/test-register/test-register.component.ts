@@ -42,7 +42,7 @@ export class TestRegisterComponent {
     console.log("sending request");
     this.axiosService.request(
       "POST",
-      "/register",
+      "api/auth/register",
       {
         firstName: input.firstName,
         lastName: input.lastName,

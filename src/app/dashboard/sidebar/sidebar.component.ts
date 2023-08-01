@@ -26,6 +26,7 @@ export class SidebarComponent {
     ){}
   
   setCompomentToShow(showContent : string){
+    console.log(showContent)
     this.mainComponent.componentToShow = showContent;
     this.activeStatus = showContent;
   }  

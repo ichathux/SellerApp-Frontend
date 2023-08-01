@@ -1,0 +1,49 @@
+<div class="card ">
+    <div class="card-header ">
+        <h4 class="card-title">Listing History</h4>
+    </div>
+    <div class="card-body ">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Receiver Name</th>
+                    <th scope="col">Receiver Address</th>
+                    <th scope="col">Receiver Contact</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-success" *ngFor="let order of orders">
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.customer.name }}</td>
+                    <td>{{ order.customer.address}},{{ order.customer.district}}</td>
+                    <td>{{ order.customer.contactNo}},{{order.customer.email}}</td>
+                    <td>{{ order.deliveryCharge + order.price}}</td>
+                    <td>@mdo</td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </tfoot>
+        </table>
+    </div>
+</div>

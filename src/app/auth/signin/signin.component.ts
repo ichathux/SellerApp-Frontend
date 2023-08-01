@@ -1,10 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../shared/auth.service';
-import { SigninRequestPayload } from './signin.request.payload';
-import { ToastrService } from 'ngx-toastr';
-import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
 import axios from 'axios';
 import { AxiosService } from 'src/app/axios.service';
 
@@ -29,7 +24,7 @@ ngOnInit(): void {
   onLogin(input:any):void{
     this.axiosService.request(
       "POST",
-      "/login",
+      "api/auth/login",
       {
         username : input.username,
         password : input.password

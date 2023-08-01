@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CompleteProfilePayload } from './complete-profile-request.payload';
 import { ProfileService } from './profile-service.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/shared/auth.service';
-import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-complete-profile',
@@ -64,7 +63,7 @@ export class CompleteProfileComponent implements OnInit{
     this.profile_service.complete_profile(this.completeProfilePayload)
     .subscribe((data) => {
       console.log(data)
-      this.router.navigate(['/dashboard']);
+      // this.router.navigate(['/dashboard']);
       this.toastr.success('Profile updated complete!');
     })
   }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Params } from '@angular/router';
 import axios from 'axios';
 
 @Injectable({
@@ -7,8 +8,8 @@ import axios from 'axios';
 export class AxiosService {
 
   constructor() { 
-    axios.defaults.baseURL = "http://localhost:8081/api/auth"
-    axios.defaults.headers.post["Content-type"] = "application/json"
+    axios.defaults.baseURL = "http://localhost:8081/";
+    
   }
 
   getAuthToken(): string | null{
@@ -53,6 +54,43 @@ export class AxiosService {
     }
     return false;
   }
+  requestWithParams(method : string, url : string, data : Params){
+    let headers = {};
+
+    if(this.getAuthToken() !== null){
+      headers = {"Authorization" : "Bearer " + this.getAuthToken()};
+    }
+
+    if(url !== 'api/listing/bulkUpload'){
+      axios.defaults.headers.post["Content-type"] = "application/json";
+    }
+    
+    return axios({
+      method : method,
+      url : url,
+      params : data,
+      headers : headers
+    })
+
+  }
+  requestWithoutJsonFormatParams(method : string, url : string, data : Params){
+    let headers = {};
+
+    if(this.getAuthToken() !== null){
+      headers = {"Authorization" : "Bearer " + this.getAuthToken()};
+    }
+    
+    axios.defaults.headers.post["Content-type"] = "application/xml";
+    
+    
+    return axios({
+      method : method,
+      url : url,
+      params : data,
+      headers : headers
+    })
+
+  }
   request(method : string,url : string, data : any) : Promise<any>{
     
     this.checkAuthTokenValid() 
@@ -60,6 +98,12 @@ export class AxiosService {
     
     if(this.getAuthToken() !== null){
       headers = {"Authorization" : "Bearer " + this.getAuthToken()};
+    }
+
+    if(url === "api/listing/bulkUpload"){
+      axios.defaults.headers.post["Content-type"] = "application/xml";
+    }else{
+      axios.defaults.headers.post["Content-type"] = "application/json";
     }
 
     return axios({

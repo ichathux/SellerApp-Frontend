@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,900);
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,900);
 
 html,
 body {
@@ -33,7 +33,6 @@ h1.heading {
   color: #fff;
   font-size:18px;
   font-weight: 100;
-  /* margin: 0 0 0.5em; */
   color: #505050;
 }
 @media (min-width: 450px) {
@@ -102,4 +101,19 @@ h1.heading {
   padding:10px;
   font-weight:600;
   text-transform: uppercase
+} */
+
+.content{
+  margin-top: 70px;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+  --mat-tab-header-active-focus-label-text-color: #151414;
+  --mat-tab-header-active-label-text-color : #151414;
+  --mat-tab-header-inactive-label-text-color: rgb(0 0 0 / 60%);
+  --mat-tab-header-inactive-focus-label-text-color: rgb(236 131 218 / 60%);
+  --mat-tab-header-inactive-hover-label-text-color : rgb(236 131 218 / 60%);
+  --mdc-tab-indicator-active-indicator-color: #242022;
+  --mat-tab-header-active-hover-label-text-color: #5052c3;
+  --mat-tab-header-inactive-ripple-color: #151113;
 }
