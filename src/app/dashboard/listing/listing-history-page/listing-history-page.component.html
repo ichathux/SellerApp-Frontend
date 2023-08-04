@@ -12,6 +12,8 @@
                     <th scope="col">Receiver Contact</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Created At</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,8 +22,10 @@
                     <td>{{ order.customer.name }}</td>
                     <td>{{ order.customer.address}},{{ order.customer.district}}</td>
                     <td>{{ order.customer.contactNo}},{{order.customer.email}}</td>
-                    <td>{{ order.deliveryCharge + order.price}}</td>
-                    <td>@mdo</td>
+                    <td>{{ order.deliveryCharge + order.price | currency }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.createdAt }}</td>
+
                 </tr>
 
             </tbody>
@@ -33,9 +37,9 @@
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item" *ngFor="let p of pages; let i = index"><a class="page-link"
+                                (click)="setPage(i,$event)">{{i+1}}</a></li>
+
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>

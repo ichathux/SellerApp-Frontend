@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AxiosService } from '../axios.service';
 
 @Component({
@@ -55,7 +55,6 @@ export class TestRegisterComponent {
       }
     ).then(response => {
       this.axiosService.setAuthToken(response.data.token);
-      // this.componentToShow = "messages";
     });
   }
 

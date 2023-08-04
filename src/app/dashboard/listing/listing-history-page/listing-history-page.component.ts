@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListingService } from '../../listing-page/listing.service';
+import { ListingService } from '../listing-page/listing.service';
 
 @Component({
   selector: 'app-listing-history-page',
