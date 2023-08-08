@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http'
 import { AxiosService } from 'src/app/axios.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class ListingService {
   getFiles(page1 : number, size1 : number): Promise<any>{
     return this.axiosService.requestWithParams("GET", "api/listing/files", {page : page1, size : size1});
   }
-  getOrders(page1 : number, size1 : number): Promise<any>{
-    return this.axiosService.requestWithParams("GET", "api/listing/orders", {page : page1, size : size1});
+  getOrders(page1 : number, size1 : number): Observable<any>{
+    return this.axiosService.requestWithParams1("GET", "api/listing/orders", {page : page1, size : size1});
   }
   
 }

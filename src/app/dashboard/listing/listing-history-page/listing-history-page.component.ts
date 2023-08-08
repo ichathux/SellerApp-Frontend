@@ -21,12 +21,9 @@ export class ListingHistoryPageComponent implements OnInit {
 
   getListedOrders(){
     console.log();
-    this.uploadService.getOrders(this.page, this.size).then(response => {
-      this.orders = response.data.content;
-      this.pages = new Array(response.data['totalPages']);
-      console.log(this.orders)
-    }).catch(error => {
-      console.log(error);
+    this.uploadService.getOrders(this.page, this.size).subscribe(response => {
+      this.orders = response.content;
+      this.pages = new Array(response.totalPages);
     })
 
   }

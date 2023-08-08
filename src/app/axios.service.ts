@@ -101,7 +101,7 @@ export class AxiosService {
       }).then(response => {
         observer.next(response.data);
         observer.complete();
-        this.toaster.success(response.data);
+        // this.toaster.success(response.data);
       }).catch(error => {
         observer.error(error);
         this.toaster.error(error);

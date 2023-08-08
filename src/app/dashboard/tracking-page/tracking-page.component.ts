@@ -2,32 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { ListingService } from "../service/listing.service";
 import { AxiosService } from 'src/app/axios.service';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-tracking-page',
   templateUrl: './tracking-page.component.html',
   styleUrls: ['./tracking-page.component.css']
 })
 export class TrackingPageComponent implements OnInit{
-
-  startDate : Date = new Date() ;
+  
   endDate : Date = new Date();
+  startDate : Date = new Date(this.endDate) ;
+  
+  
   step = 0;
   private page : number = 0;
   private size : number = 10;
   orders : Array<any> | undefined;
   pages : Array<number> | undefined;
 
-  constructor(private axiosService : AxiosService, private uploadService : ListingService){}
+  constructor(private axiosService : AxiosService, 
+    private uploadService : ListingService,
+    private toaster : ToastrService){
+      
+    }
   
   ngOnInit(): void {
-    this.getListedOrders();
-    console.log(this.startDate);
-    console.log(this.endDate);
+    // this.getListedOrders();
+    this.startDate.setDate(this.endDate.getDate() - 7);
+    this.search();
   }
 
   search(){
     console.log(this.startDate);
     console.log(this.endDate);
+
     this.axiosService.requestWithParams1(
       "GET", 
       "api/listing/searchByDate", 
@@ -39,38 +47,34 @@ export class TrackingPageComponent implements OnInit{
       }).subscribe(response => {
         console.log(response);
         this.orders = response.content;
+        this.toaster.success(this.orders?.length + " items recieved");
       });
   }
   setStep(index: number) {
     this.step = index;
   }
 
-  nextStep (orderID : number, state : number){
-    console.log('id-',orderID)
-    console.log('type-',state)
-    
+  nextStep (orderID : number, state : number){    
     this.axiosService.requestWithParams1("POST",
     "api/tracking/update",
     {type : state,
     id : orderID,
     token : window.localStorage.getItem("requestToken")
     }).subscribe(response => {
-      console.log(response);
-      this.getListedOrders();
+      this.toaster.success("Order ID "+orderID+" changed")
+      this.search();
     })
   }
 
   
-  getListedOrders(){
+  getListedOrders() : void{
     console.log();
-    this.uploadService.getOrders(this.page, this.size).then(response => {
-      this.orders = response.data.content;
-      this.pages = new Array(response.data['totalPages']);
-      console.log(this.orders)
-    }).catch(error => {
-      console.log(error);
+    this.uploadService.getOrders(this.page, this.size).subscribe(response => {
+      console.log(response);
+      this.orders = response.content;
+      this.pages = new Array(response.totalPages);
+      this.toaster.success(this.orders?.length + " items recieved")
     })
-
   }
 
   setPage(i : number, event : any){
