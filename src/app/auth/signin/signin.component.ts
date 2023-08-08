@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { ToastrService } from 'ngx-toastr';
 import { AxiosService } from 'src/app/axios.service';
 
 @Component({
@@ -10,7 +11,9 @@ import { AxiosService } from 'src/app/axios.service';
 })
 export class SigninComponent implements OnInit{
   
-constructor(private axiosService : AxiosService, private router : Router){}
+constructor(private axiosService : AxiosService, 
+  private router : Router,
+  private toaster: ToastrService){}
 ngOnInit(): void {
   console.log(axios);
 }
@@ -21,7 +24,7 @@ ngOnInit(): void {
   password : string = "";
   // ngForm : NgForm = "";
 
-  onLogin(input:any):void{
+  onLogin(input:any):any{
     this.axiosService.request(
       "POST",
       "api/auth/login",
@@ -30,9 +33,13 @@ ngOnInit(): void {
         password : input.password
       }
     ).then(response => {
-      this.axiosService.setAuthToken(response.data.token);
+      console.log(response.data);
+      this.axiosService.setAuthToken(response.data.token, input.username, response.data.requestToken);
       this.router.navigateByUrl('/dashboard');
       // this.componentToShow = "messages";
+    }).catch(error => {
+      this.toaster.error('Error!','Login Fail, Check Credentail again');
+      console.log(error);
     });
 
   }

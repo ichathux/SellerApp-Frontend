@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SignupRequestPayload } from './signup-request.payload';
-import { AuthService } from '../shared/auth.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AxiosService } from 'src/app/axios.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,41 +7,57 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./signup.component.css']
 })
 
-export class SignupComponent implements OnInit{
+export class SignupComponent{
+  constructor(private axiosService : AxiosService){}
+
+  @Output() onSubmitRegisterEvent = new EventEmitter();
+
+  active : string = 'login';
+  firstName : string = "";
+  lastName : string = "";
+  contact : string = "";
+  username : string = "";
+  password : string = "";
+  businessName : string = "";
+  address : string = "";
+
+
+
   
-  signupRequestPayload: SignupRequestPayload;
-  signupForm!: FormGroup;
+  onSubmitRegister():void{
 
-  constructor(
-    private authService: AuthService, 
-    private router: Router, 
-    private toastr: ToastrService){
+    console.log("registering user")
+    this.onRegister({
+      "firstName": this.firstName, 
+      "lastName": this.lastName,
+      "username":this.username, 
+      "password" : this.password,
+      "contact": this.contact,
+      "businessName": this.contact,
+      "address": this.address});
 
-    this.signupRequestPayload = {
-      email : '',
-      password : ''
-    }
-    
   }
 
-  ngOnInit() { 
-      this.signupForm = new FormGroup({
-        email : new FormControl('',[Validators.required, Validators.email]),
-        password : new FormControl('',Validators.required)
-      })
-  }
-  signup(){
-    this.signupRequestPayload.email = this.signupForm.get('email')?.value; 
-    this.signupRequestPayload.password = this.signupForm.get('password')?.value;
+  onRegister(input : any): void{
+    console.log("sending request");
+    this.axiosService.request(
+      "POST",
+      "api/auth/register",
+      {
+        firstName: input.firstName,
+        lastName: input.lastName,
+        username: input.username,
+        password: input.password,
+        contact: input.contact,
+        businessName: input.businessName,
+        address: input.address
 
-    this.authService.signup(this.signupRequestPayload)
-    .subscribe(() => {
-      this.router.navigate(['/sign-in'],
-      { queryParams : {registered: 'true'} });
-      this.toastr.success('Registration Complete!');
-      }, error => {
-        console.log(error)
-        this.toastr.error('Registration Failed! Please try again');
-      });
+      }
+    ).then(response => {
+      console.log(response.data);
+      this.axiosService.setAuthToken(response.data.token, input.username, response.data.requestToken);
+    }).catch(error => {
+      console.log(error);
+    });
   }
 }

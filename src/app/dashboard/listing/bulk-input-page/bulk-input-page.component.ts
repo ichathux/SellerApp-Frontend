@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ListingService } from '../listing-page/listing.service';
-// import { FileDetails } from '../../listing-page/file-details.model';
+import { ListingService } from '../../service/listing.service';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { AxiosService } from 'src/app/axios.service';
 import { PagePayload } from 'src/app/payload/page.payload'

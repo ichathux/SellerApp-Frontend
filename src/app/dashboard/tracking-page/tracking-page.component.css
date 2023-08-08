@@ -1,0 +1,148 @@
+.main-panel{
+    margin-left: 20px;
+  }
+  .content{
+    margin-top: 70px;
+  }
+  
+body{
+    background: #ddd3;
+    height: 100vh;
+    vertical-align: middle;
+    display: flex;
+    font-family: Muli;
+    font-size: 14px;    
+}
+.card{
+    margin: auto;
+    /* width: 100%; */
+    /* max-width:600px; */
+    padding: 4vh 0;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* border-top: 3px solid rgb(252, 103, 49); */
+    /* border-bottom: 3px solid rgb(252, 103, 49); */
+    border-left: none;
+    border-right: none;
+}
+@media(max-width:768px){
+    .card{
+        width: 90%;
+    }
+}
+.title{
+    color: rgb(252, 103, 49);
+    font-weight: 600;
+    margin-bottom: 2vh;
+    padding: 0 8%;
+    font-size: initial;
+}
+#details{
+    font-weight: 400;
+}
+.info{
+    padding: 5% 8%;
+}
+.info .col-5{
+    padding: 0;
+}
+#heading{
+    color: grey;
+    line-height: 6vh;
+}
+.pricing{
+    background-color: #ddd3;
+    padding: 2vh 8%;
+    font-weight: 400;
+    line-height: 2.5;
+}
+.pricing .col-3{
+    padding: 0;
+}
+.total{
+    padding: 2vh 8%;
+    color: rgb(252, 103, 49);
+    font-weight: bold;
+}
+.total .col-3{
+    padding: 0;
+}
+
+.bs4-order-tracking{
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: #878788;
+    padding-left: 0px;
+    margin-top: 30px
+    }
+    
+.bs4-order-tracking li{
+    list-style-type: none;
+    font-size: 13px;
+    width: 25%;
+    float: left;position: relative;font-weight: 400;color: #878788;text-align: center}
+
+.bs4-order-tracking li:first-child:before{
+    margin-left: 15px !important;
+    padding-left: 11px !important;
+    text-align : left !important
+}
+        
+.bs4-order-tracking li:last-child:before{
+    margin-right: 5px !important;padding-right: 11px !important;text-align : right !important
+}
+.bs4-order-tracking li>div{color: #fff;width: 29px;text-align: center;line-height: 29px;display: block;font-size: 12px;background: #878788;border-radius: 50%;margin: auto}
+            
+.bs4-order-tracking li:after{
+    content: '';
+    width: 150%;
+    height: 2px;
+    background: #1010c0;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 15px;z-index: -1
+}
+.bs4-order-tracking li:first-child:after{
+    left: 50%
+}
+.bs4-order-tracking li:last-child:after{
+    left: 0%!important;
+    width: 0% !important
+}
+.bs4-order-tracking li.active{
+    font-weight: bold;color: #2d49e6dc}
+
+.card-timeline{
+    background-color: #fff;z-index: 0
+}
+.mat-expansion-panel{
+    background: #efefef;
+}
+.mat-expansion-panel-header-title {
+    color: #050505;
+}
+.mat-expansion-panel-header-description {
+    color: rgb(0 0 0 / 70%);
+}
+.order-placed{
+    width: 10%;
+}
+
+.order-packed{
+    width: 35%;
+}
+
+.out-for-delivery{
+    width: 65%;
+}
+
+.complete{
+    width: 100%;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #ededed;
+}
+
+filled:not(.mdc-text-field--disabled) {
+    background-color: #f4f4f4;
+}

@@ -1,1 +1,134 @@
-<p>tracking-page works!</p>
+<div class="main-panel">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header ">
+                            <h4 class="card-title">Profile Settings</h4>
+                            <p class="card-category">Enter your details below</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <mat-form-field>
+                                        <mat-label>Enter a date range</mat-label>
+                                        <mat-date-range-input [rangePicker]="picker">
+                                            <input matStartDate placeholder="Start date" [(ngModel)]="startDate">
+                                            <input matEndDate placeholder="End date" [(ngModel)]="endDate">
+                                        </mat-date-range-input>
+                                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-date-range-picker #picker></mat-date-range-picker>
+                                    </mat-form-field>
+                                    <button (click)="search()" mat-fab extended>
+                                        <mat-icon>search</mat-icon>
+                                    </button>
+                                </div>
+
+
+                            </div>
+                            <mat-accordion>
+                                <mat-expansion-panel *ngFor="let order of orders">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            {{order.id}}
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            Contact No - {{order.customer.contactNo}} / {{order.customer.email}} /
+                                            {{order.status}}
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <div class="card">
+                                        <div class="title">Purchase Reciept</div>
+                                        <div class="info">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <span id="heading">Date</span><br>
+                                                    <span id="details">{{ order.createdAt * 1000 | date :'medium'
+                                                        }}</span>
+                                                </div>
+                                                <div class="col-5 pull-right">
+                                                    <span id="heading">Order No.</span><br>
+                                                    <span id="details"> {{order.id}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing">
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <span id="name">{{order.orderDescription}}</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <span id="price">&pound;{{order.price}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <span id="name">Shipping</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <span id="price">&pound;{{order.deliveryCharge}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="progress"
+                                            style="height: 20px; margin-left: 10%; margin-right: 10%;">
+                                            <div class="progress-bar" role="progressbar" [ngClass]="{'order-placed': order.status ==='ORDER_PLACED',
+                                            'order-packed': order.status ==='PACKED',
+                                            'out-for-delivery': order.status ==='COLLECTED_DELIVERY_PARTNER', 
+                                            'complete': order.status ==='COMPLETE'}" aria-valuenow="25"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+
+                                        <ul class="bs4-order-tracking">
+                                            <li class="step"
+                                                [ngClass]="{'active': order.status ===  'ORDER_PLACED' || order.status ===  'PACKED' || order.status == 'COLLECTED_DELIVERY_PARTNER' || order.status == 'COMPLETE'}">
+                                                <div><i class="fas fa-user"></i></div> Order Placed
+                                            </li>
+                                            <li class="step"
+                                                [ngClass]="{'active': order.status ===  'PACKED' || order.status == 'COLLECTED_DELIVERY_PARTNER' || order.status == 'COMPLETE'}">
+                                                <div><i class="fas fa-bread-slice"></i></div> Order Packed
+                                            </li>
+                                            <li class="step"
+                                                [ngClass]="{'active': order.status == 'COLLECTED_DELIVERY_PARTNER' || order.status == 'COMPLETE'}">
+                                                <div><i class="fas fa-truck"></i></div> Collected by delivery partner
+                                            </li>
+                                            <li class="step" [ngClass]="{'active': order.status == 'COMPLETE'}">
+                                                <div><i class="fas fa-birthday-cake"></i></div> Delivered
+                                            </li>
+                                        </ul>
+                                        <!-- <h5 class="text-center"><b>In transit</b>. The order has been shipped!</h5> -->
+                                    </div>
+                                    <mat-action-row>
+                                        <button mat-button color="primary" (click)="nextStep(order.id, 2)">Undo</button>
+                                        <button mat-button color="primary" (click)="nextStep(order.id, 1)">Next</button>
+                                    </mat-action-row>
+                                </mat-expansion-panel>
+
+                            </mat-accordion>
+                            <div class="card-footer text-muted">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-end">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item" *ngFor="let p of pages; let i = index"><a
+                                                class="page-link" (click)="setPage(i,$event)">{{i+1}}</a></li>
+
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

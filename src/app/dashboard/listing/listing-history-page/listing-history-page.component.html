@@ -24,7 +24,7 @@
                     <td>{{ order.customer.contactNo}},{{order.customer.email}}</td>
                     <td>{{ order.deliveryCharge + order.price | currency }}</td>
                     <td>{{ order.status }}</td>
-                    <td>{{ order.createdAt }}</td>
+                    <td>{{ order.createdAt * 1000 | date :'medium' }}</td>
 
                 </tr>
 

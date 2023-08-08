@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'node_modules/ngx-toastr';
 import { NgxWebstorageModule } from 'ngx-webstorage';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { TagInputModule } from 'ngx-chips';
@@ -19,11 +19,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { DatePipe } from '@angular/common';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
-import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { CompleteProfileComponent } from './complete-profile/complete-profile.component';
@@ -31,13 +34,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListingPageComponent } from './dashboard/listing/listing-page/listing-page.component';
 import { ProfilePageComponent } from './dashboard/profile-page/profile-page.component';
 import { CatalogPageComponent } from './dashboard/catalog-page/catalog-page.component';
-import { TestPageComponent } from './test-page/test-page.component';
-import { TestRegisterComponent } from './test-register/test-register.component';
 import { MainComponent } from './dashboard/main/main.component';
 import { TrackingPageComponent } from './dashboard/tracking-page/tracking-page.component';
 import { SettingPageComponent } from './dashboard/setting-page/setting-page.component';
 import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
-import { MakeExcelFilePageComponent } from './dashboard/make-excel-file-page/make-excel-file-page.component';
+import { MakeExcelFilePageComponent } from './dashboard/listing/make-excel-file-page/make-excel-file-page.component';
 import { SingleInputPageComponent } from './dashboard/listing/single-input-page/single-input-page.component';
 import { BulkInputPageComponent } from './dashboard/listing/bulk-input-page/bulk-input-page.component';
 import { ListingHistoryPageComponent } from './dashboard/listing/listing-history-page/listing-history-page.component';
@@ -48,7 +49,6 @@ import { ListingHistoryPageComponent } from './dashboard/listing/listing-history
     AppComponent,
     SignupComponent,
     SigninComponent,
-    HeaderComponent,
     HomeComponent,
     FooterComponent,
     CompleteProfileComponent,
@@ -56,8 +56,6 @@ import { ListingHistoryPageComponent } from './dashboard/listing/listing-history
     ListingPageComponent,
     ProfilePageComponent,
     CatalogPageComponent,
-    TestPageComponent,
-    TestRegisterComponent,
     MainComponent,
     SidebarComponent,
     TrackingPageComponent,
@@ -87,8 +85,11 @@ import { ListingHistoryPageComponent } from './dashboard/listing/listing-history
     MatTabsModule,
     MatProgressBarModule,
     MatIconModule,
-    MatCardModule
-    
+    MatCardModule,
+    MatTableModule,
+    MatExpansionModule,
+    MatDatepickerModule, 
+    MatNativeDateModule  
   ],
   providers: [DatePipe, {provide: LOCALE_ID, useValue: 'en-LK'}],
   bootstrap: [AppComponent]

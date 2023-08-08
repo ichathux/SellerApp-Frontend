@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http'
-import { FileDetails } from './file-details.model';
 import { AxiosService } from 'src/app/axios.service';
-import { PagePayload } from 'src/app/payload/page.payload';
 
 @Injectable({
   providedIn: 'root'

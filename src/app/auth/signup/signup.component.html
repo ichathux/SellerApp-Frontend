@@ -1,35 +1,190 @@
-<section class="vh-100">
-    <div class="container py-5 h-100">
-        <div class="row d-flex align-items-center justify-content-center h-100">
-            <div class="col-md-8 col-lg-7 col-xl-6">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-                    class="img-fluid" alt="Phone image">
+<div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+        <div class="col-12">
+            <!-- Navbar -->
+            <nav
+                class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+                <div class="container-fluid pe-0">
+                    <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/dashboard.html">
+                        Soft UI Dashboard
+                    </a>
+                    <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon mt-2">
+                            <span class="navbar-toggler-bar bar1"></span>
+                            <span class="navbar-toggler-bar bar2"></span>
+                            <span class="navbar-toggler-bar bar3"></span>
+                        </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav mx-auto ms-xl-auto me-xl-7">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center me-2 active" aria-current="page"
+                                    href="../pages/dashboard.html">
+                                    <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-2" href="../pages/profile.html">
+                                    <i class="fa fa-user opacity-6 text-dark me-1"></i>
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-2" href="../pages/sign-up.html">
+                                    <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
+                                    Sign Up
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-2" href="../pages/sign-in.html">
+                                    <i class="fas fa-key opacity-6 text-dark me-1"></i>
+                                    Sign In
+                                </a>
+                            </li>
+                        </ul>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn btn-round btn-sm mb-0 btn-outline-primary me-2" target="_blank"
+                                href="https://www.creative-tim.com/builder?ref=navbar-soft-ui-dashboard">Online
+                                Builder</a>
+                        </li>
+                        <ul class="navbar-nav d-lg-block d-none">
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/product/soft-ui-dashboard"
+                                    class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">Free download</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+        </div>
+    </div>
+</div>
+<main class="main-content  mt-0">
+    <section>
+        <div class="page-header min-vh-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+                        <div class="card card-plain mt-8">
+                            <div class="card-header pb-0 text-left bg-transparent">
+                                <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
+                                <p class="mb-0">Enter your email and password to sign in</p>
+                            </div>
+                            <div class="card-body">
+                                <form (ngSubmit)="onSubmitRegister()" #form="ngForm" class="row">
+                                    <div class="form-outline col-md-6">
+                                        <input class="form-control" type="text" id="firstname" name="firstname"
+                                            [(ngModel)]="firstName" />
+                                        <label class="form-label" for="firstname">First Name</label>
+                                    </div>
+                                    <div class="form-outline col-md-6">
+                                        <input class="form-control" type="text" id="lastname" name="lastname"
+                                            [(ngModel)]="lastName" />
+                                        <label class="form-label" for="username">Last Name</label>
+                                    </div>
+                                    <div class="form-outline col-md-6">
+                                        <input class="form-control" type="text" id="contact" name="contact"
+                                            [(ngModel)]="contact" />
+                                        <label class="form-label" for="username">Contact Number</label>
+                                    </div>
+                                    <div class="form-outline col-md-6">
+                                        <input class="form-control" type="text" id="username" name="username"
+                                            [(ngModel)]="username" />
+                                        <label class="form-label" for="username">Email</label>
+                                    </div>
+                                    <div class="form-outline col-md-12">
+                                        <input class="form-control" type="password" id="loginPassword" name="password"
+                                            [(ngModel)]="password" />
+                                        <label class="form-label" for="loginPassword">Password</label>
+                                    </div>
+                                    <div class="form-outline col-md-12">
+                                        <input class="form-control" type="text" id="businessName" name="businessName"
+                                            [(ngModel)]="businessName" />
+                                        <label class="form-label" for="username">Business Name</label>
+                                    </div>
+                                    <div class="form-outline col-md-12">
+                                        <input class="form-control" type="text" id="address" name="address"
+                                            [(ngModel)]="address" />
+                                        <label class="form-label" for="username">Address</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                                <p class="mb-4 text-sm mx-auto">
+                                    Don't have an account?
+                                    <a href="javascript:;" class="text-info text-gradient font-weight-bold">Sign
+                                        up</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+                            <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6"
+                                style="background-image:url('/assets/img/curved6.jpg')"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form [formGroup]="signupForm" (ngSubmit)="signup()">
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <input [formControlName]="'email'" type="email" id="form1Example13"
-                            class="form-control form-control-lg" />
-                        <label class="form-label" for="form1Example13">Email address</label>
-                    </div>
-
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                        <input type="password" id="form1Example23" class="form-control form-control-lg" />
-                        <label class="form-label" for="form1Example23">Password</label>
-                    </div>
-
-                    <div class="d-flex justify-content-around align-items-center mb-4">
-
-                        <a href="sign-in">Already Member? Login </a>
-                    </div>
-
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-md-12 lg-12">Sign in</button>
-
-                </form>
+        </div>
+    </section>
+</main>
+<!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+<footer class="footer py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-4 mx-auto text-center">
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                    Company
+                </a>
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                    About Us
+                </a>
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                    Team
+                </a>
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                    Products
+                </a>
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                    Blog
+                </a>
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                    Pricing
+                </a>
+            </div>
+            <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                    <span class="text-lg fab fa-dribbble"></span>
+                </a>
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                    <span class="text-lg fab fa-twitter"></span>
+                </a>
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                    <span class="text-lg fab fa-instagram"></span>
+                </a>
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                    <span class="text-lg fab fa-pinterest"></span>
+                </a>
+                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                    <span class="text-lg fab fa-github"></span>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 mx-auto text-center mt-1">
+                <p class="mb-0 text-secondary">
+                    Copyright ©
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> Soft by Creative Tim.
+                </p>
             </div>
         </div>
     </div>
-</section>
+</footer>

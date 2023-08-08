@@ -2,8 +2,8 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col">
-                    <div class="card ">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="card">
                         <div class="card-header ">
                             <h4 class="card-title">Profile Settings</h4>
                             <p class="card-category">Enter your details below</p>
@@ -59,16 +59,75 @@
                                         name="deliveryPartner">
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Create</button>
+                                    <button type="submit" class="btn btn-primary">add Order</button>
                                     <button (click)="generateFile()" class="btn btn-primary">Generate File</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" *ngIf="items.length > 0">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header">
+                                <h4 class="card-title">Items in current list</h4>
+                                <p class="card-category">You can remove items if want</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Customer</th>
+                                        <th scope="col">Order description</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of items; let i = index">
+                                        <td>{{ item.customer.contactNo }}</td>
+                                        <td>{{ item.orderDescription }}</td>
+                                        <td>
+                                            <button type="button" (click)="deleteItem(i)"
+                                                class="btn btn-sm btn-danger rounded-circle">
+                                                <fa-icon [icon]="faTrash"></fa-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header">
+                                <h4 class="card-title">Items in current list</h4>
+                                <p class="card-category">You can remove items if want</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let inputs of bulkInputs">
+                                        <td>{{ inputs.createdAt * 1000 | date :'medium'}}</td>
+                                        <td>{{ inputs.status }}</td>
 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
