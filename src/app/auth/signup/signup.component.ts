@@ -33,7 +33,7 @@ export class SignupComponent{
       "username":this.username, 
       "password" : this.password,
       "contact": this.contact,
-      "businessName": this.contact,
+      "businessName": this.businessName,
       "address": this.address});
 
   }

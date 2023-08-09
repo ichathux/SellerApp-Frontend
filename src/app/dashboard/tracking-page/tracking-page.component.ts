@@ -20,6 +20,8 @@ export class TrackingPageComponent implements OnInit{
   orders : Array<any> | undefined;
   pages : Array<number> | undefined;
 
+  
+
   constructor(private axiosService : AxiosService, 
     private uploadService : ListingService,
     private toaster : ToastrService){
@@ -32,19 +34,48 @@ export class TrackingPageComponent implements OnInit{
     this.search();
   }
 
+  api : string = '';
+  params?: any;
+  orderId = '';
+  customerContact = '';
+
   search(){
     console.log(this.startDate);
     console.log(this.endDate);
 
-    this.axiosService.requestWithParams1(
-      "GET", 
-      "api/listing/searchByDate", 
-      {
+    
+
+    if(this.orderId !== ''){
+      console.log('search with orderid')
+      this.api  = 'api/listing/searchById';
+      this.params = {
+        orderId : this.orderId, 
+        page : this.page,
+        size : this.size
+      }
+    }else if(this.customerContact !== ''){
+      console.log('search by customer')
+      this.api  = 'api/listing/searchByContactNo';
+      this.params = {
+        contactNo : this.customerContact, 
+        page : this.page,
+        size : this.size
+      }
+    }else{
+      console.log('search by date')
+      this.api  = 'api/listing/searchByDate';
+      this.params = {
         startDate : this.startDate, 
         endDate : this.endDate,
         page : this.page,
         size : this.size
-      }).subscribe(response => {
+      }
+    }
+    this.axiosService.requestWithParams1(
+      "GET", 
+      this.api, 
+      this.params
+      ).subscribe(response => {
         console.log(response);
         this.orders = response.content;
         this.toaster.success(this.orders?.length + " items recieved");

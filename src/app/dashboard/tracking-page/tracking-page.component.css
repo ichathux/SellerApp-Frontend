@@ -139,10 +139,3 @@ body{
 .complete{
     width: 100%;
 }
-.mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: #ededed;
-}
-
-filled:not(.mdc-text-field--disabled) {
-    background-color: #f4f4f4;
-}

@@ -42,7 +42,8 @@ import { MakeExcelFilePageComponent } from './dashboard/listing/make-excel-file-
 import { SingleInputPageComponent } from './dashboard/listing/single-input-page/single-input-page.component';
 import { BulkInputPageComponent } from './dashboard/listing/bulk-input-page/bulk-input-page.component';
 import { ListingHistoryPageComponent } from './dashboard/listing/listing-history-page/listing-history-page.component';
-
+import { MatInputModule } from '@angular/material/input';
+import { AboutMePageComponent } from './dashboard/about-me-page/about-me-page.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ListingHistoryPageComponent } from './dashboard/listing/listing-history
     SingleInputPageComponent,
     BulkInputPageComponent,
     ListingHistoryPageComponent,
+    AboutMePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +79,7 @@ import { ListingHistoryPageComponent } from './dashboard/listing/listing-history
     CanvasJSAngularChartsModule,
     TagInputModule,
     FormsModule,
+    
     MatSidenavModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -89,7 +92,9 @@ import { ListingHistoryPageComponent } from './dashboard/listing/listing-history
     MatTableModule,
     MatExpansionModule,
     MatDatepickerModule, 
-    MatNativeDateModule  
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [DatePipe, {provide: LOCALE_ID, useValue: 'en-LK'}],
   bootstrap: [AppComponent]

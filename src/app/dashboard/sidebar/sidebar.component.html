@@ -79,6 +79,17 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" (click)="setCompomentToShow('about-me-page')"
+                    [ngClass]="{'active': activeStatus === 'about-me-page'}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <fa-icon [icon]="faGears"></fa-icon>
+
+                    </div>
+                    <span class="nav-link-text ms-1">About Me</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" (click)="callLogout()">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">

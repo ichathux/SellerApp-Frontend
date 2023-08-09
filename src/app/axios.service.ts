@@ -127,6 +127,19 @@ export class AxiosService {
     })
 
   }
+  requestUpdated(method : string,url : string, data : any): Observable<any>{
+    axios.defaults.headers.post["Content-type"] = "application/json";
+    let headers = {"Authorization" : "Bearer " + this.getAuthToken()};
+
+    return new Observable(observer =>{
+      axios({
+        method : method,
+        url : url,
+        data : data,
+        headers : headers
+      });
+    })
+  }
   request (method : string,url : string, data : any) : Promise<any>{
     
     this.checkAuthTokenValid() 
