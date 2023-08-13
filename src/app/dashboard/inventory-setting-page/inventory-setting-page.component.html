@@ -1,0 +1,69 @@
+<section class="wrapper">
+    <div class="container-fostrap">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h1>Add Varients</h1>
+                                <p>
+                                    If you are want to manage your Inventory and want to show your selling products in
+                                    our platform you must craete their varients.
+                                    <br>
+                                    ie : 1). If you have clothing store : XS, S , M , L , XL<br>
+                                    2). If you have grocery items : 100g, 200g 500g
+                                    <br>
+                                    <b>You can create maximum 5 varients.</b>
+
+                                </p>
+                            </div>
+                            <div class="card-content justify-content-center">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inputEmail4" class="form-label">Variant Name</label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            [(ngModel)]="name">
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="accent" (click)="addField() "
+                                            style="margin-top: 25px;">Add
+                                            Varient</button>
+
+                                    </div>
+                                </div>
+                                <div [formGroup]="form">
+                                    <div formArrayName="inputFields" class="row">
+                                        <div class="col-md-12 ">
+                                            <div *ngFor="let field of inputFields.controls; let i = index">
+                                                <div [formGroupName]="i">
+                                                    <mat-form-field>
+                                                        <mat-label>Input {{i+1}}</mat-label>
+                                                        <input matInput class="example-right-align"
+                                                            formControlName="value">
+                                                        <mat-hint>L/XL, 100g/150g</mat-hint>
+                                                    </mat-form-field>
+                                                    <button mat-mini-fab color="warn"
+                                                        aria-label="Example icon button with a filter list icon"
+                                                        (click)="removeField(i)">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- <button type="button" (click)="addField()">Add Field</button> -->
+                                    <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+                                    <!-- <button type="button" (click)="onSubmit()">Submit</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

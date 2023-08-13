@@ -24,6 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
@@ -44,6 +45,7 @@ import { BulkInputPageComponent } from './dashboard/listing/bulk-input-page/bulk
 import { ListingHistoryPageComponent } from './dashboard/listing/listing-history-page/listing-history-page.component';
 import { MatInputModule } from '@angular/material/input';
 import { AboutMePageComponent } from './dashboard/about-me-page/about-me-page.component';
+import { InventorySettingPageComponent } from './dashboard/inventory-setting-page/inventory-setting-page.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { AboutMePageComponent } from './dashboard/about-me-page/about-me-page.co
     BulkInputPageComponent,
     ListingHistoryPageComponent,
     AboutMePageComponent,
+    InventorySettingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,7 +97,8 @@ import { AboutMePageComponent } from './dashboard/about-me-page/about-me-page.co
     MatDatepickerModule, 
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
   providers: [DatePipe, {provide: LOCALE_ID, useValue: 'en-LK'}],
   bootstrap: [AppComponent]

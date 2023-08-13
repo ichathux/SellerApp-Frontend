@@ -1,574 +1,732 @@
-<!-- <app-header></app-header> -->
-
-
-<main id="main">
-
-    <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
+<!--Main Navigation-->
+<header>
+    <!-- Jumbotron -->
+    <div class="p-3 text-center bg-white border-bottom">
         <div class="container">
+            <div class="row gy-3">
+                <!-- Left elements -->
+                <div class="col-lg-2 col-sm-4 col-4">
+                    <a href="https://mdbootstrap.com/" target="_blank" class="float-start">
+                        <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
+                    </a>
+                </div>
+                <!-- Left elements -->
 
-            <div class="row gy-4">
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
-                    <div class="service-item position-relative">
-                        <div class="icon"><i class="bi bi-activity icon"></i></div>
-                        <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-                        <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
-                    <div class="service-item position-relative">
-                        <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-                        <h4><a href="" class="stretched-link">Sed ut perspici</a></h4>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
-                    <div class="service-item position-relative">
-                        <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-                        <h4><a href="" class="stretched-link">Magni Dolores</a></h4>
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
-                    <div class="service-item position-relative">
-                        <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-                        <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-                    </div>
-                </div><!-- End Service Item -->
-
-            </div>
-
-        </div>
-    </section><!-- End Featured Services Section -->
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-header">
-                <h2>Get Started</h2>
-            </div>
-
-            <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
-
-                <div class="col-lg-5">
-                    <div class="about-img">
-                        <img src="assets/img/about.jpg" class="img-fluid" alt="">
+                <!-- Center elements -->
+                <div class="order-lg-last col-lg-5 col-sm-8 col-8">
+                    <div class="d-flex float-end">
+                        <a *ngIf="!isLoggedIn" href="/sign-in"
+                            class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
+                                class="fas fa-user-alt m-1 me-md-2"></i>
+                            <p class="d-none d-md-block mb-0">Sign in</p>
+                        </a>
+                        <a *ngIf="isLoggedIn" (click)="callLogout()"
+                            class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
+                                class="fas fa-user-alt m-1 me-md-2"></i>
+                            <p class="d-none d-md-block mb-0">Sign out</p>
+                        </a>
+                        <a href="https://github.com/mdbootstrap/bootstrap-material-design"
+                            class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
+                                class="fas fa-heart m-1 me-md-2"></i>
+                            <p class="d-none d-md-block mb-0">Wishlist</p>
+                        </a>
+                        <a href="https://github.com/mdbootstrap/bootstrap-material-design"
+                            class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
+                                class="fas fa-shopping-cart m-1 me-md-2"></i>
+                            <p class="d-none d-md-block mb-0">My cart</p>
+                        </a>
                     </div>
                 </div>
+                <!-- Center elements -->
 
-                <div class="col-lg-7">
-                    <h3 class="pt-0 pt-lg-5">Sign In or Create an account for free.</h3>
-
-                    <!-- Tabs -->
-                    <ul class="nav nav-pills mb-3">
-                        <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1">Sign In</a></li>
-                        <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Create an Account</a></li>
-                    </ul><!-- End Tabs -->
-
-                    <!-- Tab Content -->
-                    <div class="tab-content">
-
-                        <div class="tab-pane fade show active" id="tab1">
-
-                            <div>
-                                <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-                                    <div class="container h-100">
-                                        <div class="row d-flex justify-content-center align-items-center h-100">
-                                            <div class="card" style="border-radius: 15px;">
-                                                <div class="card-body p-5">
-                                                    <h2 class="text-uppercase text-center mb-5">Sign In</h2>
-                                                    <form>
-                                                        <div class="form-outline mb-4">
-                                                            <input type="email" id="form3Example3cg"
-                                                                class="form-control form-control-lg" />
-                                                            <label class="form-label" for="form3Example3cg">Your
-                                                                Email</label>
-                                                        </div>
-
-                                                        <div class="form-outline mb-4">
-                                                            <input type="password" id="form3Example4cg"
-                                                                class="form-control form-control-lg" />
-                                                            <label class="form-label"
-                                                                for="form3Example4cg">Password</label>
-                                                        </div>
-
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Sign
-                                                                In</button>
-                                                        </div>
-
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div><!-- End Tab 1 Content -->
-
-                        <div class="tab-pane fade show" id="tab2">
-
-                            <div>
-                                <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-                                    <div class="container h-100">
-                                        <div class="row d-flex justify-content-center align-items-center h-100">
-                                            <div class="card" style="border-radius: 15px;">
-                                                <div class="card-body p-5">
-                                                    <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-                                                    <form>
-
-                                                        <div class="form-outline mb-4">
-                                                            <input type="email" id="form3Example3cg"
-                                                                class="form-control form-control-lg" />
-                                                            <label class="form-label" for="form3Example3cg">Your
-                                                                Email</label>
-                                                        </div>
-
-                                                        <div class="form-outline mb-4">
-                                                            <input type="password" id="form3Example4cg"
-                                                                class="form-control form-control-lg" />
-                                                            <label class="form-label"
-                                                                for="form3Example4cg">Password</label>
-                                                        </div>
-
-                                                        <div class="form-outline mb-4">
-                                                            <input type="password" id="form3Example4cdg"
-                                                                class="form-control form-control-lg" />
-                                                            <label class="form-label" for="form3Example4cdg">Repeat your
-                                                                password</label>
-                                                        </div>
-
-                                                        <div class="form-check d-flex justify-content-center mb-5">
-                                                            <input class="form-check-input me-2" type="checkbox"
-                                                                value="" id="form2Example3cg" />
-                                                            <label class="form-check-label" for="form2Example3g">
-                                                                I agree all statements in <a href="#!"
-                                                                    class="text-body"><u>Terms of service</u></a>
-                                                            </label>
-                                                        </div>
-
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div><!-- End Tab 2 Content -->
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-        <div class="container" data-aos="zoom-out">
-
-            <div class="clients-slider swiper">
-                <div class="swiper-wrapper align-items-center">
-                    <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
-                </div>
-            </div>
-
-        </div>
-    </section><!-- End Clients Section -->
-
-    <!-- ======= Call To Action Section ======= -->
-    <section id="cta" class="cta">
-        <div class="container" data-aos="zoom-out">
-
-            <div class="row g-5">
-
-                <div
-                    class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
-                    <h3>Alias sunt quas <em>Cupiditate</em> oluptas hic minima</h3>
-                    <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                        id est
-                        laborum.</p>
-                    <a class="cta-btn align-self-start" href="#">Call To Action</a>
-                </div>
-
-                <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
-                    <div class="img">
-                        <img src="assets/img/cta.jpg" alt="" class="img-fluid">
+                <!-- Right elements -->
+                <div class="col-lg-5 col-md-12 col-12">
+                    <div class="container-fluid">
+                        <form class="d-flex input-group w-auto">
+                            <input type="search" class="form-control rounded" placeholder="Search"
+                                aria-label="Search" />
+                            <span class="input-group-text border-0" id="search-addon">
+                                <fa-icon [icon]="faSearch"></fa-icon>
+                            </span>
+                        </form>
                     </div>
                 </div>
-
+                <!-- Right elements -->
             </div>
-
         </div>
-    </section><!-- End Call To Action Section -->
-
-    <!-- ======= On Focus Section ======= -->
-    <section id="onfocus" class="onfocus">
-        <div class="container-fluid p-0" data-aos="fade-up">
-
-            <div class="row g-0">
-                <div class="col-lg-6 video-play position-relative">
-                    <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-                </div>
-                <div class="col-lg-6">
-                    <div class="content d-flex flex-column justify-content-center h-100">
-                        <h3>Voluptatem dignissimos provident quasi corporis</h3>
-                        <p class="fst-italic">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et
-                            dolore
-                            magna aliqua.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat.</li>
-                            <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate
-                                velit.</li>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu
-                                fugiat nulla
-                                pariatur.</li>
-                        </ul>
-                        <a href="#" class="read-more align-self-start"><span>Read More</span><i
-                                class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section><!-- End On Focus Section -->
-
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad
-                    dolores
-                    adipisci aliquam.</p>
-            </div>
-
-            <div class="row gy-5">
-
-                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="service-item">
-                        <div class="img">
-                            <img src="assets/img/services-1.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="details position-relative">
-                            <div class="icon">
-                                <i class="bi bi-activity"></i>
-                            </div>
-                            <a href="#" class="stretched-link">
-                                <h3>Nesciunt Mete</h3>
-                            </a>
-                            <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores
-                                iure
-                                perferendis.</p>
-                        </div>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="service-item">
-                        <div class="img">
-                            <img src="/assets/img/services-2.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="details position-relative">
-                            <div class="icon">
-                                <i class="bi bi-broadcast"></i>
-                            </div>
-                            <a href="#" class="stretched-link">
-                                <h3>Eosle Commodi</h3>
-                            </a>
-                            <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum
-                                hic non ut
-                                nesciunt dolorem.</p>
-                        </div>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="service-item">
-                        <div class="img">
-                            <img src="assets/img/services-3.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="details position-relative">
-                            <div class="icon">
-                                <i class="bi bi-easel"></i>
-                            </div>
-                            <a href="#" class="stretched-link">
-                                <h3>Ledo Markt</h3>
-                            </a>
-                            <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id
-                                voluptas adipisci
-                                eos earum corrupti.</p>
-                        </div>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="service-item">
-                        <div class="img">
-                            <img src="assets/img/services-4.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="details position-relative">
-                            <div class="icon">
-                                <i class="bi bi-bounding-box-circles"></i>
-                            </div>
-                            <a href="#" class="stretched-link">
-                                <h3>Asperiores Commodit</h3>
-                            </a>
-                            <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga
-                                sit provident
-                                adipisci neque.</p>
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="service-item">
-                        <div class="img">
-                            <img src="assets/img/services-5.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="details position-relative">
-                            <div class="icon">
-                                <i class="bi bi-calendar4-week"></i>
-                            </div>
-                            <a href="#" class="stretched-link">
-                                <h3>Velit Doloremque</h3>
-                            </a>
-                            <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed
-                                animi at autem
-                                alias eius labore.</p>
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
-                    <div class="service-item">
-                        <div class="img">
-                            <img src="assets/img/services-6.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="details position-relative">
-                            <div class="icon">
-                                <i class="bi bi-chat-square-text"></i>
-                            </div>
-                            <a href="#" class="stretched-link">
-                                <h3>Dolori Architecto</h3>
-                            </a>
-                            <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure.
-                                Corrupti
-                                recusandae ducimus enim.</p>
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div><!-- End Service Item -->
-
-            </div>
-
-        </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-header">
-                <h2>Our Pricing</h2>
-                <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam
-                    voluptas
-                    asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
-            </div>
-
-            <div class="row gy-4">
-
-                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="pricing-item">
-
-                        <div class="pricing-header">
-                            <h3>Free Plan</h3>
-                            <h4><sup>$</sup>0<span> / month</span></h4>
-                        </div>
-
-                        <ul>
-                            <li><i class="bi bi-dot"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-dot"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-dot"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                        </ul>
-
-                        <div class="text-center mt-auto">
-                            <a href="#" class="buy-btn">Buy Now</a>
-                        </div>
-
-                    </div>
-                </div><!-- End Pricing Item -->
-
-                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="pricing-item featured">
-
-                        <div class="pricing-header">
-                            <h3>Business Plan</h3>
-                            <h4><sup>$</sup>29<span> / month</span></h4>
-                        </div>
-
-                        <ul>
-                            <li><i class="bi bi-dot"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-dot"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-dot"></i> <span>Nulla at volutpat diam uteera</span>
-                            </li>
-                            <li><i class="bi bi-dot"></i> <span>Pharetra massa massa ultricies</span>
-                            </li>
-                            <li><i class="bi bi-dot"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                        </ul>
-
-                        <div class="text-center mt-auto">
-                            <a href="#" class="buy-btn">Buy Now</a>
-                        </div>
-
-                    </div>
-                </div><!-- End Pricing Item -->
-
-                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="pricing-item">
-
-                        <div class="pricing-header">
-                            <h3>Developer Plan</h3>
-                            <h4><sup>$</sup>49<span> / month</span></h4>
-                        </div>
-
-                        <ul>
-                            <li><i class="bi bi-dot"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-dot"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-dot"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li><i class="bi bi-dot"></i> <span>Pharetra massa massa ultricies</span></li>
-                            <li><i class="bi bi-dot"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                        </ul>
-
-                        <div class="text-center mt-auto">
-                            <a href="#" class="buy-btn">Buy Now</a>
-                        </div>
-
-                    </div>
-                </div><!-- End Pricing Item -->
-
-            </div>
-
-        </div>
-    </section><!-- End Pricing Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- <section id="contact" class="contact">
-      <div class="container">
-  
-        <div class="section-header">
-          <h2>Contact Us</h2>
-          <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores
-            adipisci aliquam.</p>
-        </div>
-  
-      </div>
-  
-      <div class="container">
-  
-        <div class="row gy-5 gx-lg-5">
-  
-          <div class="col-lg-4">
-  
-            <div class="info">
-              <h3>Get in touch</h3>
-              <p>Et id eius voluptates atque nihil voluptatem enim in tempore minima sit ad mollitia commodi minus.</p>
-  
-              <div class="info-item d-flex">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h4>Location:</h4>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-              </div>
-    <div class="info-item d-flex">
-      <i class="bi bi-envelope flex-shrink-0"></i>
-      <div>
-        <h4>Email:</h4>
-        <p>info@example.com</p>
-      </div>
     </div>
-  
-    <div class="info-item d-flex">
-      <i class="bi bi-phone flex-shrink-0"></i>
-      <div>
-        <h4>Call:</h4>
-        <p>+1 5589 55488 55</p>
-      </div>
+    <!-- Jumbotron -->
+
+    <!-- Navbar -->
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="customDropdown" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Custom Menu
+        </button>
+        <div class="dropdown-menu" aria-labelledby="customDropdown">
+            <a class="dropdown-item" href="#">Option 1</a>
+            <a class="dropdown-item" href="#">Option 2</a>
+            <a class="dropdown-item" href="#">Option 3</a>
+        </div>
     </div>
-  
+    <!-- Navbar -->
+</header>
+
+<!-- intro -->
+<section class="pt-3">
+    <div class="container">
+        <div class="row gx-3">
+            <main class="col-lg-9">
+                <div class="card-banner p-5 bg-primary rounded-5" style="height: 350px;">
+                    <div style="max-width: 500px;">
+                        <h2 class="text-white">
+                            Great products with <br />
+                            best deals
+                        </h2>
+                        <p class="text-white">No matter how far along you are in your sophistication as an amateur
+                            astronomer, there is always one.</p>
+                        <a href="#" class="btn btn-light shadow-0 text-primary"> View more </a>
+                    </div>
+                </div>
+            </main>
+            <aside class="col-lg-3">
+                <div class="card-banner h-100 rounded-5" style="background-color: #f87217;">
+                    <div class="card-body text-center pb-5">
+                        <h5 class="pt-5 text-white">Amazing Gifts</h5>
+                        <p class="text-white">No matter how far along you are in your sophistication</p>
+                        <a href="#" class="btn btn-outline-light"> View more </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <!-- row //end -->
     </div>
-  
+    <!-- container end.// -->
+</section>
+<!-- intro -->
+
+<!-- category -->
+<section>
+    <div class="container pt-5">
+        <nav class="row gy-4">
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faCouch"></fa-icon>
+                            </button>
+                            <div class="text-dark">Interior items</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faBasketball"></fa-icon>
+                            </button>
+                            <div class="text-dark">Sport and travel</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faRing"></fa-icon>
+                            </button>
+                            <div class="text-dark">Jewellery</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faClock"></fa-icon>
+                            </button>
+                            <div class="text-dark">Accessories</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faCarSide"></fa-icon>
+                            </button>
+                            <div class="text-dark">Automobiles</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faHome"></fa-icon>
+                            </button>
+                            <div class="text-dark">Home items</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faGuitar"></fa-icon>
+                            </button>
+                            <div class="text-dark">Musical items</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faBook"></fa-icon>
+                            </button>
+                            <div class="text-dark">Book, reading</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faBabyCarriage"></fa-icon>
+                            </button>
+                            <div class="text-dark">Kid's toys</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faPaw"></fa-icon>
+                            </button>
+                            <div class="text-dark">Pet items</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faShirt"></fa-icon>
+                            </button>
+                            <div class="text-dark">Men's clothing</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faShoePrints"></fa-icon>
+                            </button>
+                            <div class="text-dark">Men's clothing</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faMobile"></fa-icon>
+                            </button>
+                            <div class="text-dark">Smartphones</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faTools"></fa-icon>
+                            </button>
+                            <div class="text-dark">Tools</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faPencilRuler"></fa-icon>
+                            </button>
+                            <div class="text-dark">Education</div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="text-center d-flex flex-column justify-content-center">
+                            <button type="button" class="btn btn-outline-secondary mx-auto p-3 mb-2"
+                                data-mdb-ripple-color="dark">
+                                <fa-icon [icon]="faWarehouse"></fa-icon>
+                            </button>
+                            <div class="text-dark">Other items</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
-  
-    <div class="col-lg-8">
-      <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+</section>
+<!-- category -->
+<!-- Recommended -->
+<section>
+    <div class="container my-5">
+        <header class="mb-4">
+            <h3>Recommended</h3>
+        </header>
+
         <div class="row">
-          <div class="col-md-6 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-          </div>
-          <div class="col-md-6 form-group mt-3 mt-md-0">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-          </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/9.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-3">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$17.00</h5>
+                        <p class="card-text mb-0">Blue jeans shorts for men</p>
+                        <p class="text-muted">
+                            Sizes: S, M, XL
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/10.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$9.50</h5>
+                        <p class="card-text mb-0">Slim fit T-shirt for men</p>
+                        <p class="text-muted">
+                            Sizes: S, M, XL
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/11.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$29.95</h5>
+                        <p class="card-text mb-0">Modern product name here</p>
+                        <p class="text-muted">
+                            Sizes: S, M, XL
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/12.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$29.95</h5>
+                        <p class="card-text mb-0">Modern product name here</p>
+                        <p class="text-muted">
+                            Material: Jeans
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group mt-3">
-          <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-        </div>
-        <div class="form-group mt-3">
-          <textarea class="form-control" name="message" placeholder="Message" required></textarea>
-        </div>
-        <div class="my-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your message has been sent. Thank you!</div>
-        </div>
-        <div class="text-center"><button type="submit">Send Message</button></div>
-      </form>
     </div>
-  
-    </div>
-  
-    </div>
-    </section> -->
+</section>
+<!-- Recommended -->
+<!-- Products -->
+<section>
+    <div class="container my-5">
+        <header class="mb-4">
+            <h3>New products</h3>
+        </header>
 
-</main><!-- End #main -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <div class="mask" style="height: 50px;">
+                            <div class="d-flex justify-content-start align-items-start h-100 m-2">
+                                <h6><span class="badge bg-danger pt-1">New</span></h6>
+                            </div>
+                        </div>
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-3">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$29.95</h5>
+                        <p class="card-text mb-0">GoPro action camera 4K</p>
+                        <p class="text-muted">
+                            Model: X-200
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <div class="mask" style="height: 50px;">
+                            <div class="d-flex justify-content-start align-items-start h-100 m-2">
+                                <h6><span class="badge pt-1" style="background-color: #f87217;">Offer</span></h6>
+                            </div>
+                        </div>
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/2.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$590.00</h5>
+                        <p class="card-text mb-0">Canon EOS professional</p>
+                        <p class="text-muted">
+                            Capacity: 128GB
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/3.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$29.95</h5>
+                        <p class="card-text mb-0">Modern product name here</p>
+                        <p class="text-muted">
+                            Sizes: S, M, XL
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/4.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$1099.00</h5>
+                        <p class="card-text mb-0">Apple iPhone 13 Pro max</p>
+                        <p class="text-muted">
+                            Color: Black, Memory: 128GB
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/5.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$29.95</h5>
+                        <p class="card-text mb-0">Modern product name here</p>
+                        <p class="text-muted">
+                            Sizes: S, M, XL
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/6.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$29.95</h5>
+                        <p class="card-text mb-0">Modern product name here</p>
+                        <p class="text-muted">
+                            Model: X-200
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/7.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$29.95</h5>
+                        <p class="card-text mb-0">Modern product name here</p>
+                        <p class="text-muted">
+                            Sizes: S, M, XL
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card my-2 shadow-0">
+                    <a href="#" class="">
+                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/8.webp"
+                            class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" />
+                    </a>
+                    <div class="card-body p-0 pt-2">
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faHeart"></fa-icon></a>
+                        <a href="#!" class="btn btn-light border px-2 pt-2 float-end icon-hover"><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+                        <h5 class="card-title">$29.95</h5>
+                        <p class="card-text mb-0">Modern product name here</p>
+                        <p class="text-muted">
+                            Material: Jeans
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Products -->
 
-<!-- ======= Footer ======= -->
-<!-- <app-footer></app-footer> -->
-<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- Features -->
+<section>
+    <div class="container">
+        <div class="card p-4 bg-primary">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h4 class="mb-0 text-white">Best products and brands in store</h4>
+                    <p class="mb-0 text-white-50">Trendy products and text to build on the card title</p>
+                </div>
+                <div class="col-auto"><a class="btn btn-white text-primary shadow-0" href="#">Discover</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Features -->
+
+
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+    <!-- Section: Social media -->
+    <section class="p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        <div class="container">
+            <div class="row d-flex">
+                <!-- Left -->
+                <div class="col-md-6 col-sm-12 mb-2 mb-md-0 d-flex justify-content-center justify-content-md-start">
+                    <div class="">
+                        <div class="input-group" style="max-width: 400px;">
+                            <input type="email" class="form-control border" placeholder="Email" aria-label="Email"
+                                aria-describedby="button-addon2" />
+                            <button class="btn btn-light border" type="button" id="button-addon2"
+                                data-mdb-ripple-color="dark">
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Left -->
+
+                <!-- Right -->
+                <div class="col-md-6 col-sm-12 float-center">
+                    <div class="float-md-end">
+                        <a class="btn btn-icon btn-light text-secondary px-3 border" title="Facebook" target="_blank"
+                            href="#"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a class="btn btn-icon btn-light text-secondary px-3 border" title="Instagram" target="_blank"
+                            href="#"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a class="btn btn-icon btn-light text-secondary px-3 border" title="Youtube" target="_blank"
+                            href="#"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a class="btn btn-icon btn-light text-secondary px-3 border" title="Twitter" target="_blank"
+                            href="#"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+                <!-- Right -->
+            </div>
+        </div>
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+        <div class="container text-center text-md-start mt-5 mb-4">
+            <!-- Grid row -->
+            <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-12 col-lg-3 col-sm-12">
+                    <!-- Content -->
+                    <a href="https://mdbootstrap.com/" target="_blank" class="ms-md-2">
+                        <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
+                    </a>
+                    <p class="mt-3">
+                        © 2023 Copyright: MDBootstrap.com.
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-6 col-sm-4 col-lg-2">
+                    <!-- Links -->
+                    <h6 class="text-uppercase text-dark fw-bold mb-2">
+                        Store
+                    </h6>
+                    <ul class="list-unstyled mb-4">
+                        <li><a class="text-muted" href="#">About us</a></li>
+                        <li><a class="text-muted" href="#">Find store</a></li>
+                        <li><a class="text-muted" href="#">Categories</a></li>
+                        <li><a class="text-muted" href="#">Blogs</a></li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-6 col-sm-4 col-lg-2">
+                    <!-- Links -->
+                    <h6 class="text-uppercase text-dark fw-bold mb-2">
+                        Information
+                    </h6>
+                    <ul class="list-unstyled mb-4">
+                        <li><a class="text-muted" href="#">Help center</a></li>
+                        <li><a class="text-muted" href="#">Money refund</a></li>
+                        <li><a class="text-muted" href="#">Shipping info</a></li>
+                        <li><a class="text-muted" href="#">Refunds</a></li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-6 col-sm-4 col-lg-2">
+                    <!-- Links -->
+                    <h6 class="text-uppercase text-dark fw-bold mb-2">
+                        Support
+                    </h6>
+                    <ul class="list-unstyled mb-4">
+                        <li><a class="text-muted" href="#">Help center</a></li>
+                        <li><a class="text-muted" href="#">Documents</a></li>
+                        <li><a class="text-muted" href="#">Account restore</a></li>
+                        <li><a class="text-muted" href="#">My orders</a></li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-12 col-sm-12 col-lg-3">
+                    <!-- Links -->
+                    <h6 class="text-uppercase text-dark fw-bold mb-2">Our apps</h6>
+                    <a href="#" class="mb-2 d-inline-block"> <img
+                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/misc/btn-appstore.webp"
+                            height="38" /></a>
+                    <a href="#" class="mb-2 d-inline-block"> <img
+                            src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/misc/btn-market.webp"
+                            height="38" /></a>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+    <!-- Section: Links  -->
+    <div class="container">
+        <div class="py-4 border-top">
+            <div class="d-flex justify-content-between">
+                <!--- payment --->
+                <div class="text-dark">
+                    <i class="fab fa-lg fa-cc-visa"></i>
+                    <i class="fab fa-lg fa-cc-amex"></i>
+                    <i class="fab fa-lg fa-cc-mastercard"></i>
+                    <i class="fab fa-lg fa-cc-paypal"></i>
+                </div>
+                <!--- payment --->
+
+                <!--- language selector --->
+                <div class="dropdown dropup">
+                    <a class="dropdown-toggle text-dark" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown"
+                        aria-expanded="false"> <i class="flag-united-kingdom flag m-0"></i> English </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i
+                                    class="fa fa-check text-success ms-2"></i></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--- language selector --->
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer -->

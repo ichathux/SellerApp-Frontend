@@ -149,7 +149,7 @@ export class AxiosService {
       headers = {"Authorization" : "Bearer " + this.getAuthToken()};
     }
 
-    if(url === "api/listing/bulkUpload"){
+    if(url === "api/listing/bulkUpload" || url === "api/inventory/addSingleItem"){
       axios.defaults.headers.post["Content-type"] = "application/xml";
     }else{
       axios.defaults.headers.post["Content-type"] = "application/json";

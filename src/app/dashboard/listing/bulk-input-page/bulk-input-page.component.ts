@@ -50,13 +50,11 @@ export class BulkInputPageComponent implements OnInit{
   }
   getUploadedFiles(){
     console.log();
-    this.uploadService.getFiles(this.page, this.size).then(response => {
-      this.files = response.data.content;
-      this.pages = new Array(response.data['totalPages']);
-      console.log(this.files)
-    }).catch(error => {
-      console.log(error);
-    })
+    this.uploadService.getFiles(this.page, this.size).subscribe(response =>   {
+      this.files = response.content;
+      this.pages = new Array(response.totalPages);
+      console.log(response);
+    });
 
   }
 

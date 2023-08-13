@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-setting-page',
@@ -7,5 +8,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   styleUrls: ['./setting-page.component.css']
 })
 export class SettingPageComponent {
-  constructor(){}  
+  
+  
 }
+

@@ -1,94 +1,148 @@
 <section class="wrapper">
     <div class="container-fostrap">
-        <div>
-        </div>
         <div class="content">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-7">
-                        <div class="card">
-
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="Single_Input" role="tabpanel"
-                                    aria-labelledby="home-tab">
-                                    <div class="card">
-                                        <div class="card-content">
-                                            <form class="row g-3">
-                                                <div class="col-md-12">
-                                                    <label for="inputEmail4" class="form-label">Product Name</label>
-                                                    <input type="email" class="form-control" id="inputEmail4">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="inputAddress" class="form-label">Price</label>
-                                                    <input type="number" class="form-control" id="inputAddress"
-                                                        placeholder="999">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="inputState" class="form-label">Qty</label>
-                                                    <input type="number" class="form-control" id="inputAddress"
-                                                        placeholder="1">
-                                                </div>
-                                                <div class="col-12">
-                                                    <label for="inputAddress2" class="form-label">Catagory</label>
-                                                    <select id="inputState" class="form-select">
-                                                        <option selected>Choose...</option>
-                                                        <option>...</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <label for="inputCity" class="form-label">Description</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                        rows="3"></textarea>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="formFileSm" class="form-label">Image</label>
-                                                    <input class="form-control form-control-sm" id="formFileSm"
-                                                        type="file">
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary">Create</button>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-5">
+                    <div class="col-xs-12 col-sm-12">
                         <div class="card">
                             <div class="card-content">
-                                <div class="pricing4 py-5 bg-light">
-                                    <div class="row mt-4">
-                                        <div class="col-md-12">
-                                            <div class="card card-shadow border-0 mb-4">
-                                                <img class="card-img-top"
-                                                    src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/pricing/img1.jpg"
-                                                    alt="wrappixel kit">
-                                                <div class="p-3">
-                                                    <h5 class="font-weight-medium mb-0">BODY BUILDING PROGRAM
-                                                    </h5>
-                                                    <h6 class="subtitle font-13">WITH JOHNATHAN DOE</h6>
+                                <form class="row g-3" (ngSubmit)="addSingleItem()" #myForm="ngForm"
+                                    enctype="multipart/form-data">
+                                    <div class="col-md-12">
+                                        <label for="inputEmail4" class="form-label">Product Name</label>
+                                        <input type="email" class="form-control" id="itemName" name="itemName"
+                                            [(ngModel)]="itemName" required>
+                                        <div
+                                            *ngIf="myForm.controls['itemName'].invalid && (myForm.controls['itemName'].dirty || myForm.controls['itemName'].touched)">
+                                            <div *ngIf="myForm.controls['itemName'].errors" style="color: red;">Product
+                                                Name is
+                                                required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="inputAddress2" class="form-label">Catagory</label>
+                                        <select id="category" class="form-select" name="category" [(ngModel)]="category"
+                                            (change)="getSubCategories(category)" required>
+                                            <option selected>...</option>
+                                            <option *ngFor="let cat of categories" [value]="cat.id">
+                                                {{cat.name}}</option>
+                                        </select>
+                                        <div
+                                            *ngIf="myForm.controls['category'].invalid && (myForm.controls['category'].dirty || myForm.controls['category'].touched)">
+                                            <div *ngIf="myForm.controls['category'].errors" style="color: red;">Catagory
+                                                is
+                                                required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="inputAddress2" class="form-label">Sub Catagory</label>
+                                        <select id="subCategory" class="form-select" name="subCategory"
+                                            [(ngModel)]="subCategory" required>
+                                            <option selected>Choose...</option>
+                                            <option *ngFor="let sub of subCategories" [value]="sub.id">
+                                                {{sub.name}}</option>
 
-                                                    <div class="d-flex mt-3 align-items-center">
-                                                        <h2 class="price">$99</h2>
-                                                        <div class="ml-auto"><a
-                                                                class="btn btn-danger-gradiant rounded-pill text-white btn-md border-0"
-                                                                href="">Add to cart</a></div>
-                                                    </div>
-                                                </div>
+                                        </select>
+                                        <div
+                                            *ngIf="myForm.controls['subCategory'].invalid && (myForm.controls['subCategory'].dirty || myForm.controls['subCategory'].touched)">
+                                            <div *ngIf="myForm.controls['subCategory'].errors" style="color: red;">Image
+                                                is
+                                                required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="inputAddress2" class="form-label">Brand</label>
+                                        <input class="form-control" list="datalistOptions" id="brand"
+                                            placeholder="Type to search..." name="brand" [(ngModel)]="brand" required>
+                                        <datalist id="datalistOptions">
+                                            <option *ngFor="let brand of brands" [value]="brand.name">
+                                                {{brand.name}}</option>
+                                        </datalist>
+                                        <div
+                                            *ngIf="myForm.controls['brand'].invalid && (myForm.controls['brand'].dirty || myForm.controls['brand'].touched)">
+                                            <div *ngIf="myForm.controls['brand'].errors" style="color: red;">Brand is
+                                                required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <label for="inputAddress2" class="form-label">Variant type</label>
+                                            <select id="variant" class="form-select" name="variant" required
+                                                [(ngModel)]="variant" (change)="getVariants(variant)">
+
+                                                <option *ngFor="let va of variantListArray ; let i = index;"
+                                                    value="{{i}}" [ngValue]="va">
+                                                    {{va.name}}[{{va.list}}]</option>
+
+                                            </select>
+                                            <div
+                                                *ngIf="myForm.controls['subCategory'].invalid && (myForm.controls['subCategory'].dirty || myForm.controls['subCategory'].touched)">
+                                                <div *ngIf="myForm.controls['subCategory'].errors" style="color: red;">
+                                                    Image
+                                                    is
+                                                    required.</div>
                                             </div>
                                         </div>
 
+                                        <div class="col-md-2" *ngFor="let item of variantArray; let i = index;">
+                                            <div class="row">
+                                                <label for="inputState" class="form-label">{{item}} Qty</label>
+                                                <input type="number" class="form-control" id="qty + {{item}}" name="qty"
+                                                    [(ngModel)]="qtyArray[i]" placeholder="1" required>
+                                                <!-- <div
+                                                    *ngIf="myForm.controls['qty+{{item}}'].invalid && (myForm.controls['qty+{{item}}'].dirty || myForm.controls['qty+{{item}}'].touched)">
+                                                    <div *ngIf="myForm.controls['qty+{{item}}'].errors"
+                                                        style="color: red;">
+                                                        qty is
+                                                        required.</div>
+                                                </div> -->
+                                            </div>
+                                            <div class="row">
+                                                <label for="inputState" class="form-label">{{item}} Price</label>
+                                                <input type="number" class="form-control" id="price+{{item}}"
+                                                    name="price" [(ngModel)]="priceArray[i]" placeholder="1" required>
+                                                <!-- <div
+                                                    *ngIf="myForm.controls['price+{{item}}'].invalid && (myForm.controls['price+{{item}}'].dirty || myForm.controls['price+{{item}}'].touched)">
+                                                    <div *ngIf="myForm.controls['price+{{item}}'].errors"
+                                                        style="color: red;">
+                                                        qty is
+                                                        required.</div>
+                                                </div> -->
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="col-md-12">
+                                        <label for="inputCity" class="form-label">Description</label>
+                                        <textarea class="form-control" id="description" rows="3" name="description"
+                                            [(ngModel)]="description" required></textarea>
+                                        <div
+                                            *ngIf="myForm.controls['description'].invalid && (myForm.controls['description'].dirty || myForm.controls['description'].touched)">
+                                            <div *ngIf="myForm.controls['description'].errors" style="color: red;">
+                                                Description is
+                                                required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFileSm" class="form-label">Image</label>
+                                        <input class="form-control form-control-sm" id="img" type="file" name="img"
+                                            [(ngModel)]="img" (change)="onFileSelected($event)" required>
+                                        <div
+                                            *ngIf="myForm.controls['img'].invalid && (myForm.controls['img'].dirty || myForm.controls['img'].touched)">
+                                            <div *ngIf="myForm.controls['img'].errors" style="color: red;">
+                                                Image is
+                                                required.</div>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary"
+                                            [disabled]="myForm.invalid">Create</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
+
                     <div class="col-xs-12 col-sm-12">
                         <div class="card">
                             <div class="card-content">
@@ -96,38 +150,33 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Item Name</th>
-                                            <th scope="col">Receiver Name</th>
-                                            <th scope="col">Receiver Address</th>
-                                            <th scope="col">Receiver Contact</th>
-                                            <th scope="col">Amount</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col">Created at</th>
+                                            <th scope="col">Qty</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Sub Category</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="table-success">
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>Otto</td>
-                                            <td>Otto</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                        <tr class="table-success" *ngFor="let item of items">
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.createdAt}}</td>
+                                            <td>{{item.quantity}}</td>
+                                            <td>{{item.subCategory.name}}</td>
+                                            <td>{{item.subCategory.name}}</td>
+                                            <td>
+                                                <button mat-icon-button color="primary"
+                                                    aria-label="Example icon button with a home icon">
+                                                    <mat-icon>edit</mat-icon>
+                                                </button>
+                                                <button mat-icon-button color="primary"
+                                                    aria-label="Example icon button with a home icon">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+
+                                            </td>
                                         </tr>
-                                        <tr class="table-danger">
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>Thornton</td>
-                                            <td>Thornton</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr class="table-info">
-                                            <td>Larry the Bird</td>
-                                            <td>Thornton</td>
-                                            <td>Thornton</td>
-                                            <td>Thornton</td>
-                                            <td>@twitter</td>
-                                            <td>@twitter</td>
-                                        </tr>
+
                                     </tbody>
                                     <tfoot>
                                         <nav aria-label="Page navigation">
@@ -137,9 +186,9 @@
                                                         <span aria-hidden="true">&laquo;</span>
                                                     </a>
                                                 </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item" *ngFor="let p of pages; let i = index"><a
+                                                        class="page-link" (click)="setPage(i,$event)">{{i+1}}</a></li>
+
                                                 <li class="page-item">
                                                     <a class="page-link" href="#" aria-label="Next">
                                                         <span aria-hidden="true">&raquo;</span>
