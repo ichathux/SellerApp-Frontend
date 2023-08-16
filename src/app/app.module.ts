@@ -46,6 +46,7 @@ import { ListingHistoryPageComponent } from './dashboard/listing/listing-history
 import { MatInputModule } from '@angular/material/input';
 import { AboutMePageComponent } from './dashboard/about-me-page/about-me-page.component';
 import { InventorySettingPageComponent } from './dashboard/inventory-setting-page/inventory-setting-page.component';
+import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reader.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { InventorySettingPageComponent } from './dashboard/inventory-setting-pag
     ListingHistoryPageComponent,
     AboutMePageComponent,
     InventorySettingPageComponent,
+    BarcodeReaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,6 @@ import { InventorySettingPageComponent } from './dashboard/inventory-setting-pag
     CanvasJSAngularChartsModule,
     TagInputModule,
     FormsModule,
-    
     MatSidenavModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -98,9 +99,11 @@ import { InventorySettingPageComponent } from './dashboard/inventory-setting-pag
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+         
   ],
   providers: [DatePipe, {provide: LOCALE_ID, useValue: 'en-LK'}],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

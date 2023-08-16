@@ -2,17 +2,30 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import axios from 'axios';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AxiosService {
 
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+
+  private isAuthenticated : boolean  = false;
+  
   constructor(private toaster : ToastrService) { 
     axios.defaults.baseURL = "http://localhost:8081/";
-    
+    const storedAuthState = localStorage.getItem('authState');
+    if (storedAuthState) {
+      this.isAuthenticatedSubject.next(JSON.parse(storedAuthState));
+      this.isAuthenticated = JSON.parse(storedAuthState);
+    }
   }
+
+  get isAuthenticated$(): Observable<boolean> {
+    return this.isAuthenticatedSubject.asObservable();
+  }
+
 
   getAuthToken(): string | null{
     return window.localStorage.getItem("auth_token");
@@ -25,42 +38,55 @@ export class AxiosService {
       window.localStorage.setItem("expiredAt", expiredAt);
       window.localStorage.setItem("username", username);
       window.localStorage.setItem("requestToken",requestToken);
+      this.isAuthenticated = true;
+      this.isAuthenticatedSubject.next(true);
+      localStorage.setItem('authState', 'true');
     }else{
       window.localStorage.removeItem("auth_token");
       window.localStorage.removeItem("expiredAt");
       window.localStorage.removeItem("username");
       window.localStorage.removeItem("requestToken");
+      this.isAuthenticatedSubject.next(false);
+      localStorage.removeItem('authState');
     }
   }
 
+  isLoggedIn(): boolean {
+    console.log("is logged in : "+this.isAuthenticated)
+    // return this.isAuthenticatedSubject.asObservable();
+    return this.isAuthenticated;
+  }
   logout():void{
     window.localStorage.removeItem("auth_token");
     window.localStorage.removeItem("expiredAt");
     window.localStorage.removeItem("requestToken");
+    this.isAuthenticated = false;
+    this.isAuthenticatedSubject.next(false);
+    localStorage.removeItem('authState');
     window.location.reload();
   }
-  checkAuthTokenValid():boolean{
-    const epochNow= (new Date).getTime();
-    if(this.getAuthToken() !== null){
-      if((Number)(window.localStorage.getItem("expiredAt")) < epochNow){
-        // console.log("expired ", epochNow);
-        this.logout();
-        return false;
-      }else{
-        // console.log("not expired");
-        return true;
-      }
-    }else{
-      return true;
-    }
+  // checkAuthTokenValid():boolean{
+  //   const epochNow= (new Date).getTime();
+  //   if(this.getAuthToken() !== null){
+  //     if((Number)(window.localStorage.getItem("expiredAt")) < epochNow){
+  //       // console.log("expired ", epochNow);
+  //       this.logout();
+  //       return false;
+  //     }else{
+  //       // console.log("not expired");
+  //       return true;
+  //     }
+  //   }else{
+  //     return true;
+  //   }
     
-  }
-  checkUserLoggedIn():boolean{
-    if(this.getAuthToken() !== null){
-      return this.checkAuthTokenValid();
-    }
-    return false;
-  }
+  // }
+  // checkUserLoggedIn():boolean{
+  //   if(this.getAuthToken() !== null){
+  //     return this.checkAuthTokenValid();
+  //   }
+  //   return false;
+  // }
   requestWithParams(method : string, url : string, data : Params){
     let headers = {};
 
@@ -142,7 +168,7 @@ export class AxiosService {
   }
   request (method : string,url : string, data : any) : Promise<any>{
     
-    this.checkAuthTokenValid() 
+    // this.checkAuthTokenValid() 
     let headers = {};
     
     if(this.getAuthToken() !== null){

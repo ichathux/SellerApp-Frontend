@@ -13,8 +13,8 @@
                                         <input type="email" class="form-control" id="itemName" name="itemName"
                                             [(ngModel)]="itemName" required>
                                         <div
-                                            *ngIf="myForm.controls['itemName'].invalid && (myForm.controls['itemName'].dirty || myForm.controls['itemName'].touched)">
-                                            <div *ngIf="myForm.controls['itemName'].errors" style="color: red;">Product
+                                            *ngIf="myForm.controls['itemName']?.invalid && (myForm.controls['itemName']?.dirty || myForm.controls['itemName']?.touched)">
+                                            <div *ngIf="myForm.controls['itemName']?.errors" style="color: red;">Product
                                                 Name is
                                                 required.</div>
                                         </div>
@@ -28,8 +28,9 @@
                                                 {{cat.name}}</option>
                                         </select>
                                         <div
-                                            *ngIf="myForm.controls['category'].invalid && (myForm.controls['category'].dirty || myForm.controls['category'].touched)">
-                                            <div *ngIf="myForm.controls['category'].errors" style="color: red;">Catagory
+                                            *ngIf="myForm.controls['category']?.invalid && (myForm.controls['category']?.dirty || myForm.controls['category']?.touched)">
+                                            <div *ngIf="myForm.controls['category']?.errors" style="color: red;">
+                                                Catagory
                                                 is
                                                 required.</div>
                                         </div>
@@ -44,8 +45,9 @@
 
                                         </select>
                                         <div
-                                            *ngIf="myForm.controls['subCategory'].invalid && (myForm.controls['subCategory'].dirty || myForm.controls['subCategory'].touched)">
-                                            <div *ngIf="myForm.controls['subCategory'].errors" style="color: red;">Image
+                                            *ngIf="myForm.controls['subCategory']?.invalid && (myForm.controls['subCategory']?.dirty || myForm.controls['subCategory']?.touched)">
+                                            <div *ngIf="myForm.controls['subCategory']?.errors" style="color: red;">
+                                                Image
                                                 is
                                                 required.</div>
                                         </div>
@@ -59,8 +61,8 @@
                                                 {{brand.name}}</option>
                                         </datalist>
                                         <div
-                                            *ngIf="myForm.controls['brand'].invalid && (myForm.controls['brand'].dirty || myForm.controls['brand'].touched)">
-                                            <div *ngIf="myForm.controls['brand'].errors" style="color: red;">Brand is
+                                            *ngIf="myForm.controls['brand']?.invalid && (myForm.controls['brand']?.dirty || myForm.controls['brand']?.touched)">
+                                            <div *ngIf="myForm.controls['brand']?.errors" style="color: red;">Brand is
                                                 required.</div>
                                         </div>
                                     </div>
@@ -76,8 +78,8 @@
 
                                             </select>
                                             <div
-                                                *ngIf="myForm.controls['subCategory'].invalid && (myForm.controls['subCategory'].dirty || myForm.controls['subCategory'].touched)">
-                                                <div *ngIf="myForm.controls['subCategory'].errors" style="color: red;">
+                                                *ngIf="myForm.controls['subCategory']?.invalid && (myForm.controls['subCategory']?.dirty || myForm.controls['subCategory']?.touched)">
+                                                <div *ngIf="myForm.controls['subCategory']?.errors" style="color: red;">
                                                     Image
                                                     is
                                                     required.</div>
@@ -116,22 +118,31 @@
                                         <textarea class="form-control" id="description" rows="3" name="description"
                                             [(ngModel)]="description" required></textarea>
                                         <div
-                                            *ngIf="myForm.controls['description'].invalid && (myForm.controls['description'].dirty || myForm.controls['description'].touched)">
-                                            <div *ngIf="myForm.controls['description'].errors" style="color: red;">
+                                            *ngIf="myForm.controls['description']?.invalid && (myForm.controls['description']?.dirty || myForm.controls['description']?.touched)">
+                                            <div *ngIf="myForm.controls['description']?.errors" style="color: red;">
                                                 Description is
                                                 required.</div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="formFileSm" class="form-label">Image</label>
-                                        <input class="form-control form-control-sm" id="img" type="file" name="img"
-                                            [(ngModel)]="img" (change)="onFileSelected($event)" required>
-                                        <div
-                                            *ngIf="myForm.controls['img'].invalid && (myForm.controls['img'].dirty || myForm.controls['img'].touched)">
-                                            <div *ngIf="myForm.controls['img'].errors" style="color: red;">
-                                                Image is
-                                                required.</div>
+                                        <div class="col-4">
+                                            <label for="formFileSm" class="form-label">Image</label>
+                                            <img *ngIf="!myForm.controls['img']?.invalid" [src]="imageUrl"
+                                                class="rounded mx-auto d-block" alt="{{imageUrl}}"
+                                                style="height: 100px; width: 100px;">
                                         </div>
+                                        <div class="col-8">
+                                            <input class="form-control form-control-sm" id="img" type="file" name="img"
+                                                [(ngModel)]="img" (change)="onFileSelected($event)" required>
+                                            <div
+                                                *ngIf="myForm.controls['img']?.invalid && (myForm.controls['img']?.dirty || myForm.controls['img']?.touched)">
+                                                <div *ngIf="myForm.controls['img']?.errors" style="color: red;">
+                                                    Image is
+                                                    required.</div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
 
                                     <div class="col-12">
@@ -149,6 +160,7 @@
                                 <table class="table table-borderless">
                                     <thead>
                                         <tr>
+                                            <th scope="col">Image</th>
                                             <th scope="col">Item Name</th>
                                             <th scope="col">Created at</th>
                                             <th scope="col">Qty</th>
@@ -159,11 +171,26 @@
                                     </thead>
                                     <tbody>
                                         <tr class="table-success" *ngFor="let item of items">
+                                            <td><img [src]="item.image" class="rounded mx-auto d-block"
+                                                    alt="{{item.image}}" style="height: 100px; width: 100px;">
+                                            </td>
                                             <td>{{item.name}}</td>
-                                            <td>{{item.createdAt}}</td>
-                                            <td>{{item.quantity}}</td>
-                                            <td>{{item.subCategory.name}}</td>
-                                            <td>{{item.subCategory.name}}</td>
+                                            <td>{{ item.createdAt * 1000 | date :'medium' }}</td>
+                                            <td>
+                                                <ol class="list-group list-group-numbered">
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start"
+                                                        *ngFor="let variant of item.variants">
+                                                        <div class="ms-2 me-auto">
+                                                            <div class="fw-bold">{{variant.name}}</div>
+                                                            {{variant.price}} LKR
+                                                        </div>
+                                                        <span
+                                                            class="badge bg-primary rounded-pill">{{variant.qty}}</span>
+                                                    </li>
+                                                </ol>
+                                            </td>
+                                            <td>{{item.brand}}</td>
+                                            <td>{{item.subCategoryId.name}}</td>
                                             <td>
                                                 <button mat-icon-button color="primary"
                                                     aria-label="Example icon button with a home icon">

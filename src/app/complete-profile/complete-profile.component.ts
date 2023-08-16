@@ -5,7 +5,6 @@ import { ProfileService } from './profile-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../auth/shared/auth.service';
 
 @Component({
   selector: 'app-complete-profile',
@@ -21,8 +20,7 @@ export class CompleteProfileComponent implements OnInit{
     private profile_service :ProfileService,
     private router : Router,
     private toastr : ToastrService,
-    private http : HttpClient,
-    private authService : AuthService){
+    private http : HttpClient){
     
     this.completeProfilePayload = {
       businessName : '',

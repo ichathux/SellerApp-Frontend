@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AxiosService } from 'src/app/axios.service';
 import { CatalogDto } from './catalogDto';
+import axios from 'axios';
 
 @Component({
   selector: 'app-catalog-page',
@@ -33,9 +34,17 @@ export class CatalogPageComponent implements OnInit{
   selectedFile: File | undefined;
 
  
+  imageUrl?: string | ArrayBuffer | null;
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageUrl = e.target?.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
   }
 
   constructor(private axios : AxiosService,
@@ -91,8 +100,6 @@ export class CatalogPageComponent implements OnInit{
       this.formData.append('name',this.itemName);
       this.formData.append('subCategoryId', this.subCategory);
       this.formData.append('brand', this.brand);
-      // this.formData.append('quantity', this.qty.toString());
-      // this.formData.append('unitPrice', this.itemPrice.toString());
       this.formData.append('itemDescription', this.description);
       this.formData.append('customField1', this.qtyArray[0] !== undefined ? this.qtyArray[0].toString() : '0');
       this.formData.append('customField1Price', this.priceArray[0] !== undefined ? this.priceArray[0].toString() : '0');
@@ -111,6 +118,8 @@ export class CatalogPageComponent implements OnInit{
       console.log(this.qtyArray);
       console.log(this.currentVariant)
       console.log(this.formData)
+
+      // this.uploadImage();
       this.axios.request("POST", "api/inventory/addSingleItem", this.formData)
       .then((res) => {
         this.toater.success("Item Added")
@@ -164,10 +173,11 @@ export class CatalogPageComponent implements OnInit{
   getInventory(){
     this.axios.requestWithParams("GET", "api/inventory/getAllItems",
     {page : this.page,
-    size : this.size }).then(resposnse => {
-      // console.log(resposnse);
-      this.items = resposnse.data.content;
-      this.pages = new Array(resposnse.data.totalPages)
+    size : this.size }).then(response => {
+      console.log(response);
+      console.log(response.data.totalPages)
+      this.items = response.data.content;
+      this.pages = new Array(response.data.totalPages)
     }).catch(error => {
       console.log(error);
     })
@@ -182,5 +192,46 @@ export class CatalogPageComponent implements OnInit{
 
   selectOption(option: string) {
     this.selectedOption = option;
+  }
+
+  formData1: FormData = new FormData();
+
+  async uploadImage() : Promise<any>{
+    const cloudName = 'dzjakwtji';
+    const apiKey = '424679684355628';
+    const apiSecret = 'RckxOzCQ4cFDwvOv6Qi4-qApjX0';
+    const uploadPreset = 'ml_default';
+
+    if (this.selectedFile) {
+      this.formData1.append('file', this.selectedFile);
+      
+      try {
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`,
+          this.formData1,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Access-Control-Allow-Origin': 'your-origin',
+              'Access-Control-Allow-Headers': 'Content-Type'
+            },
+            auth: {
+              username: apiKey,
+              password: apiSecret
+            },
+            params: {
+              upload_preset: uploadPreset
+            }
+          }
+        );
+  
+        return response.data;
+      } catch (error) {
+        console.error('Upload error:', error);
+        throw error;
+      }
+    }
+    
+
   }
 }

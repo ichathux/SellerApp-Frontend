@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './shared/auth.service';
 import { AxiosService } from '../axios.service';
 
 @Injectable({
@@ -9,8 +8,7 @@ import { AxiosService } from '../axios.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService, 
-    private axiosService : AxiosService,
+  constructor(private axiosService : AxiosService,
     private router: Router) { }
 
   canActivate(
@@ -18,7 +16,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     // const isAuthenticated = this.authService.isLoggedIn();
-    const isAuthenticated = this.axiosService.checkUserLoggedIn();
+    const isAuthenticated = this.axiosService.isLoggedIn();
     if (isAuthenticated) {
       return true;
     } else {

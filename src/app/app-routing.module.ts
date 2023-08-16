@@ -10,6 +10,7 @@ import { ListingPageComponent } from './dashboard/listing/listing-page/listing-p
 import { CatalogPageComponent } from './dashboard/catalog-page/catalog-page.component';
 import { ProfilePageComponent } from './dashboard/profile-page/profile-page.component';
 import { MainComponent } from './dashboard/main/main.component';
+import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reader.component';
 
 const routes: Routes = [
   { path: '', component:HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'listing-page', component: ListingPageComponent, canActivate: [AuthGuard]},
   { path: 'catalog-page', component: CatalogPageComponent, canActivate: [AuthGuard]},
   { path: 'profile-page', component: ProfilePageComponent, canActivate: [AuthGuard]},
+  { path: 'barcode-reader', component: BarcodeReaderComponent}
   
 ];
 

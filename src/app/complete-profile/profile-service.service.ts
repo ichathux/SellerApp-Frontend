@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CompleteProfilePayload } from './complete-profile-request.payload';
-import { AuthService } from '../auth/shared/auth.service';
 import { UserDetailsResponsePayload } from '../auth/signin/sellerDetails.response.payload';
 
 

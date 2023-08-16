@@ -37,7 +37,7 @@ export class HomeComponent {
   isLoggedIn : boolean = false;
   constructor(private axios : AxiosService){
     
-    this.isLoggedIn = axios.checkUserLoggedIn();
+    this.isLoggedIn = axios.isLoggedIn();
     console.log(this.isLoggedIn)
   }
 
