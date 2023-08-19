@@ -6,6 +6,7 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { AxiosService } from 'src/app/axios.service';
 import { PagePayload } from 'src/app/payload/page.payload'
 import { DatePipe } from '@angular/common';
+import {NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-bulk-input-page',
@@ -17,7 +18,6 @@ export class BulkInputPageComponent implements OnInit{
   faDownload = faDownload;  
 
   file!: File;
-  // fileDetails!: FileDetails;
   fileUris: Array<string> = [];
   private page : number = 0;
   private size : number = 5;
@@ -27,14 +27,12 @@ export class BulkInputPageComponent implements OnInit{
   pagePayload !: PagePayload ;
   
   constructor(
-    private uploadService : ListingService, 
-    private router: Router,
-    private toastr: ToastrService,
-    private axiosService : AxiosService,
-    private datePipe: DatePipe){}
+    private uploadService : ListingService,
+    private spinner : NgxSpinnerService){}
 
     
     ngOnInit(): void {
+      this.spinner.show();
       this.getUploadedFiles();
     }
 
@@ -54,6 +52,7 @@ export class BulkInputPageComponent implements OnInit{
       this.files = response.content;
       this.pages = new Array(response.totalPages);
       console.log(response);
+      this.spinner.hide();
     });
 
   }

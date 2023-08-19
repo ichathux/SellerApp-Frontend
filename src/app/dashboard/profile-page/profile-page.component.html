@@ -1,104 +1,490 @@
 <section class="wrapper">
     <div class="container">
-        <div class="row gutters">
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="account-settings">
-                            <div class="user-profile">
-                                <div class="avatar-container">
-                                    <div class="image-container"></div>
-                                    <label for="avatar-input-file">
-                                        <div class="icon-wrapper">
-                                            <input type="file" id="avatar-input-file" accept="image/*" />
-                                            <mat-icon>edit</mat-icon>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle class="custom-expansion-panel">
+                <mat-expansion-panel-header class="custom-expansion-panel-header">
+                    <mat-panel-title class="custom-expansion-panel-title">
+                        General Profile Settings
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Change general settings like name, address, profile picture etc.
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-card class="example-card">
+                    <!-- <mat-card-header>
+                        <mat-card-title>Inventory Settings</mat-card-title>
+                        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                    </mat-card-header> -->
+                    <mat-card-content>
+
+                        <!-- <div class="row gutters">
+                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="account-settings">
+                                            <div class="user-profile">
+                                                <div class="avatar-container">
+                                                    <img class="rounded-circle" alt="avatar1" src="{{userDetails.logo}}"
+                                                        style="height: 200px;" />
+                                                    <label for="avatar-input-file">
+                                                        <div class="icon-wrapper">
+                                                            <input type="file" id="avatar-input-file"
+                                                                accept="image/*" />
+                                                            <mat-icon>edit</mat-icon>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <h5 class="user-name">{{userDetails.ownerName}}</h5>
+                                                <h6 class="user-email">{{userDetails.username}}</h6>
+                                            </div>
+                                            <div class="about">
+                                                <h5>About</h5>
+                                                <p>{{userDetails.description}}</p>
+                                            </div>
                                         </div>
-                                    </label>
+                                    </div>
                                 </div>
-                                <h5 class="user-name">Yuki Hayashi</h5>
-                                <h6 class="user-email">yuki@Maxwell.com</h6>
                             </div>
-                            <div class="about">
-                                <h5>About</h5>
-                                <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human
-                                    experiences.</p>
+                            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <h6 class="mb-2 text-primary">Personal Details</h6>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="fullName">Owner Name</label>
+                                                    <input type="text" class="form-control" id="fullName"
+                                                        placeholder="Enter full name"
+                                                        [(ngModel)]="userDetails.ownerName">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="eMail">Business Name</label>
+                                                    <input type="text" class="form-control" id="eMail"
+                                                        placeholder="Enter email ID"
+                                                        [(ngModel)]="userDetails.displayName">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="phone">Phone</label>
+                                                    <input type="text" class="form-control" id="phone"
+                                                        placeholder="Enter phone number"
+                                                        [(ngModel)]="userDetails.contactNo">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="website">Email</label>
+                                                    <input type="email" class="form-control" id="Email"
+                                                        placeholder="Email" [(ngModel)]="userDetails.username">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="website">Description</label>
+                                                    <textarea type="Description" class="form-control" id="Description"
+                                                        placeholder="Description"
+                                                        [(ngModel)]="userDetails.description"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="website">NIC no.</label>
+                                                    <input type="email" class="form-control" id="website"
+                                                        placeholder="NIC no." [(ngModel)]="userDetails.nic">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="container rounded bg-white mt-12 mb-12">
+                            <div class="row">
+                                <div class="col-md-3 border-right">
+                                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img
+                                            class="rounded-circle mt-5" width="150px" [src]="userDetails.logo"><span
+                                            class="font-weight-bold">{{userDetails.displayName}}</span><span
+                                            class="text-black-50">{{userDetails.username}}</span><span> </span></div>
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                                        <input type="file" class="form-control" id="inputGroupFile01" [(ngModel)]="img"
+                                            (change)="onFileSelected($event)">
+                                    </div>
+                                </div>
+                                <div class="col-md-9 border-right">
+                                    <div class="p-3 py-5">
+
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Owner Name</label>
+                                                <input type="text" class="form-control" placeholder="Enter full name"
+                                                    [(ngModel)]="userDetails.ownerName">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Business Name</label>
+                                                <input type="text" class="form-control" placeholder="Enter email ID"
+                                                    [(ngModel)]="userDetails.displayName">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <label class="form-label">Contact number</label>
+                                                <input type="text" class="form-control" placeholder="Enter phone number"
+                                                    [(ngModel)]="userDetails.contactNo">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="form-label">Email</label>
+                                                <input type="text" class="form-control" placeholder="Email"
+                                                    [(ngModel)]="userDetails.username" disabled>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="form-label">NIC</label>
+                                                <input type="text" class="form-control" placeholder="NIC no."
+                                                    [(ngModel)]="userDetails.nic">
+                                            </div>
+                                            <div class="col-md-12"><label class="form-label">Description</label>
+                                                <textarea class="form-control" placeholder="Description"
+                                                    [(ngModel)]="userDetails.description" rows="5"></textarea>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mb-2 text-primary">Personal Details</h6>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="fullName">Owner Name</label>
-                                    <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="eMail">Business Name</label>
-                                    <input type="text" class="form-control" id="eMail" placeholder="Enter email ID">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="website">Email</label>
-                                    <input type="email" class="form-control" id="website" placeholder="Website url">
-                                </div>
-                            </div>
-                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button (click)="updateSettings()">Save</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                class="custom-expansion-panel">
+                <mat-expansion-panel-header class="custom-expansion-panel-header">
+                    <mat-panel-title>
+                        Location Settings
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Change your location settings here.
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-card class="example-card">
+                    <!-- <mat-card-header>
+                        <mat-card-title>Inventory Settings</mat-card-title>
+                        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                    </mat-card-header> -->
+                    <mat-card-content>
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="Street">Address</label>
-                                    <input type="name" [value]="[{bussinessName}]" class="form-control" id="Street"
-                                        placeholder="Enter Street">
+                                    <div class="row">
+                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+                                            <label for="zIp">Nearby City</label>
+                                            <input type="text" class="form-control" id="zIp" placeholder="Nearby City"
+                                                [(ngModel)]="userDetails.city">
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                                            <button mat-icon-button color="primary"
+                                                aria-label="Example icon button with a home icon"
+                                                (click)="searchCity(userDetails.city)">
+                                                <mat-icon>search</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Address</label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                            (change)="onChangeLocation();" [(ngModel)]="userDetails.address"
+                                            [value]="sr">
+                                            <option *ngFor="let r of searchResult; let i = index;" [value]="i" selected>
+                                                {{r.display_name}}
+                                            </option>
+
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="ciTy">Country</label>
-                                    <input type="name" class="form-control" id="ciTy" placeholder="Enter City">
+                                    <input list="country" name="country" class="form-control"
+                                        [ngModel]="userDetails.country" />
+                                    <datalist id="country">
+                                        <option value="Afghanistan">
+                                        <option value="Albania">
+                                        <option value="Algeria">
+                                        <option value="American Samoa">
+                                        <option value="Andorra">
+                                        <option value="Angola">
+                                        <option value="Anguilla">
+                                        <option value="Antarctica">
+                                        <option value="Antigua and Barbuda">
+                                        <option value="Argentina">
+                                        <option value="Armenia">
+                                        <option value="Aruba">
+                                        <option value="Australia">
+                                        <option value="Austria">
+                                        <option value="Azerbaijan">
+                                        <option value="Bahamas">
+                                        <option value="Bahrain">
+                                        <option value="Bangladesh">
+                                        <option value="Barbados">
+                                        <option value="Belarus">
+                                        <option value="Belgium">
+                                        <option value="Belize">
+                                        <option value="Benin">
+                                        <option value="Bermuda">
+                                        <option value="Bhutan">
+                                        <option value="Bolivia">
+                                        <option value="Bosnia and Herzegovina">
+                                        <option value="Botswana">
+                                        <option value="Bouvet Island">
+                                        <option value="Brazil">
+                                        <option value="British Indian Ocean Territory">
+                                        <option value="Brunei Darussalam">
+                                        <option value="Bulgaria">
+                                        <option value="Burkina Faso">
+                                        <option value="Burundi">
+                                        <option value="Cambodia">
+                                        <option value="Cameroon">
+                                        <option value="Canada">
+                                        <option value="Cape Verde">
+                                        <option value="Cayman Islands">
+                                        <option value="Central African Republic">
+                                        <option value="Chad">
+                                        <option value="Chile">
+                                        <option value="China">
+                                        <option value="Christmas Island">
+                                        <option value="Cocos (Keeling) Islands">
+                                        <option value="Colombia">
+                                        <option value="Comoros">
+                                        <option value="Congo">
+                                        <option value="Congo, The Democratic Republic of The">
+                                        <option value="Cook Islands">
+                                        <option value="Costa Rica">
+                                        <option value="Cote D'ivoire">
+                                        <option value="Croatia"></option>
+                                        <option value="Cuba">
+                                        <option value="Cyprus">
+                                        <option value="Czech Republic">
+                                        <option value="Denmark">
+                                        <option value="Djibouti">
+                                        <option value="Dominica">
+                                        <option value="Dominican Republic">
+                                        <option value="Ecuador">
+                                        <option value="Egypt">
+                                        <option value="El Salvador">
+                                        <option value="Equatorial Guinea">
+                                        <option value="Eritrea">
+                                        <option value="Estonia">
+                                        <option value="Ethiopia">
+                                        <option value="Falkland Islands (Malvinas)">
+                                        <option value="Faroe Islands">
+                                        <option value="Fiji">
+                                        <option value="Finland">
+                                        <option value="France">
+                                        <option value="French Guiana">
+                                        <option value="French Polynesia">
+                                        <option value="French Southern Territories">
+                                        <option value="Gabon">
+                                        <option value="Gambia">
+                                        <option value="Georgia">
+                                        <option value="Germany">
+                                        <option value="Ghana">
+                                        <option value="Gibraltar">
+                                        <option value="Greece">
+                                        <option value="Greenland">
+                                        <option value="Grenada">
+                                        <option value="Guadeloupe">
+                                        <option value="Guam">
+                                        <option value="Guatemala">
+                                        <option value="Guinea">
+                                        <option value="Guinea-bissau">
+                                        <option value="Guyana">
+                                        <option value="Haiti">
+                                        <option value="Heard Island and Mcdonald Islands">
+                                        <option value="Holy See (Vatican City State)">
+                                        <option value="Honduras">
+                                        <option value="Hong Kong">
+                                        <option value="Hungary">
+                                        <option value="Iceland">
+                                        <option value="India">
+                                        <option value="Indonesia">
+                                        <option value="Iran, Islamic Republic of">
+                                        <option value="Iraq">
+                                        <option value="Ireland">
+                                        <option value="Israel">
+                                        <option value="Italy">
+                                        <option value="Jamaica">
+                                        <option value="Japan">
+                                        <option value="Jordan">
+                                        <option value="Kazakhstan">
+                                        <option value="Kenya">
+                                        <option value="Kiribati">
+                                        <option value="Korea, Democratic People's Republic of">
+                                        <option value="Korea, Republic of">
+                                        <option value="Kuwait">
+                                        <option value="Kyrgyzstan">
+                                        <option value="Lao People's Democratic Republic">
+                                        <option value="Latvia">
+                                        <option value="Lebanon">
+                                        <option value="Lesotho">
+                                        <option value="Liberia">
+                                        <option value="Libyan Arab Jamahiriya">
+                                        <option value="Liechtenstein">
+                                        <option value="Lithuania">
+                                        <option value="Luxembourg">
+                                        <option value="Macao">
+                                        <option value="Macedonia, The Former Yugoslav Republic of">
+                                        <option value="Madagascar">
+                                        <option value="Malawi">
+                                        <option value="Malaysia">
+                                        <option value="Maldives">
+                                        <option value="Mali">
+                                        <option value="Malta">
+                                        <option value="Marshall Islands">
+                                        <option value="Martinique">
+                                        <option value="Mauritania">
+                                        <option value="Mauritius">
+                                        <option value="Mayotte">
+                                        <option value="Mexico">
+                                        <option value="Micronesia, Federated States of">
+                                        <option value="Moldova, Republic of">
+                                        <option value="Monaco">
+                                        <option value="Mongolia">
+                                        <option value="Montserrat">
+                                        <option value="Morocco">
+                                        <option value="Mozambique">
+                                        <option value="Myanmar">
+                                        <option value="Namibia">
+                                        <option value="Nauru">
+                                        <option value="Nepal">
+                                        <option value="Netherlands">
+                                        <option value="Netherlands Antilles">
+                                        <option value="New Caledonia">
+                                        <option value="New Zealand">
+                                        <option value="Nicaragua">
+                                        <option value="Niger">
+                                        <option value="Nigeria">
+                                        <option value="Niue">
+                                        <option value="Norfolk Island">
+                                        <option value="Northern Mariana Islands">
+                                        <option value="Norway">
+                                        <option value="Oman">
+                                        <option value="Pakistan">
+                                        <option value="Palau">
+                                        <option value="Palestinian Territory, Occupied">
+                                        <option value="Panama">
+                                        <option value="Papua New Guinea">
+                                        <option value="Paraguay">
+                                        <option value="Peru">
+                                        <option value="Philippines">
+                                        <option value="Pitcairn">
+                                        <option value="Poland">
+                                        <option value="Portugal">
+                                        <option value="Puerto Rico">
+                                        <option value="Qatar">
+                                        <option value="Reunion">
+                                        <option value="Romania">
+                                        <option value="Russian Federation">
+                                        <option value="Rwanda">
+                                        <option value="Saint Helena">
+                                        <option value="Saint Kitts and Nevis">
+                                        <option value="Saint Lucia">
+                                        <option value="Saint Pierre and Miquelon">
+                                        <option value="Saint Vincent and The Grenadines">
+                                        <option value="Samoa">
+                                        <option value="San Marino">
+                                        <option value="Sao Tome and Principe">
+                                        <option value="Saudi Arabia">
+                                        <option value="Senegal">
+                                        <option value="Serbia and Montenegro">
+                                        <option value="Seychelles">
+                                        <option value="Sierra Leone">
+                                        <option value="Singapore">
+                                        <option value="Slovakia">
+                                        <option value="Slovenia">
+                                        <option value="Solomon Islands">
+                                        <option value="Somalia">
+                                        <option value="South Africa">
+                                        <option value="South Georgia and The South Sandwich Islands">
+                                        <option value="Spain">
+                                        <option value="Sri Lanka">
+                                        <option value="Sudan">
+                                        <option value="Suriname">
+                                        <option value="Svalbard and Jan Mayen">
+                                        <option value="Swaziland">
+                                        <option value="Sweden">
+                                        <option value="Switzerland">
+                                        <option value="Syrian Arab Republic">
+                                        <option value="Taiwan, Province of China">
+                                        <option value="Tajikistan">
+                                        <option value="Tanzania, United Republic of">
+                                        <option value="Thailand">
+                                        <option value="Timor-leste">
+                                        <option value="Togo">
+                                        <option value="Tokelau">
+                                        <option value="Tonga">
+                                        <option value="Trinidad and Tobago">
+                                        <option value="Tunisia">
+                                        <option value="Turkey">
+                                        <option value="Turkmenistan">
+                                        <option value="Turks and Caicos Islands">
+                                        <option value="Tuvalu">
+                                        <option value="Uganda">
+                                        <option value="Ukraine">
+                                        <option value="United Arab Emirates">
+                                        <option value="United Kingdom">
+                                        <option value="United States">
+                                        <option value="United States Minor Outlying Islands">
+                                        <option value="Uruguay">
+                                        <option value="Uzbekistan">
+                                        <option value="Vanuatu">
+                                        <option value="Venezuela">
+                                        <option value="Viet Nam">
+                                        <option value="Virgin Islands, British">
+                                        <option value="Virgin Islands, U.S">
+                                        <option value="Wallis and Futuna">
+                                        <option value="Western Sahara">
+                                        <option value="Yemen">
+                                        <option value="Zambia">
+                                        <option value="Zimbabwe">
+                                    </datalist>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="sTate">Location</label>
-                                    <input type="text" class="form-control" id="sTate" placeholder="Enter State">
+                                    <input type="text" class="form-control" id="sTate" placeholder="Location cordinates"
+                                        [(ngModel)]="userDetails.location" disabled="true">
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="zIp">Zip Code</label>
-                                    <input type="text" class="form-control" id="zIp" placeholder="Zip Code">
-                                </div>
-                            </div>
+
                         </div>
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="text-right">
-                                    <button type="button" id="submit" name="submit"
-                                        class="btn btn-secondary">Cancel</button>
-                                    <button type="button" id="submit" name="submit"
-                                        class="btn btn-primary">Update</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <div #mapContainer class="map-container"></div>
+
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button (click)="updateSettings()">Save</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
+
     </div>
 </section>

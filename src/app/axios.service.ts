@@ -65,28 +65,7 @@ export class AxiosService {
     localStorage.removeItem('authState');
     window.location.reload();
   }
-  // checkAuthTokenValid():boolean{
-  //   const epochNow= (new Date).getTime();
-  //   if(this.getAuthToken() !== null){
-  //     if((Number)(window.localStorage.getItem("expiredAt")) < epochNow){
-  //       // console.log("expired ", epochNow);
-  //       this.logout();
-  //       return false;
-  //     }else{
-  //       // console.log("not expired");
-  //       return true;
-  //     }
-  //   }else{
-  //     return true;
-  //   }
-    
-  // }
-  // checkUserLoggedIn():boolean{
-  //   if(this.getAuthToken() !== null){
-  //     return this.checkAuthTokenValid();
-  //   }
-  //   return false;
-  // }
+  
   requestWithParams(method : string, url : string, data : Params){
     let headers = {};
 

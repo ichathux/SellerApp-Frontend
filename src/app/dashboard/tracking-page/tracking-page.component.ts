@@ -3,6 +3,7 @@ import { ListingService } from "../service/listing.service";
 import { AxiosService } from 'src/app/axios.service';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-tracking-page',
   templateUrl: './tracking-page.component.html',
@@ -24,11 +25,20 @@ export class TrackingPageComponent implements OnInit{
 
   constructor(private axiosService : AxiosService, 
     private uploadService : ListingService,
-    private toaster : ToastrService){
+    private toaster : ToastrService, 
+    private spinner : NgxSpinnerService){
       
     }
   
   ngOnInit(): void {
+
+    this.spinner.show();
+
+    // setTimeout(() => {
+    //   /** spinner ends after 5 seconds */
+    //   this.spinner.hide();
+    // }, 5000);
+
     // this.getListedOrders();
     this.startDate.setDate(this.endDate.getDate() - 7);
     this.search();
@@ -40,6 +50,7 @@ export class TrackingPageComponent implements OnInit{
   customerContact = '';
 
   search(){
+    this.spinner.show();
     console.log(this.startDate);
     console.log(this.endDate);
 
@@ -79,6 +90,7 @@ export class TrackingPageComponent implements OnInit{
         console.log(response);
         this.orders = response.content;
         this.toaster.success(this.orders?.length + " items recieved");
+        this.spinner.hide();
       });
   }
   setStep(index: number) {

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AxiosService } from 'src/app/axios.service';
 
 @Component({
@@ -8,7 +10,7 @@ import { AxiosService } from 'src/app/axios.service';
 })
 
 export class SignupComponent{
-  constructor(private axiosService : AxiosService){}
+  constructor(private axiosService : AxiosService, private router: Router, private toastr : ToastrService){}
 
   @Output() onSubmitRegisterEvent = new EventEmitter();
 
@@ -56,8 +58,12 @@ export class SignupComponent{
     ).then(response => {
       console.log(response.data);
       this.axiosService.setAuthToken(response.data.token, input.username, response.data.requestToken);
+      this.router.navigate(['/dashboard']);
+      this.toastr.success("User Registered.");
+      this.toastr.success("User Logged in.")
     }).catch(error => {
       console.log(error);
+      this.toastr.error(error)
     });
   }
 }

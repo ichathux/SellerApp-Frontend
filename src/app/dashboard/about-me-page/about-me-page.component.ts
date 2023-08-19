@@ -22,7 +22,6 @@ export class AboutMePageComponent implements OnInit{
   }
 
   getSellerDetails(){
-
     this.axiosService.requestUpdated(
       "GET",
       "api/account/getUserDetails",

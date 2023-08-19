@@ -11,6 +11,7 @@ import { AxiosService } from 'src/app/axios.service';
 export class InventorySettingPageComponent implements OnInit {
   form: FormGroup;
   name: String = '';
+  useInventory: boolean = false;
 
   constructor(private fb: FormBuilder, private toastr : ToastrService, private axios : AxiosService) {
     this.form = this.fb.group({
@@ -20,6 +21,7 @@ export class InventorySettingPageComponent implements OnInit {
 
   ngOnInit(): void {
     // this.addField();
+    this.getCurrentSellerInventoryStatus();
   }
 
   get inputFields(): FormArray {
@@ -52,4 +54,23 @@ export class InventorySettingPageComponent implements OnInit {
     this.axios.request("POST", "api/account/addCustomFields", {list : fieldValues, name : this.name});
 
   }
+
+  saveInventoryStatus(){
+    console.log(this.useInventory);
+    this.axios.requestWithParams("POST", "api/account/inventoryStatus", {status : this.useInventory}).then(res => {
+      this.toastr.success("Status changed")
+    }).catch(err => {
+      this.toastr.error(err)
+    });
+  }
+
+   getCurrentSellerInventoryStatus(){
+    
+    this.axios.request("GET", "api/account/getInventoryStatus", '').then(res => {
+      console.log(res);
+      this.useInventory = res.data;
+    })
+   }
+  panelOpenState = false;
+ 
 }

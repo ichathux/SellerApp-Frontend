@@ -25,6 +25,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
@@ -100,7 +103,9 @@ import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reade
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-         
+    MatButtonToggleModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-circus' }),
+    MatProgressSpinnerModule
   ],
   providers: [DatePipe, {provide: LOCALE_ID, useValue: 'en-LK'}],
   bootstrap: [AppComponent]

@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AxiosService } from 'src/app/axios.service';
 import { CatalogDto } from './catalogDto';
 import axios from 'axios';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-catalog-page',
   templateUrl: './catalog-page.component.html',
@@ -21,8 +21,6 @@ export class CatalogPageComponent implements OnInit{
   brands : Array<any> = [];
 
   itemName : string = '';
-  // itemPrice : number = 0;
-  // qty : number = 0;
   category : any;
   subCategory : any ;
   description : string = '';
@@ -50,6 +48,7 @@ export class CatalogPageComponent implements OnInit{
   constructor(private axios : AxiosService,
     private toater : ToastrService,
     private http: HttpClient,
+    private spinner : NgxSpinnerService
     ){
     // productName : ''
   }
@@ -75,8 +74,10 @@ export class CatalogPageComponent implements OnInit{
     this.axios.request("GET", "api/account/getVariantTypes",'').then(response => {
       console.log(response)
       this.variantListArray = response.data;
+      this.spinner.hide();
     }).catch(error => {
-      console.log(error)
+      console.log(error);
+      this.spinner.hide();
     })
   }
 
@@ -87,6 +88,7 @@ export class CatalogPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.getCategories();
     this.getBrand();
     this.getInventory();
@@ -144,6 +146,7 @@ export class CatalogPageComponent implements OnInit{
   }
 
   getSubCategories(cat : any){
+    this.spinner.show();
     // console.log('calling to sub categories ')
     // console.log(cat)
     this.axios.requestWithParams("GET", 
@@ -151,8 +154,10 @@ export class CatalogPageComponent implements OnInit{
     ,{id : cat}).then(response => {
       // console.log(response);
       this.subCategories = response.data;
+      this.spinner.hide();
     }).catch(error => {
       console.log(error);
+      this.spinner.hide();
     })
   }
 
