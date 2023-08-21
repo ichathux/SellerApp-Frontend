@@ -8,7 +8,7 @@ import { ToastrModule } from 'node_modules/ngx-toastr';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+// import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { TagInputModule } from 'ngx-chips';
 import { MatButtonModule} from '@angular/material/button';
 import { MatSelectModule} from '@angular/material/select';
@@ -29,8 +29,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
-import { SignupComponent } from './auth/signup/signup.component';
-import { SigninComponent } from './auth/signin/signin.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { CompleteProfileComponent } from './complete-profile/complete-profile.component';
@@ -54,8 +54,8 @@ import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reade
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
     SigninComponent,
+    SignupComponent,
     HomeComponent,
     FooterComponent,
     CompleteProfileComponent,
@@ -73,8 +73,8 @@ import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reade
     ListingHistoryPageComponent,
     AboutMePageComponent,
     InventorySettingPageComponent,
-    BarcodeReaderComponent,
-  ],
+    BarcodeReaderComponent
+    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -84,7 +84,7 @@ import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reade
     FontAwesomeModule,
     ToastrModule.forRoot(),
     NgxWebstorageModule.forRoot(),
-    CanvasJSAngularChartsModule,
+    // CanvasJSAngularChartsModule,
     TagInputModule,
     FormsModule,
     MatSidenavModule,

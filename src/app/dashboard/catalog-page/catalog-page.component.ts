@@ -30,8 +30,6 @@ export class CatalogPageComponent implements OnInit{
   formData: FormData = new FormData();
 
   selectedFile: File | undefined;
-
- 
   imageUrl?: string | ArrayBuffer | null;
 
   onFileSelected(event: any) {

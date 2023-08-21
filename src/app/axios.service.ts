@@ -14,7 +14,9 @@ export class AxiosService {
   private isAuthenticated : boolean  = false;
   
   constructor(private toaster : ToastrService) { 
-    axios.defaults.baseURL = "http://localhost:8081/";
+    // axios.defaults.baseURL = "http://localhost:8080/"; //docker
+    axios.defaults.baseURL = "http://localhost:8090/"; //local
+
     const storedAuthState = localStorage.getItem('authState');
     if (storedAuthState) {
       this.isAuthenticatedSubject.next(JSON.parse(storedAuthState));

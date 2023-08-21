@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { SigninComponent } from './auth/signin/signin.component';
-import { SignupComponent } from './auth/signup/signup.component';
+import { RouterModule, Routes,  } from '@angular/router';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { CompleteProfileComponent } from './complete-profile/complete-profile.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -11,6 +11,7 @@ import { CatalogPageComponent } from './dashboard/catalog-page/catalog-page.comp
 import { ProfilePageComponent } from './dashboard/profile-page/profile-page.component';
 import { MainComponent } from './dashboard/main/main.component';
 import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reader.component';
+import { DetailsComponent } from './details/details.component';
 
 const routes: Routes = [
   { path: '', component:HomeComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'listing-page', component: ListingPageComponent, canActivate: [AuthGuard]},
   { path: 'catalog-page', component: CatalogPageComponent, canActivate: [AuthGuard]},
   { path: 'profile-page', component: ProfilePageComponent, canActivate: [AuthGuard]},
-  { path: 'barcode-reader', component: BarcodeReaderComponent}
+  { path: 'barcode-reader', component: BarcodeReaderComponent},
+  { path: 'details', component: DetailsComponent}
   
 ];
 
@@ -29,8 +31,9 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { useHash: true })
   ],
+  providers: [],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -15,12 +15,12 @@ export class MainComponent implements OnInit{
   constructor(private axiosService : AxiosService, private spinner: NgxSpinnerService){}
 
   ngOnInit(): void {
-    this.spinner.show();
+    // this.spinner.show();
 
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
+    // setTimeout(() => {
+    //   /** spinner ends after 5 seconds */
+    //   this.spinner.hide();
+    // }, 5000);
   }
   
   callLogout(){
