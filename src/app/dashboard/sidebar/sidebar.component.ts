@@ -31,6 +31,10 @@ export class SidebarComponent {
     this.activeStatus = showContent;
   }  
 
+  // getUserDetails(){
+  //   this.axiosService.request
+  // }
+
   callLogout(){
     this.axiosService.logout();
   }

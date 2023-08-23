@@ -1,11 +1,15 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AxiosService } from 'src/app/axios.service';
 import { CatalogDto } from './catalogDto';
-import axios from 'axios';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfimDialogComponent } from 'src/app/dialog/confim-dialog/confim-dialog.component'
+import { AppConfig } from 'src/app/config';
+// import { AppConfig } from './config';
+
 @Component({
   selector: 'app-catalog-page',
   templateUrl: './catalog-page.component.html',
@@ -27,28 +31,18 @@ export class CatalogPageComponent implements OnInit{
   img : any ;
   brand : string = '';
 
+
   formData: FormData = new FormData();
 
   selectedFile: File | undefined;
   imageUrl?: string | ArrayBuffer | null;
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-    if (this.selectedFile) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imageUrl = e.target?.result;
-      };
-      reader.readAsDataURL(this.selectedFile);
-    }
-  }
-
   constructor(private axios : AxiosService,
     private toater : ToastrService,
     private http: HttpClient,
-    private spinner : NgxSpinnerService
+    private spinner : NgxSpinnerService,
+    public dialog: MatDialog
     ){
-    // productName : ''
   }
 
   getCustomFields(){
@@ -93,46 +87,7 @@ export class CatalogPageComponent implements OnInit{
     this.getVariantsTypes();
   }
 
-  addSingleItem(){
-    console.log(this.itemName)
-    if (this.selectedFile) {
-      this.formData.append('file', this.selectedFile, this.selectedFile.name);
-      this.formData.append('name',this.itemName);
-      this.formData.append('subCategoryId', this.subCategory);
-      this.formData.append('brand', this.brand);
-      this.formData.append('itemDescription', this.description);
-      this.formData.append('customField1', this.qtyArray[0] !== undefined ? this.qtyArray[0].toString() : '0');
-      this.formData.append('customField1Price', this.priceArray[0] !== undefined ? this.priceArray[0].toString() : '0');
-      this.formData.append('customField2', this.qtyArray[1] !== undefined ? this.qtyArray[1].toString() : '0');
-      this.formData.append('customField2Price', this.priceArray[1] !== undefined ? this.priceArray[1].toString() : '0');
-      this.formData.append('customField3', this.qtyArray[2] !== undefined ? this.qtyArray[2].toString() : '0');
-      this.formData.append('customField3Price', this.priceArray[2] !== undefined ? this.priceArray[2].toString() : '0');
-      this.formData.append('customField4', this.qtyArray[3] !== undefined ? this.qtyArray[3].toString() : '0');
-      this.formData.append('customField4Price', this.priceArray[3] !== undefined ? this.priceArray[3].toString() : '0');
-      this.formData.append('customField5', this.qtyArray[4] !== undefined ? this.qtyArray[4].toString() : '0');
-      this.formData.append('customField5Price', this.priceArray[4] !== undefined ? this.priceArray[4].toString() : '0');
-      this.formData.append('customField6', this.qtyArray[5] !== undefined ? this.qtyArray[5].toString() : '0');
-      this.formData.append('customField6Price', this.priceArray[5] !== undefined ? this.priceArray[5].toString() : '0');
-      this.formData.append('variantType', this.currentVariant);
-
-      console.log(this.qtyArray);
-      console.log(this.currentVariant)
-      console.log(this.formData)
-
-      // this.uploadImage();
-      this.axios.request("POST", "api/inventory/addSingleItem", this.formData)
-      .then((res) => {
-        this.toater.success("Item Added")
-        this.getInventory();
-        this.formData = new FormData();
-      }).catch(error => {
-        this.toater.error("error occured "+error)
-        this.formData = new FormData();
-      })
-    }
-    
-  }
-
+  
   getCategories(){
     this.axios.request("GET", "api/inventory/getCategories",'').then(response => {
       // console.log(response);
@@ -145,12 +100,9 @@ export class CatalogPageComponent implements OnInit{
 
   getSubCategories(cat : any){
     this.spinner.show();
-    // console.log('calling to sub categories ')
-    // console.log(cat)
     this.axios.requestWithParams("GET", 
     "api/inventory/getSubCategories"
     ,{id : cat}).then(response => {
-      // console.log(response);
       this.subCategories = response.data;
       this.spinner.hide();
     }).catch(error => {
@@ -173,6 +125,82 @@ export class CatalogPageComponent implements OnInit{
   private size : number = 5;
   items : Array<any> = [];
 
+  
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageUrl = e.target?.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  addSingleItem(){
+    this.spinner.show();
+    console.log(this.itemName)
+    if (this.selectedFile) {
+      this.formData.append('name',this.itemName);
+      this.formData.append('subCategoryId', this.subCategory);
+      this.formData.append('brand', this.brand);
+      this.formData.append('itemDescription', this.description);
+      this.formData.append('customField1', this.qtyArray[0] !== undefined ? this.qtyArray[0].toString() : '0');
+      this.formData.append('customField1Price', this.priceArray[0] !== undefined ? this.priceArray[0].toString() : '0');
+      this.formData.append('customField2', this.qtyArray[1] !== undefined ? this.qtyArray[1].toString() : '0');
+      this.formData.append('customField2Price', this.priceArray[1] !== undefined ? this.priceArray[1].toString() : '0');
+      this.formData.append('customField3', this.qtyArray[2] !== undefined ? this.qtyArray[2].toString() : '0');
+      this.formData.append('customField3Price', this.priceArray[2] !== undefined ? this.priceArray[2].toString() : '0');
+      this.formData.append('customField4', this.qtyArray[3] !== undefined ? this.qtyArray[3].toString() : '0');
+      this.formData.append('customField4Price', this.priceArray[3] !== undefined ? this.priceArray[3].toString() : '0');
+      this.formData.append('customField5', this.qtyArray[4] !== undefined ? this.qtyArray[4].toString() : '0');
+      this.formData.append('customField5Price', this.priceArray[4] !== undefined ? this.priceArray[4].toString() : '0');
+      this.formData.append('customField6', this.qtyArray[5] !== undefined ? this.qtyArray[5].toString() : '0');
+      this.formData.append('customField6Price', this.priceArray[5] !== undefined ? this.priceArray[5].toString() : '0');
+      this.formData.append('variantType', this.currentVariant);
+      // this.uploadImage(this.selectedFile, this.formData);
+      this.uploadImage();
+      
+    }
+    
+  }
+
+  uploadImage(): void {
+    if (this.selectedFile) {
+      const epochTimeInSeconds: number = Math.floor(new Date().getTime() / 1000);
+      const newFileName: string = epochTimeInSeconds.toString()+ localStorage.getItem("requestToken");
+      const renamedFile = new File([this.selectedFile], newFileName, { type: this.selectedFile.type });
+      const formData = new FormData();
+      formData.append('file', renamedFile);
+      formData.append('upload_preset', 'timlw13j');
+      const url = `${AppConfig.cloudinaryApiPrefix}${AppConfig.cloudinaryCloudName}${AppConfig.cloudinaryApiPostfix}`;
+      this.http.post<any>(url, formData).subscribe(
+        response => {
+          this.formData.append('imgUrl', response.secure_url);
+          this.formData.append('delete_url', response.public_id);
+          this.sendAddInvenrtoryRequest();
+        },
+        error => {
+          console.error('Error uploading:', error);
+        }
+      );
+    }
+  }
+  sendAddInvenrtoryRequest(){
+    this.axios.request("POST", "api/inventory/addSingleItem", this.formData)
+      .then((res) => {
+        this.toater.success("Item Added")
+        this.getInventory();
+        this.formData = new FormData();
+        this.spinner.hide();
+      }).catch(error => {
+        this.toater.error("error occured "+error)
+        this.formData = new FormData();
+        this.spinner.hide();
+      })
+  }
+  
   getInventory(){
     this.axios.requestWithParams("GET", "api/inventory/getAllItems",
     {page : this.page,
@@ -197,44 +225,50 @@ export class CatalogPageComponent implements OnInit{
     this.selectedOption = option;
   }
 
-  formData1: FormData = new FormData();
+  openConfirmationDialog(id: any, name: string): void {
+    const dialogRef = this.dialog.open(ConfimDialogComponent, {
+      data : {action : 'Delete', itemName : name}
+    });
 
-  async uploadImage() : Promise<any>{
-    const cloudName = 'dzjakwtji';
-    const apiKey = '424679684355628';
-    const apiSecret = 'RckxOzCQ4cFDwvOv6Qi4-qApjX0';
-    const uploadPreset = 'ml_default';
-
-    if (this.selectedFile) {
-      this.formData1.append('file', this.selectedFile);
-      
-      try {
-        const response = await axios.post(
-          `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`,
-          this.formData1,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-              'Access-Control-Allow-Origin': 'your-origin',
-              'Access-Control-Allow-Headers': 'Content-Type'
-            },
-            auth: {
-              username: apiKey,
-              password: apiSecret
-            },
-            params: {
-              upload_preset: uploadPreset
-            }
-          }
-        );
-  
-        return response.data;
-      } catch (error) {
-        console.error('Upload error:', error);
-        throw error;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // User confirmed the action
+        console.log('Action confirmed ',id);
+        this.deleteItem(id);
+        // Perform the action here
+      } else {
+        // User canceled the action
+        console.log('Action canceled');
       }
-    }
-    
-
+    });
   }
+
+  // deleteItem(id : any){
+  //   this.axios.requestWithParams("GET", 
+  //   "api/inventory/deleteInventoryItem", 
+  //   {id: id}).then(res => {
+  //     this.toater.success("success");
+  //     this.getInventory();
+  //   }).catch(err => {
+  //     this.toater.error(err);  
+  //   })
+  // }
+
+  deleteItem(item : any){
+    console.log('delete item ',item)
+    this.spinner.show();
+    this.axios.requestWithParams("DELETE", 
+    "api/inventory/deleteInventoryItem"
+    ,{itemId : item}).then(response => {
+      this.toater.success("Item Deleted");
+      this.getInventory();
+      this.spinner.hide();
+    }).catch(error => {
+      console.log(error);
+      this.spinner.hide();
+    })
+  }
+
 }
+
+

@@ -28,6 +28,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {CloudinaryModule} from '@cloudinary/ng';
+import { MatDialogModule } from '@angular/material/dialog'; 
 
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
@@ -50,6 +52,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AboutMePageComponent } from './dashboard/about-me-page/about-me-page.component';
 import { InventorySettingPageComponent } from './dashboard/inventory-setting-page/inventory-setting-page.component';
 import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reader.component';
+import { ConfimDialogComponent } from './dialog/confim-dialog/confim-dialog.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,8 @@ import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reade
     ListingHistoryPageComponent,
     AboutMePageComponent,
     InventorySettingPageComponent,
-    BarcodeReaderComponent
+    BarcodeReaderComponent,
+    ConfimDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -105,7 +109,9 @@ import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reade
     MatPaginatorModule,
     MatButtonToggleModule,
     NgxSpinnerModule.forRoot({ type: 'ball-circus' }),
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    CloudinaryModule,
+    MatDialogModule
   ],
   providers: [DatePipe, {provide: LOCALE_ID, useValue: 'en-LK'}],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { Params } from '@angular/router';
 import axios from 'axios';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AppConfig } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,7 @@ export class AxiosService {
   private isAuthenticated : boolean  = false;
   
   constructor(private toaster : ToastrService) { 
-    // axios.defaults.baseURL = "http://localhost:8080/"; //docker
-    axios.defaults.baseURL = "http://localhost:8090/"; //local
+    axios.defaults.baseURL = AppConfig.apiUrl;
 
     const storedAuthState = localStorage.getItem('authState');
     if (storedAuthState) {
