@@ -8,27 +8,26 @@ import { ToastrModule } from 'node_modules/ngx-toastr';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-// import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { TagInputModule } from 'ngx-chips';
-import { MatButtonModule} from '@angular/material/button';
-import { MatSelectModule} from '@angular/material/select';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {CloudinaryModule} from '@cloudinary/ng';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog'; 
 
 import { SigninComponent } from './signin/signin.component';
@@ -53,6 +52,9 @@ import { AboutMePageComponent } from './dashboard/about-me-page/about-me-page.co
 import { InventorySettingPageComponent } from './dashboard/inventory-setting-page/inventory-setting-page.component';
 import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reader.component';
 import { ConfimDialogComponent } from './dialog/confim-dialog/confim-dialog.component';
+import { EditInventoryItemComponent } from './dashboard/dialog-dashboard/edit-inventory-item/edit-inventory-item.component';
+import { ViewInventoryItemComponent } from './dashboard/dialog-dashboard/view-inventory-item/view-inventory-item.component';
+import { ViewItemComponent } from './view-item/view-item.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,10 @@ import { ConfimDialogComponent } from './dialog/confim-dialog/confim-dialog.comp
     AboutMePageComponent,
     InventorySettingPageComponent,
     BarcodeReaderComponent,
-    ConfimDialogComponent
+    ConfimDialogComponent,
+    EditInventoryItemComponent,
+    ViewInventoryItemComponent,
+    ViewItemComponent
     ],
   imports: [
     BrowserModule,
@@ -88,7 +93,7 @@ import { ConfimDialogComponent } from './dialog/confim-dialog/confim-dialog.comp
     FontAwesomeModule,
     ToastrModule.forRoot(),
     NgxWebstorageModule.forRoot(),
-    // CanvasJSAngularChartsModule,
+    CanvasJSAngularChartsModule,
     TagInputModule,
     FormsModule,
     MatSidenavModule,
@@ -110,10 +115,9 @@ import { ConfimDialogComponent } from './dialog/confim-dialog/confim-dialog.comp
     MatButtonToggleModule,
     NgxSpinnerModule.forRoot({ type: 'ball-circus' }),
     MatProgressSpinnerModule,
-    CloudinaryModule,
     MatDialogModule
   ],
-  providers: [DatePipe, {provide: LOCALE_ID, useValue: 'en-LK'}],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
   
 })

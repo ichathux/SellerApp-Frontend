@@ -11,7 +11,7 @@ import { CatalogPageComponent } from './dashboard/catalog-page/catalog-page.comp
 import { ProfilePageComponent } from './dashboard/profile-page/profile-page.component';
 import { MainComponent } from './dashboard/main/main.component';
 import { BarcodeReaderComponent } from './dashboard/barcode-reader/barcode-reader.component';
-import { DetailsComponent } from './details/details.component';
+import { ViewItemComponent } from './view-item/view-item.component';
 
 const routes: Routes = [
   { path: '', component:HomeComponent},
@@ -23,8 +23,7 @@ const routes: Routes = [
   { path: 'catalog-page', component: CatalogPageComponent, canActivate: [AuthGuard]},
   { path: 'profile-page', component: ProfilePageComponent, canActivate: [AuthGuard]},
   { path: 'barcode-reader', component: BarcodeReaderComponent},
-  { path: 'details', component: DetailsComponent}
-  
+  { path: 'view-item', component: ViewItemComponent}
 ];
 
 @NgModule({

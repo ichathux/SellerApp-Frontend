@@ -15,9 +15,10 @@ export class AxiosService {
   private isAuthenticated : boolean  = false;
   
   constructor(private toaster : ToastrService) { 
+    
     axios.defaults.baseURL = AppConfig.apiUrl;
-
     const storedAuthState = localStorage.getItem('authState');
+
     if (storedAuthState) {
       this.isAuthenticatedSubject.next(JSON.parse(storedAuthState));
       this.isAuthenticated = JSON.parse(storedAuthState);
@@ -59,12 +60,9 @@ export class AxiosService {
     return this.isAuthenticated;
   }
   logout():void{
-    window.localStorage.removeItem("auth_token");
-    window.localStorage.removeItem("expiredAt");
-    window.localStorage.removeItem("requestToken");
     this.isAuthenticated = false;
     this.isAuthenticatedSubject.next(false);
-    localStorage.removeItem('authState');
+    localStorage.clear();
     window.location.reload();
   }
   

@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AxiosService } from '../axios.service';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -10,8 +12,6 @@ import { AxiosService } from '../axios.service';
 })
 
 export class SignupComponent{
-  constructor(private axiosService : AxiosService, private router: Router, private toastr : ToastrService){}
-
   @Output() onSubmitRegisterEvent = new EventEmitter();
 
   active : string = 'login';
@@ -21,11 +21,20 @@ export class SignupComponent{
   username : string = "";
   password : string = "";
   businessName : string = "";
-  address : string = "";
+  country : string = "";
+  countries: any[] = [];
 
+  private apiUrl = 'https://restcountries.com/v3.1/all'; // Rest Countries API endpoint
 
+  constructor(
+    private axiosService : AxiosService, 
+    private router: Router, private toastr : ToastrService, 
+    private http : HttpClient){}
 
-  
+  getCountries(): Observable<any> {
+    return this.http.get(this.apiUrl);
+  }
+
   onSubmitRegister():void{
 
     console.log("registering user")
@@ -36,7 +45,7 @@ export class SignupComponent{
       "password" : this.password,
       "contact": this.contact,
       "businessName": this.businessName,
-      "address": this.address});
+      "country": this.country});
 
   }
 
@@ -52,7 +61,7 @@ export class SignupComponent{
         password: input.password,
         contact: input.contact,
         businessName: input.businessName,
-        address: input.address
+        country: input.country
 
       }
     ).then(response => {

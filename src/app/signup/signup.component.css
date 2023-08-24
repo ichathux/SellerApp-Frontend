@@ -13,3 +13,20 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+/* Styles for the main content area */
+.content {
+    /* Add styles as needed */
+    margin-bottom: 200px; /* Set the margin to accommodate the footer height */
+    height: 100%;
+  }
+/* Styles for the sticky footer */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f8f8; /* Customize the background color */
+    padding: 10px; /* Add padding for better appearance */
+    text-align: center; /* Center content if needed */
+  }
+  

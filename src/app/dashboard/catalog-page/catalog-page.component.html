@@ -180,7 +180,7 @@
                                                         *ngFor="let variant of item.variants">
                                                         <div class="ms-2 me-auto">
                                                             <div class="fw-bold">{{variant.name}}</div>
-                                                            {{variant.price}} LKR
+                                                            {{variant.price | currency : 'LKR': true}}
                                                         </div>
                                                         <span
                                                             class="badge bg-primary rounded-pill">{{variant.qty}}</span>
@@ -190,8 +190,13 @@
                                             <td>{{item.brand}}</td>
                                             <td>{{item.subCategoryId.name}}</td>
                                             <td>
-                                                <button mat-icon-button color="primary"
+                                                <button mat-icon-button color="primary" (click)="openViewDialog(item)"
                                                     aria-label="Example icon button with a home icon">
+                                                    <mat-icon>remove_red_eye </mat-icon>
+                                                </button>
+                                                <button mat-icon-button color="primary"
+                                                    aria-label="Example icon button with a home icon"
+                                                    (click)="openEditDialog(item)">
                                                     <mat-icon>edit</mat-icon>
                                                 </button>
                                                 <button mat-icon-button color="primary"

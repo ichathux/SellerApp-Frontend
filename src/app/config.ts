@@ -1,6 +1,6 @@
 export const AppConfig = {
-    // apiUrl: 'http://localhost:8090/', //local
-    apiUrl: 'http://localhost:8080/', // docker
+    apiUrl: 'http://localhost:8090/', //local
+    // apiUrl: 'http://localhost:8080/', // docker
     cloudinaryApiPrefix: 'https://api.cloudinary.com/v1_1/',
     cloudinaryApiPostfix:'/image/upload',
     cloudinaryCloudName: 'ddzs2ixbq',

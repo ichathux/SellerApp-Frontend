@@ -8,7 +8,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfimDialogComponent } from 'src/app/dialog/confim-dialog/confim-dialog.component'
 import { AppConfig } from 'src/app/config';
-// import { AppConfig } from './config';
+import { EditInventoryItemComponent } from '../dialog-dashboard/edit-inventory-item/edit-inventory-item.component';
+import { ViewInventoryItemComponent } from '../dialog-dashboard/view-inventory-item/view-inventory-item.component';
 
 @Component({
   selector: 'app-catalog-page',
@@ -243,16 +244,6 @@ export class CatalogPageComponent implements OnInit{
     });
   }
 
-  // deleteItem(id : any){
-  //   this.axios.requestWithParams("GET", 
-  //   "api/inventory/deleteInventoryItem", 
-  //   {id: id}).then(res => {
-  //     this.toater.success("success");
-  //     this.getInventory();
-  //   }).catch(err => {
-  //     this.toater.error(err);  
-  //   })
-  // }
 
   deleteItem(item : any){
     console.log('delete item ',item)
@@ -267,6 +258,33 @@ export class CatalogPageComponent implements OnInit{
       console.log(error);
       this.spinner.hide();
     })
+  }
+
+  openEditDialog(item : any) {
+    const dialogRef = this.dialog.open(EditInventoryItemComponent, {
+      data: {inventory : item}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("ok")
+        this.getInventory();
+        this.spinner.hide();
+      }else{
+        console.log("cancel")
+        this.spinner.hide();
+      }
+    });
+  }
+
+  openViewDialog(item : any){
+    const dialogRef = this.dialog.open(ViewInventoryItemComponent, {
+      data: {inventory : item}
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+
+    // });
   }
 
 }

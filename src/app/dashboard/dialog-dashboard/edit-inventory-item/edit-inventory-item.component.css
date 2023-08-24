@@ -1,0 +1,5 @@
+
+.mat-mdc-dialog-container .mdc-dialog__surface mat-dialog-content{
+    background-color: #ffffff;
+    height: 100%;
+  }

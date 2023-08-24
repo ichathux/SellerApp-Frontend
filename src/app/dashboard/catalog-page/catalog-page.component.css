@@ -103,3 +103,11 @@ h1.heading {
   font-weight:600;
   text-transform: uppercase
 }
+
+.custom-dialog-content mat-dialog-content{
+  background-color: lightgray; /* Change this color to your desired light color */
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface mat-dialog-content{
+  background-color: #ffffff;
+}

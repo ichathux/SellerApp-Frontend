@@ -1,0 +1,95 @@
+<h2 mat-dialog-title>Edit {{inventory.name}}</h2>
+<mat-dialog-content class="mat-typography">
+    <form class="row g-3" (ngSubmit)="update()" #myForm="ngForm" enctype="multipart/form-data">
+        <div class="col-4">
+            <div class="row">
+
+                <img [src]="imageUrl" class="img-fluid" alt="Responsive image">
+                <!-- </div> -->
+            </div>
+            <div class="row">
+                <div class="input-group mb-3 col-4">
+                    <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                    <input type="file" class="form-control" id="inputGroupFile01" [(ngModel)]="imageUrl"
+                        (change)="onFileSelected($event)">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-8">
+            <div class="col-md-12">
+                <label for="inputEmail4" class="form-label">Product Name</label>
+                <input type="email" class="form-control" id="itemName" name="itemName" [(ngModel)]="inventory.name"
+                    required>
+                <div
+                    *ngIf="myForm.controls['itemName']?.invalid && (myForm.controls['itemName']?.dirty || myForm.controls['itemName']?.touched)">
+                    <div *ngIf="myForm.controls['itemName']?.errors" style="color: red;">Product
+                        Name is
+                        required.</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label for="inputAddress2" class="form-label">Catagory</label>
+                    <input type="email" class="form-control" id="category" name="category"
+                        [(ngModel)]="inventory.subCategoryId.category.name" required disabled>
+
+                </div>
+                <div class="col-4">
+                    <label for="inputAddress2" class="form-label">Sub Catagory</label>
+                    <input type="text" class="form-control" id="subCategory" name="subCategory"
+                        [(ngModel)]="inventory.subCategoryId.name" required disabled>
+
+                </div>
+                <div class="col-4">
+                    <label for="inputAddress2" class="form-label">Brand</label>
+                    <input class="form-control" id="brand" placeholder="Type to search..." name="brand"
+                        [(ngModel)]="inventory.brand" required>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <label for="inputCity" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="3" name="description"
+                    [(ngModel)]="inventory.itemDescription" required></textarea>
+                <div
+                    *ngIf="myForm.controls['description']?.invalid && (myForm.controls['description']?.dirty || myForm.controls['description']?.touched)">
+                    <div *ngIf="myForm.controls['description']?.errors" style="color: red;">
+                        Description is
+                        required.</div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Variants
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Change Stock
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="row mb-3" *ngFor="let variant of inventory.variants; let i = index;">
+                            <div class="col-4">
+                                <label for="inputState" class="form-label">{{variant.name}} Qty</label>
+                                <input type="number" class="form-control" id="qty + {{variant}}" name="qty"
+                                    placeholder="1" required [(ngModel)]="qtyArray[i]" [value]="variant.qty">
+                            </div>
+                            <div class="col-4">
+                                <label for="inputState" class="form-label">{{variant.name}} Price</label>
+                                <input type="number" class="form-control" id="price+{{variant}}" name="price"
+                                    placeholder="1" required [(ngModel)]="priceArray[i]" [value]="variant.price">
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close="true" cdkFocusInitial>Cancel</button>
+    <button mat-button [mat-dialog-close] (click)="update()">Update</button>
+</mat-dialog-actions>

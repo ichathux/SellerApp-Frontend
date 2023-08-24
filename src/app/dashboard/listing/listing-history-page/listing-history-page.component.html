@@ -22,7 +22,7 @@
                     <td>{{ order.customer.name }}</td>
                     <td>{{ order.customer.address}},{{ order.customer.district}}</td>
                     <td>{{ order.customer.contactNo}},{{order.customer.email}}</td>
-                    <td>{{ order.deliveryCharge + order.price | currency }}</td>
+                    <td>{{ order.deliveryCharge + order.price | currency : 'LKR': true}}</td>
                     <td>{{ order.status }}</td>
                     <td>{{ order.createdAt * 1000 | date :'medium' }}</td>
 
