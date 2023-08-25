@@ -4,18 +4,152 @@
 </ngx-spinner>
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav [mode]="'side'" opened class="drawer">
-        <app-sidebar></app-sidebar>
+        <!--Main Navigation-->
+        <header>
+            <!-- Sidebar -->
+            <nav id="sidebarMenu" class="d-lg-block sidebar collapse bg-white" style="padding-top: 50px;">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-3 mt-4">
+                        <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                            <img [src]="logo" class="rounded-circle shadow-4" style="width: 150px; height: 150px;"
+                                alt="Avatar" />
+                        </a>
+                        <a class="list-group-item list-group-item-action py-2 ripple text-right"
+                            (click)="setCompomentToShow('dashboard')"
+                            [ngClass]="{'active': activeStatus === 'dashboard'}" aria-current="true">
+                            <div class="row">
+                                <div class="side-bar-icon col-4">
+                                    <fa-icon [icon]="faGauge"></fa-icon>
+                                </div>
+                                <div class="side-bar-text col-8">
+                                    <span style="text-align: right;">Dashboard</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="list-group-item list-group-item-action py-2 ripple text-right"
+                            (click)="setCompomentToShow('listing-page')"
+                            [ngClass]="{'active': activeStatus === 'listing-page'}">
+                            <div class="row">
+                                <div class="side-bar-icon col-4">
+                                    <fa-icon [icon]="faFileExcel"></fa-icon>
+                                </div>
+                                <div class="side-bar-text col-8">
+                                    <span>Create Listing</span>
+                                </div>
+                            </div>
+
+
+                        </a>
+                        <a class="list-group-item list-group-item-action py-2 ripple"
+                            (click)="setCompomentToShow('make-excel-file')"
+                            [ngClass]="{'active': activeStatus === 'make-excel-file'}">
+                            <div class="row">
+                                <div class="side-bar-icon col-4">
+                                    <fa-icon [icon]="faFileExcel"></fa-icon>
+                                </div>
+                                <div class="side-bar-text col-8">
+                                    <span>Make Bulk File</span>
+                                </div>
+                            </div>
+
+
+                        </a>
+                        <a class="list-group-item list-group-item-action py-2 ripple"
+                            (click)="setCompomentToShow('catalog-page')"
+                            [ngClass]="{'active': activeStatus === 'catalog-page'}">
+                            <div class="row">
+                                <div class="side-bar-icon col-4">
+                                    <fa-icon [icon]="faList"></fa-icon>
+                                </div>
+                                <div class="side-bar-text col-8">
+                                    <span>Create Catalog</span>
+                                </div>
+                            </div>
+
+
+                        </a>
+                        <a class="list-group-item list-group-item-action py-2 ripple"
+                            (click)="setCompomentToShow('tracking-page')"
+                            [ngClass]="{'active': activeStatus === 'tracking-page'}">
+                            <div class="row">
+                                <div class="side-bar-icon col-4">
+                                    <fa-icon [icon]="faShippingFast"></fa-icon>
+                                </div>
+                                <div class="side-bar-text col-8">
+                                    <span>Track</span>
+                                </div>
+                            </div>
+
+
+                        </a>
+                        <a class="list-group-item list-group-item-action py-2 ripple"
+                            (click)="setCompomentToShow('settings-page')"
+                            [ngClass]="{'active': activeStatus === 'settings-page'}">
+                            <div class="row">
+                                <div class="side-bar-icon col-4">
+                                    <fa-icon [icon]="faGears"></fa-icon>
+                                </div>
+                                <div class="side-bar-text col-8">
+                                    <span>Setting</span>
+                                </div>
+                            </div>
+
+
+                        </a>
+                        <a class="list-group-item list-group-item-action py-2 ripple"
+                            (click)="setCompomentToShow('about-me-page')"
+                            [ngClass]="{'active': activeStatus === 'about-me-page'}">
+                            <div class="row">
+                                <div class="side-bar-icon col-4">
+                                    <fa-icon [icon]="faGears"></fa-icon>
+                                </div>
+                                <div class="side-bar-text col-8">
+                                    <span>About Me</span>
+                                </div>
+                            </div>
+
+
+                        </a>
+                        <a (click)="callLogout()" class="list-group-item list-group-item-action py-2 ripple">
+                            <div class="row">
+                                <div class="side-bar-icon col-4">
+                                    <fa-icon [icon]="faBell"></fa-icon>
+                                </div>
+
+                                <div class="side-bar-text col-8">
+                                    <span>Logout</span>
+                                </div>
+                            </div>
+
+                        </a>
+
+                    </div>
+                </div>
+            </nav>
+            <!-- Sidebar -->
+            <!-- Navbar -->
+
+            <!-- Navbar -->
+        </header>
     </mat-sidenav>
 
     <mat-sidenav-content class="container-sidenav">
         <!-- Navbar-->
-        <div class="position-relative" style="margin-left: 10px; margin-top: 10px; margin-bottom: 10px;">
-            <div class="position-absolute top-0 start-0">
+        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
                 <button (click)="sidenav.toggle()" type="button" class="btn btn-outline-secondary">
                     <fa-icon [icon]="faBars"></fa-icon>
                 </button>
+                <!-- Brand -->
+                <a class="navbar-brand" href="#">
+                    <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="25"
+                        alt="MDB Logo" loading="lazy" />
+                </a>
+
             </div>
-        </div>
+            <!-- Container wrapper -->
+        </nav>
         <!-- Navbar -->
         <app-dashboard *ngIf="componentToShow == 'dashboard'"></app-dashboard>
         <app-listing-page *ngIf="componentToShow == 'listing-page'"></app-listing-page>

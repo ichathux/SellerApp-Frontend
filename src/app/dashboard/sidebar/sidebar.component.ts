@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MainComponent } from '../main/main.component';
 import { faUser, faGears, faShippingFast, faBell, faList, faGauge, faFileExcel} from '@fortawesome/free-solid-svg-icons';
 import { AxiosService } from 'src/app/axios.service';
-import { SigninComponent } from 'src/app/signin/signin.component';
 import { ApiServiceService } from '../service/api-service.service';
 
 @Component({
@@ -23,6 +22,7 @@ export class SidebarComponent implements OnInit {
   activeStatus = "dashboard";
   logo : string | null = '';
   name : string | null = '';
+  
   constructor(
     private mainComponent : MainComponent, 
     private axiosService : AxiosService,
@@ -40,8 +40,6 @@ export class SidebarComponent implements OnInit {
     this.mainComponent.componentToShow = showContent;
     this.activeStatus = showContent;
   }  
-
-
 
   callLogout(){
     this.axiosService.logout();

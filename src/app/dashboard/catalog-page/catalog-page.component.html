@@ -155,26 +155,26 @@
                     <div class="col-xs-12 col-sm-12">
                         <div class="card">
                             <div class="card-content">
-                                <table class="table table-borderless">
+                                <table class="table table-hover table-fixed">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Item Name</th>
-                                            <th scope="col">Created at</th>
-                                            <th scope="col">Qty</th>
-                                            <th scope="col">Brand</th>
-                                            <th scope="col">Sub Category</th>
-                                            <th scope="col">Action</th>
+                                            <th>Image</th>
+                                            <th>Item Name</th>
+                                            <th>Created at</th>
+                                            <th>Qty</th>
+                                            <th>Brand</th>
+                                            <th>Sub Category</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="table-success" *ngFor="let item of items">
-                                            <td><img [src]="item.image" class="rounded mx-auto d-block"
-                                                    alt="{{item.image}}" style="height: 100px; width: 100px;">
+                                        <tr *ngFor="let item of items">
+                                            <td class="col-3">
+                                                <img [src]="item.image" alt="{{item.image}}" style="height: 75px; ">
                                             </td>
-                                            <td>{{item.name}}</td>
-                                            <td>{{ item.createdAt * 1000 | date :'medium' }}</td>
-                                            <td>
+                                            <td class="col-4">{{item.name}}</td>
+                                            <td scope="col">{{ item.createdAt * 1000 | date :'medium' }}</td>
+                                            <td scope="col">
                                                 <ol class="list-group list-group-numbered">
                                                     <li class="list-group-item d-flex justify-content-between align-items-start"
                                                         *ngFor="let variant of item.variants">
@@ -187,9 +187,9 @@
                                                     </li>
                                                 </ol>
                                             </td>
-                                            <td>{{item.brand}}</td>
-                                            <td>{{item.subCategoryId.name}}</td>
-                                            <td>
+                                            <td scope="col">{{item.brand}}</td>
+                                            <td scope="col">{{item.subCategoryId.name}}</td>
+                                            <td scope="col">
                                                 <button mat-icon-button color="primary" (click)="openViewDialog(item)"
                                                     aria-label="Example icon button with a home icon">
                                                     <mat-icon>remove_red_eye </mat-icon>

@@ -16,4 +16,17 @@
   transition: all 0.2s ease-in-out;
   margin-left : 100%;
 }  
+.navbar {
+  transition: top 0.3s;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
 
+.navbar-center .navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}

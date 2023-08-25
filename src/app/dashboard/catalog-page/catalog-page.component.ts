@@ -160,6 +160,8 @@ export class CatalogPageComponent implements OnInit{
       this.formData.append('customField6', this.qtyArray[5] !== undefined ? this.qtyArray[5].toString() : '0');
       this.formData.append('customField6Price', this.priceArray[5] !== undefined ? this.priceArray[5].toString() : '0');
       this.formData.append('variantType', this.currentVariant);
+      this.formData.append('lowestPrice', Math.min(...this.priceArray).toString())
+      this.formData.append('totalItems', this.qtyArray.reduce((t, n) => t + n,0).toString())
       // this.uploadImage(this.selectedFile, this.formData);
       this.uploadImage();
       
