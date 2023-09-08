@@ -32,7 +32,6 @@ export class SidebarComponent implements OnInit {
     ngOnInit(): void {
       this.logo = localStorage.getItem('logo');  
       this.name = localStorage.getItem('businessName');
-
     }
   
   setCompomentToShow(showContent : string){

@@ -29,6 +29,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog'; 
+import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteSelectedEvent, MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
@@ -115,7 +117,9 @@ import { ViewItemComponent } from './view-item/view-item.component';
     MatButtonToggleModule,
     NgxSpinnerModule.forRoot({ type: 'ball-circus' }),
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
