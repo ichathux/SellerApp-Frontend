@@ -1,17 +1,34 @@
 import { Component } from '@angular/core';
-import { faSearch, faCouch, faBasketball, faRing, faClock,
-faCarSide, faHome, faGuitar, faBook, faBabyCarriage, faPaw, faShirt, faShoePrints,
-faMobile, faTools, faPencilRuler, faWarehouse, faHeart, faCartShopping} from '@fortawesome/free-solid-svg-icons';
+import {
+  faSearch,
+  faCouch,
+  faBasketball,
+  faRing,
+  faClock,
+  faCarSide,
+  faHome,
+  faGuitar,
+  faBook,
+  faBabyCarriage,
+  faPaw,
+  faShirt,
+  faShoePrints,
+  faMobile,
+  faTools,
+  faPencilRuler,
+  faWarehouse,
+  faHeart,
+  faCartShopping,
+} from '@fortawesome/free-solid-svg-icons';
 import { AxiosService } from '../axios.service';
-
+import { AuthServiceService } from '../auth/auth-service.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-
   faSearch = faSearch;
   faCouch = faCouch;
   faBasketball = faBasketball;
@@ -26,24 +43,24 @@ export class HomeComponent {
   faShirt = faShirt;
   faShoePrints = faShoePrints;
   faMobile = faMobile;
-  faTools = faTools ;
-  faPencilRuler = faPencilRuler ;
+  faTools = faTools;
+  faPencilRuler = faPencilRuler;
   faWarehouse = faWarehouse;
   faHeart = faHeart;
-  faCartShopping =faCartShopping;
+  faCartShopping = faCartShopping;
 
-  searchTerm : string = '';
+  searchTerm: string = '';
 
-  isLoggedIn : boolean = false;
-  constructor(private axios : AxiosService){
-    
-    this.isLoggedIn = axios.isLoggedIn();
-    console.log(this.isLoggedIn)
+  isLoggedIn: boolean = false;
+  constructor(
+    private axios: AxiosService,
+    private authService: AuthServiceService
+  ) {
+    this.isLoggedIn = authService.isLoggedIn();
+    console.log(this.isLoggedIn);
   }
 
-  callLogout(){
-    this.axios.logout();
+  callLogout() {
+    this.authService.logout();
   }
-
-  
 }

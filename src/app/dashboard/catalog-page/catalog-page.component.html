@@ -47,9 +47,7 @@
                                         <div
                                             *ngIf="myForm.controls['subCategory']?.invalid && (myForm.controls['subCategory']?.dirty || myForm.controls['subCategory']?.touched)">
                                             <div *ngIf="myForm.controls['subCategory']?.errors" style="color: red;">
-                                                Image
-                                                is
-                                                required.</div>
+                                                Sub Catagory is required.</div>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -216,8 +214,11 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label for="inputCity" class="form-label">Description</label>
-                                        <textarea class="form-control" id="description" rows="3" name="description"
-                                            [(ngModel)]="description" required></textarea>
+
+                                        <div>
+                                            <quill-editor [(ngModel)]="description" [modules]="editorConfig"
+                                                id="editor-container" name="first"></quill-editor>
+                                        </div>
                                         <div
                                             *ngIf="myForm.controls['description']?.invalid && (myForm.controls['description']?.dirty || myForm.controls['description']?.touched)">
                                             <div *ngIf="myForm.controls['description']?.errors" style="color: red;">
@@ -271,7 +272,7 @@
                                     <tbody>
                                         <tr *ngFor="let item of items">
                                             <td class="col-3">
-                                                <img [src]="item.image" alt="{{item.image}}" style="height: 75px; ">
+                                                <img [src]="item.image" alt="item thumbnail" style="height: 75px; ">
                                             </td>
                                             <td class="col-4">{{item.name}}</td>
                                             <td scope="col">{{ item.createdAt * 1000 | date :'medium' }}</td>
@@ -311,7 +312,11 @@
 
                                     </tbody>
                                     <tfoot>
-                                        <nav aria-label="Page navigation">
+                                        <mat-paginator [length]="length" [pageSize]="pageSize"
+                                            [pageSizeOptions]="pageSizeOptions" aria-label="Select page"
+                                            (page)="onPaginatorChange($event)">
+                                        </mat-paginator>
+                                        <!-- <nav aria-label="Page navigation">
                                             <ul class="pagination">
                                                 <li class="page-item">
                                                     <a class="page-link" href="#" aria-label="Previous">
@@ -327,7 +332,7 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </nav>
+                                        </nav> -->
                                     </tfoot>
                                 </table>
                             </div>

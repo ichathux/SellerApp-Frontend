@@ -3,3 +3,6 @@
     background-color: #ffffff;
     height: 100%;
   }
+#editor-container{
+  height: 200px;
+}

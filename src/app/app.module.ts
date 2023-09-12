@@ -2,11 +2,11 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'node_modules/ngx-toastr';
 import { NgxWebstorageModule } from 'ngx-webstorage';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { TagInputModule } from 'ngx-chips';
@@ -28,9 +28,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatDialogModule } from '@angular/material/dialog'; 
-import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
-import {MatAutocompleteSelectedEvent, MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
@@ -57,6 +57,13 @@ import { ConfimDialogComponent } from './dialog/confim-dialog/confim-dialog.comp
 import { EditInventoryItemComponent } from './dashboard/dialog-dashboard/edit-inventory-item/edit-inventory-item.component';
 import { ViewInventoryItemComponent } from './dashboard/dialog-dashboard/view-inventory-item/view-inventory-item.component';
 import { ViewItemComponent } from './view-item/view-item.component';
+import { ShowMoreDirective } from './show-more.directive';
+import { QuillConfigModule } from 'ngx-quill/config';
+import { QuillModule } from 'ngx-quill';
+import {
+  MatSlideToggleModule,
+  _MatSlideToggleRequiredValidatorModule,
+} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -84,8 +91,9 @@ import { ViewItemComponent } from './view-item/view-item.component';
     ConfimDialogComponent,
     EditInventoryItemComponent,
     ViewInventoryItemComponent,
-    ViewItemComponent
-    ],
+    ViewItemComponent,
+    ShowMoreDirective,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -109,7 +117,7 @@ import { ViewItemComponent } from './view-item/view-item.component';
     MatCardModule,
     MatTableModule,
     MatExpansionModule,
-    MatDatepickerModule, 
+    MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
@@ -119,10 +127,18 @@ import { ViewItemComponent } from './view-item/view-item.component';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSlideToggleModule,
+    _MatSlideToggleRequiredValidatorModule,
+    QuillModule.forRoot(),
+    QuillConfigModule.forRoot({
+      modules: {
+        syntax: true,
+        // toolbar: [...]
+      },
+    }),
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
-  
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

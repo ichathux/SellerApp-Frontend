@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {
   Component,
   ElementRef,
@@ -6,7 +6,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AxiosService } from 'src/app/axios.service';
 import { CatalogDto } from './catalogDto';
@@ -25,6 +25,9 @@ import { VariantList } from './dto/variant.list.payload';
 import { Inventory } from './dto/inventory.payload';
 import { ImageUploadResponse } from './dto/upload-response.payload';
 import { VariantListFinal } from './dto/variant-list-final.paylaod';
+import { ApiServiceService } from '../service/api-service.service';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+// import 'highlight.js/styles/monokai.css';
 
 @Component({
   selector: 'app-catalog-page',
@@ -32,9 +35,8 @@ import { VariantListFinal } from './dto/variant-list-final.paylaod';
   styleUrls: ['./catalog-page.component.css'],
 })
 export class CatalogPageComponent implements OnInit {
-  catalogForm!: FormGroup;
+  // catalogForm!: FormGroup;
   productName!: string;
-
   categories: Array<any> = [];
   subCategories: Array<any> = [];
   brands: Array<any> = [];
@@ -70,17 +72,17 @@ export class CatalogPageComponent implements OnInit {
   ];
   listOfVariants: string[][] = [];
   panelOpenState = false;
-
+  sanitizedHtml: any;
   @ViewChild('fruitInput') fruitInput?: ElementRef<HTMLInputElement>;
 
   announcer = inject(LiveAnnouncer);
-
   constructor(
     private axios: AxiosService,
     private toater: ToastrService,
     private http: HttpClient,
     private spinner: NgxSpinnerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private apiService: ApiServiceService
   ) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -209,12 +211,10 @@ export class CatalogPageComponent implements OnInit {
       reader.readAsDataURL(this.selectedFile);
     }
   }
-  // isToggled: boolean = false;
 
   toggleValue(i: number, isToggled: boolean): void {
     const v: VariantList = this.vTypesNew[i];
     this.vTypesNew[i].useImage = isToggled;
-    // console.log(this.vTypesNew);
   }
   // --------------------------------------------------------------------------------------------------------
 
@@ -246,30 +246,29 @@ export class CatalogPageComponent implements OnInit {
 
   getSubCategories(cat: any) {
     this.spinner.show();
-    this.axios
-      .requestWithParams('GET', 'api/inventory/getSubCategories', { id: cat })
-      .then((response) => {
-        this.subCategories = response.data;
-        this.spinner.hide();
-      })
-      .catch((error) => {
-        // console.log(error);
-        this.toater.error(error);
-        this.spinner.hide();
-      });
+    this.apiService
+      .get('api/inventory/getSubCategories', { id: cat })
+      .subscribe(
+        (response) => {
+          this.subCategories = response;
+          this.spinner.hide();
+        },
+        (error) => {
+          this.toater.error(error);
+          this.spinner.hide();
+        }
+      );
   }
 
   getBrand() {
-    this.axios
-      .request('GET', 'api/inventory/getBrands', '')
-      .then((response) => {
-        // console.log(response)
-        this.brands = response.data;
-      })
-      .catch((error) => {
+    this.apiService.get('api/inventory/getBrands').subscribe(
+      (response) => {
+        this.brands = response;
+      },
+      (error) => {
         this.toater.error(error);
-        // console.log(error);
-      });
+      }
+    );
   }
 
   pages: Array<number> | undefined;
@@ -289,8 +288,13 @@ export class CatalogPageComponent implements OnInit {
   }
 
   finalVariantList: VariantListFinal[] = [];
-
+  editorConfig = AppConfig.editorConfig;
+  onEditorChange(event: any) {
+    this.description = event.html;
+    console.log(this.description);
+  }
   async generateUploadRequest() {
+    // console.log(this.description);
     this.spinner.show();
     for (const element of this.vTypesNew) {
       console.log(this.imgMap);
@@ -301,10 +305,6 @@ export class CatalogPageComponent implements OnInit {
           console.log(this.imgMap.get(file.name)?.img_url);
           console.log(this.imgMap.get(file.name)?.public_id);
         } else {
-          // const formData = new FormData();
-          // formData.append('file', file);
-          // formData.append('upload_preset', 'timlw13j');
-          // const url = `${AppConfig.cloudinaryApiPrefix}${AppConfig.cloudinaryCloudName}${AppConfig.cloudinaryApiPostfix}`;
           const response = await this.uploadRequest(file).toPromise();
           this.imgMap.set(
             file.name,
@@ -372,72 +372,6 @@ export class CatalogPageComponent implements OnInit {
     this.sendAddingRequest(inventory);
   }
 
-  // addSingleItem() {
-  //   this.spinner.show();
-  //   if (this.selectedFile) {
-  //     this.loopVariants()
-  //       .then(() => {
-  //         if (this.selectedFile) {
-  //           this.uploadRequest(this.selectedFile).subscribe((r) => {
-  //             let imgUrl: string | ArrayBuffer | null | undefined =
-  //               r.secure_url;
-  //             let publicId: string | null | undefined = r.public_id;
-  //             const lowestValue = this.finalVariantList.reduce(
-  //               (min, obj) => (obj.price < min ? obj.price : min),
-  //               this.finalVariantList[0].price
-  //             );
-  //             const totalQty = this.finalVariantList.reduce(
-  //               (accumulator, obj) => accumulator + obj.qty,
-  //               0
-  //             );
-  //             const inventory: Inventory = new Inventory(
-  //               this.itemName,
-  //               this.subCategory,
-  //               this.brand,
-  //               this.description,
-  //               imgUrl,
-  //               publicId,
-  //               this.finalVariantList,
-  //               lowestValue,
-  //               totalQty
-  //             );
-  //             this.sendAddingRequest(inventory);
-  //           });
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         this.toater.error(error);
-  //         this.spinner.hide();
-  //       });
-  //   }
-  // }
-
-  // loopVariants(): Promise<any[]> {
-  //   const promises: Promise<any>[] = [];
-  //   for (const element of this.vTypesNew) {
-  //     const file = element.image;
-  //     if (file) {
-  //       const promise = this.uploadRequest(file)
-  //         .toPromise()
-  //         .then((response) => {
-  //           let imgUrl = response.secure_url;
-  //           let publicId = response.public_id;
-  //           const v = new VariantListFinal(
-  //             element.name,
-  //             element.variants,
-  //             element.price,
-  //             element.qty,
-  //             element.useImage,
-  //             imgUrl,
-  //             publicId
-  //           );
-  //           this.finalVariantList.push(v);
-  //         });
-  //       promises.push(promise);
-  //     }
-  //   }
-  //   return Promise.all(promises);
-  // }
   imgMap = new Map<string, ImageUploadResponse>();
 
   uploadRequest(img: File): Observable<any> {
@@ -448,19 +382,6 @@ export class CatalogPageComponent implements OnInit {
     return this.http.post<any>(url, formData);
   }
 
-  // getData(response?: ImageUploadResponse | null): Observable<number> {
-  //   return new Observable((observer: Observer<any>) => {
-  //     const alreadyContain = true; // The data you want to emit
-  //     const data = {
-  //       alreadyContain: true,
-  //       imgUrl: response?.img_url,
-  //       publicId: response?.public_id,
-  //     };
-  //     observer.next(data);
-  //     observer.complete();
-  //   });
-  // }
-
   sendAddingRequest(inventory: Inventory) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -468,11 +389,7 @@ export class CatalogPageComponent implements OnInit {
       }),
     };
     this.http
-      .post<any>(
-        AppConfig.apiUrl + 'api/inventory/addSingleItemTest',
-        inventory,
-        httpOptions
-      )
+      .post<any>(AppConfig.apiUrl + 'api/inventory/add', inventory, httpOptions)
       .subscribe((res) => {
         // console.log(res);
         this.getInventory();
@@ -485,30 +402,43 @@ export class CatalogPageComponent implements OnInit {
 
   getInventory() {
     this.spinner.show();
-    this.axios
-      .requestWithParams('GET', 'api/inventory/getAllItems', {
-        page: this.page,
-        size: this.size,
-      })
-      .then((response) => {
-        // console.log(response);
-        // console.log(response.data.totalPages);
-        this.items = response.data.content;
-        this.pages = new Array(response.data.totalPages);
-        this.spinner.hide();
-      })
-      .catch((error) => {
-        // console.log(error);
-        this.toater.error(error);
+    const params = new HttpParams();
+    params.append('page', this.page);
+    params.append('size', this.size);
+    this.apiService
+      .get('api/inventory/get', { page: this.page, size: this.pageSize })
+      .subscribe((res) => {
+        console.log(res);
+        this.items = res.content;
+        this.pages = new Array(res.size);
+        this.length = res.totalElements;
         this.spinner.hide();
       });
   }
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  currentPage = 0;
+  length = 10;
 
+  onPaginatorChange(event: PageEvent) {
+    console.log(event);
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.getInventory();
+  }
   setPage(i: number, event: any) {
     this.page = i;
     this.getInventory();
   }
-
+  updateDataSource() {
+    // Calculate the starting index based on currentPage and pageSize
+    const startIndex = this.currentPage * this.pageSize;
+    console.log('start index ', startIndex);
+    // Slice your data array to get the new page of data
+    // Replace this with your actual data source update logic
+    // this.dataSource.data = yourDataArray.slice(startIndex, startIndex + this.pageSize);
+  }
   selectedOption: string | undefined;
 
   selectOption(option: string) {
@@ -531,7 +461,7 @@ export class CatalogPageComponent implements OnInit {
   deleteItem(item: any) {
     this.spinner.show();
     this.axios
-      .requestWithParams('DELETE', 'api/inventory/deleteInventoryItem', {
+      .requestWithParams('DELETE', 'api/inventory/delete', {
         itemId: item,
       })
       .then((response) => {

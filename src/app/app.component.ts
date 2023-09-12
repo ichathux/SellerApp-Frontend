@@ -1,18 +1,18 @@
 import { Component, HostListener } from '@angular/core';
-import { AxiosService } from './axios.service';
+import { AuthServiceService } from './auth/auth-service.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'seller-app-frontend';
 
-  private inactivityTimeout = 3.6e+6; // 1 hour in milliseconds
+  private inactivityTimeout = 3.6e6; // 1 hour in milliseconds
   private inactivityTimer: any | undefined;
 
-  constructor(private authService: AxiosService) {}
+  constructor(private authService: AuthServiceService) {}
 
   @HostListener('document:mousemove', ['$event'])
   @HostListener('document:keydown', ['$event'])

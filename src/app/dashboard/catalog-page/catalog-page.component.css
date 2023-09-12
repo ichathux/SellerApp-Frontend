@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,900);
+/* @import '~highlight.js/styles/monokai.css'; */
 
 html,
 body {
@@ -110,4 +111,7 @@ h1.heading {
 
 .mat-mdc-dialog-container .mdc-dialog__surface mat-dialog-content{
   background-color: #ffffff;
+}
+#editor-container{
+  height: 400px;
 }

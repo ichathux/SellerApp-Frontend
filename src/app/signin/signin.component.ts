@@ -3,35 +3,46 @@ import { Router } from '@angular/router';
 import axios from 'axios';
 import { ToastrService } from 'ngx-toastr';
 import { AxiosService } from 'src/app/axios.service';
-import { faFacebook, faLinkedin, faTwitter} from '@fortawesome/free-brands-svg-icons';
+import {
+  faFacebook,
+  faLinkedin,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiServiceService } from '../dashboard/service/api-service.service';
-
+import { AuthServiceService } from '../auth/auth-service.service';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css'],
 })
-export class SigninComponent implements OnInit{
-  
-constructor(private axiosService : AxiosService, 
-  private router : Router,
-  private toaster: ToastrService, private apiService: ApiServiceService){}
-ngOnInit(): void {
-  console.log(axios);
-}
+export class SigninComponent implements OnInit {
+  constructor(
+    private axiosService: AxiosService,
+    private router: Router,
+    private toaster: ToastrService,
+    private apiService: ApiServiceService,
+    private authService: AuthServiceService
+  ) {
+    if (authService.isLoggedIn()) {
+      console.log('signed in');
+    }
+  }
+  ngOnInit(): void {
+    console.log(axios);
+  }
 
   @Output() onSubmitLoginEvent = new EventEmitter();
-  
-  username : string = "";
-  password : string = "";
+
+  username: string = '';
+  password: string = '';
   // ngForm : NgForm = "";
   faFacebook = faFacebook;
   faTwitter = faTwitter;
   faLinkedin = faLinkedin;
-  logo : string = '';
-  name : string = '';
+  logo: string = '';
+  name: string = '';
 
   // private userDataSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
@@ -57,19 +68,25 @@ ngOnInit(): void {
 
   // }
 
-  onLogin(input:any):void{
-    this.apiService.login(input.username, input.password).subscribe(userData => {
-      console.log('login response ',userData)
-      this.axiosService.setAuthToken(userData.token, input.username, userData.requestToken);
-      this.router.navigateByUrl('/dashboard');
-    }, error => {
-      console.log(error)
-      this.toaster.error("error, check user credential")
-    })
+  onLogin(input: any) {
+    this.apiService.login(input.username, input.password).subscribe(
+      (userData) => {
+        console.log('login response ', userData);
+        const auth_token: string = userData.token;
+        const usernanme: string = userData.username;
+        const req_token: string = userData.requestToken;
+        this.authService.setAuthToken(auth_token, usernanme, req_token);
+        this.router.navigateByUrl('/dashboard');
+      },
+      (error) => {
+        console.log(error);
+        this.toaster.error('error, check user credential');
+      }
+    );
   }
-  onSubmitLogin():void{
-    console.log("login user")
-    this.onLogin({"username":this.username, "password" : this.password});  
+  onSubmitLogin(): void {
+    console.log('login user');
+    this.onLogin({ username: this.username, password: this.password });
   }
 
   // getUserData(): Observable<any> {

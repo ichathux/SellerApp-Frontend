@@ -19,11 +19,13 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "types": ["@types/googlemaps"],
+    // "types": ["@types/googlemaps"],
+    "allowSyntheticDefaultImports": true,
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "typeRoots": ["node_modules/@types", "./typings"]
     
   },
   "angularCompilerOptions": {
