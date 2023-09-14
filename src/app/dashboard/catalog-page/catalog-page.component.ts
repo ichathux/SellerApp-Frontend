@@ -460,19 +460,17 @@ export class CatalogPageComponent implements OnInit {
 
   deleteItem(item: any) {
     this.spinner.show();
-    this.axios
-      .requestWithParams('DELETE', 'api/inventory/delete', {
-        itemId: item,
-      })
-      .then((response) => {
+    this.apiService.delete(`api/inventory/delete/${item}`).subscribe(
+      (response) => {
         this.toater.success('Item Deleted');
         this.getInventory();
         this.spinner.hide();
-      })
-      .catch((error) => {
+      },
+      (error) => {
         this.toater.error(error);
         this.spinner.hide();
-      });
+      }
+    );
   }
 
   openEditDialog(item: any) {

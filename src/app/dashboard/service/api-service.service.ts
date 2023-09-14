@@ -1,4 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpContext,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthServiceService } from 'src/app/auth/auth-service.service';
@@ -53,5 +58,39 @@ export class ApiServiceService {
       Authorization: 'Bearer ' + localStorage.getItem('auth_token'),
     };
     return this.http.put(AppConfig.apiUrl + url, body, { headers, params });
+  }
+
+  delete(
+    url: string,
+    options?: {
+      headers?:
+        | HttpHeaders
+        | {
+            [header: string]: string | string[];
+          };
+      context?: HttpContext;
+      observe?: 'body';
+      params?:
+        | HttpParams
+        | {
+            [param: string]:
+              | string
+              | number
+              | boolean
+              | ReadonlyArray<string | number | boolean>;
+          };
+      reportProgress?: boolean;
+      responseType?: 'json';
+      withCredentials?: boolean;
+      body?: any | null;
+    }
+  ): Observable<any> {
+    let headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('auth_token'),
+    };
+    // options?.headers?.append('Authorization', 'Bearer ' + localStorage.getItem('auth_token'));
+    // options?.headers?.set('Authorization', 'Bearer ' + localStorage.getItem('auth_token'))
+
+    return this.http.delete(AppConfig.apiUrl + url, { headers });
   }
 }
